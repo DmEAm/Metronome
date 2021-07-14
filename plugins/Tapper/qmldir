@@ -1,0 +1,5 @@
+module Tapper
+plugin TapperPlugin
+designersupported
+Tapper 1.0 qrc:/tapper/Tapper.qml
+typeinfo plugin.qmltypes
