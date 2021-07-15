@@ -1,0 +1,7 @@
+module mainwindow
+
+MainWindow 1.0 qrc:/mainwindow/MainWindowForm.ui.qml
+
+plugin MainPlugin
+
+typeinfo plugin.qmltypes

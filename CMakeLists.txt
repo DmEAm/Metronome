@@ -31,6 +31,21 @@ endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/plugins/mainwindow ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
+
+add_subdirectory(plugins)
+include_directories(plugins)
+
+file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
+file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
+
+qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
+
+set(PROJECT_SOURCES
+    ${SOURCE_FILES}
+    ${PROJECT_RESOURCES}
+    ${HEADER_FILES})
 
 add_subdirectory(plugins)
 include_directories(plugins)
@@ -59,3 +74,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
     TapperPlugin)
+    MainPlugin)
+
