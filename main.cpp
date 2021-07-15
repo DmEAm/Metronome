@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <Tapper/tapper.hpp>
 
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
