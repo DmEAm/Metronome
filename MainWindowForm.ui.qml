@@ -9,11 +9,19 @@ Item {
         id: grid
         anchors.fill: parent
     }
+
+    Text {
+        id: element1
+        text: qsTr("Text")
+        anchors.fill: parent
+        font.pixelSize: 12
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+    }
 }
 
 /*##^##
 Designer {
-    D{i:1}
+    D{i:2}
 }
 ##^##*/
-
