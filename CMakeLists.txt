@@ -31,7 +31,7 @@ endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
-set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/plugins/mainwindow ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
+set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/plugins/player ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
 
 add_subdirectory(plugins)
 include_directories(plugins)
@@ -74,5 +74,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
     TapperPlugin)
-    MainPlugin)
-
+    PlayerPlugin)

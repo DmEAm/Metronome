@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/player">
+        <file>Player.qml</file>
+        <file>PlayerForm.ui.qml</file>
+    </qresource>
+</RCC>

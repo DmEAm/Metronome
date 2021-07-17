@@ -1,7 +1,0 @@
-module mainwindow
-
-MainWindow 1.0 qrc:/mainwindow/MainWindow.qml
-
-plugin libMainPlugin
-
-typeinfo plugin.qmltypes

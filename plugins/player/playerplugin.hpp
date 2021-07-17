@@ -3,9 +3,9 @@
 
 #include <QQmlExtensionPlugin>
 
-#include "mainwindow.hpp"
+#include "player.hpp"
 
-class MainPlugin : public QQmlExtensionPlugin
+class PlayerPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)

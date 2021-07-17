@@ -5,13 +5,13 @@
 #include <QString>
 #include <QQuickItem>
 
-class MainController : public QObject
+class PlayerController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
 
 public:
-    explicit MainController(QObject *parent = nullptr);
+    explicit PlayerController(QObject *parent = nullptr);
 
     QString userName();
     void setUserName(const QString &userName);

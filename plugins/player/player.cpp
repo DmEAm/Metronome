@@ -1,17 +1,17 @@
-#include "mainwindow.hpp"
+#include "player.hpp"
 
-MainController::MainController(QObject *parent) : QObject(parent)
+PlayerController::PlayerController(QObject *parent) : QObject(parent)
 {
     m_userName = "Ilya";
     qDebug() << m_userName;
 }
 
-QString MainController::userName()
+QString PlayerController::userName()
 {
     return m_userName;
 }
 
-void MainController::setUserName(const QString &userName)
+void PlayerController::setUserName(const QString &userName)
 {
     qDebug() << userName;
     if (userName == m_userName)

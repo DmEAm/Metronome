@@ -3,7 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.0
 
 import Tapper 1.0
-import mainwindow 1.0 as MainWindow
+import Player 1.0 as Player
 
 Window {
     Tapper {
@@ -14,7 +14,7 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
-    MainWindow.MainWindow
+    Player.PlayerQML
     {
 
     }
