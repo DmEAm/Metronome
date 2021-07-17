@@ -15,6 +15,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
 # They need to be set before the find_package(Qt5 ...) call.
 
+if(WIN32)
+    set(CMAKE_SHARED_LIBRARY_PREFIX "")
+    set(CMAKE_STATIC_LIBRARY_PREFIX "")
+endif()
+
 #if(ANDROID)
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
 #    if (ANDROID_ABI STREQUAL "armeabi-v7a")
@@ -27,19 +32,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
+add_subdirectory(plugins)
+include_directories(plugins)
+
+file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
+file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
+
+qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
+
+set(PROJECT_SOURCES
+    ${SOURCE_FILES}
+    ${PROJECT_RESOURCES}
+    ${HEADER_FILES})
+
 if(ANDROID)
-    add_library(Metronome SHARED
-      main.cpp
-      qml.qrc
-    )
+    add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 else()
-    add_executable(Metronome
-      main.cpp
-      qml.qrc
-    )
+    add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 endif()
 
-target_compile_definitions(Metronome
+target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(Metronome
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Quick
+    TapperPlugin)

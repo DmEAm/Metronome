@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>tap.svg</file>
+    </qresource>
+    <qresource prefix="/tapper">
+        <file>Tapper.qml</file>
+        <file>TapperForm.ui.qml</file>
+    </qresource>
+</RCC>
