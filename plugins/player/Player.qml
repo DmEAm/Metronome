@@ -9,5 +9,6 @@ PlayerForm {
             id: backend
         }
     bStart.text: backend.userName
+    bStart.onPressed: backend.changeWorkState()
 
 }

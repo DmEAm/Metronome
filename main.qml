@@ -6,6 +6,10 @@ import Tapper 1.0
 import Player 1.0 as Player
 
 Window {
+    Player.PlayerQML
+    {
+
+    }
     Tapper {
         id: tapper
     }
@@ -14,9 +18,5 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
-    Player.PlayerQML
-    {
-
-    }
 
 }

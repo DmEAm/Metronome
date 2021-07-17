@@ -2,21 +2,26 @@
 
 PlayerController::PlayerController(QObject *parent) : QObject(parent)
 {
-    m_userName = "Ilya";
-    qDebug() << m_userName;
+    m_isWork = false;
+    qDebug() << m_isWork;
 }
 
-QString PlayerController::userName()
+bool PlayerController::isWork()
 {
-    return m_userName;
+    return m_isWork;
 }
 
-void PlayerController::setUserName(const QString &userName)
+void PlayerController::setWorkState(const bool &workState)
 {
-    qDebug() << userName;
-    if (userName == m_userName)
+    qDebug() << workState;
+    if (workState == m_isWork)
         return;
 
-    m_userName = userName;
-    emit userNameChanged();
+    m_isWork = workState;
+    emit workStateChanged();
+}
+
+void PlayerController::changeWorkState()
+{
+    setWorkState(!m_isWork);
 }

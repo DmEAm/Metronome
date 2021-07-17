@@ -2,6 +2,6 @@ module Player
 
 PlayerQML 1.0 qrc:/player/Player.qml
 
-plugin libPlayerPlugin
+plugin PlayerPlugin
 
 typeinfo plugin.qmltypes

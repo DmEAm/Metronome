@@ -11,14 +11,14 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
-# They need to be set before the find_package(Qt5 ...) call.
-
 if(WIN32)
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
     set(CMAKE_STATIC_LIBRARY_PREFIX "")
 endif()
+
+# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
+# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
+# They need to be set before the find_package(Qt5 ...) call.
 
 #if(ANDROID)
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
@@ -47,20 +47,6 @@ set(PROJECT_SOURCES
     ${PROJECT_RESOURCES}
     ${HEADER_FILES})
 
-add_subdirectory(plugins)
-include_directories(plugins)
-
-file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
-file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
-file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
-
-qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
-
-set(PROJECT_SOURCES
-    ${SOURCE_FILES}
-    ${PROJECT_RESOURCES}
-    ${HEADER_FILES})
-
 if(ANDROID)
     add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 else()
@@ -73,5 +59,5 @@ target_compile_definitions(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
-    TapperPlugin)
+    TapperPlugin
     PlayerPlugin)

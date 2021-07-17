@@ -8,19 +8,20 @@
 class PlayerController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
+    Q_PROPERTY(bool isWork READ isWork WRITE setWorkState NOTIFY workStateChanged)
 
 public:
     explicit PlayerController(QObject *parent = nullptr);
 
-    QString userName();
-    void setUserName(const QString &userName);
+    bool isWork();
+    void setWorkState(const bool &workState);
+    Q_INVOKABLE void changeWorkState();
 
 signals:
-    void userNameChanged();
+    void workStateChanged();
 
 private:
-    QString m_userName;
+    bool m_isWork;
 };
 
 #endif // MAIN_HPP
