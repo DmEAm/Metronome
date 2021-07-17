@@ -2,7 +2,8 @@
 
 MainController::MainController(QObject *parent) : QObject(parent)
 {
-
+    m_userName = "Ilya";
+    qDebug() << m_userName;
 }
 
 QString MainController::userName()

@@ -5,21 +5,15 @@ Item {
     id: element
     width: 400
     height: 400
-
-    Grid {
-        id: grid
-        anchors.fill: parent
-    }
+    property alias txt: txt
 
     Text {
-        id: element1
+        id: txt
+        x: 73
+        y: 53
+        width: 78
+        height: 30
         text: qsTr("Text")
-        anchors.fill: parent
         font.pixelSize: 12
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
     }
 }
-
-
-
