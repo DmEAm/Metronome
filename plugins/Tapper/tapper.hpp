@@ -3,24 +3,27 @@
 
 #include <QObject>
 #include <QString>
+#include <QTime>
+#include <QContiguousCache>
 #include <QQuickItem>
 
 class TapperController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
+    Q_PROPERTY(qint64 tempo READ tempo NOTIFY tempoChanged)
 
 public:
     explicit TapperController(QObject *parent = nullptr);
 
-    QString userName();
-    void setUserName(const QString &userName);
+    Q_REQUIRED_RESULT qint64 tempo() const;
+    Q_INVOKABLE void tap();
 
 signals:
-    void userNameChanged();
+    void tempoChanged();
 
 private:
-    QString m_userName;
+    QContiguousCache<QTime> _timeCache;
+    QContiguousCache<qint64> _tempoCache;
 };
 
 #endif // TAPPER_HPP

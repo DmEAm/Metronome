@@ -10,6 +10,7 @@ Item {
         width: 150
         height: 150
 
+        onPressed: controller.tap()
         icon.name: "Tap Tempo"
         icon.source: "qrc:/icons/tap.svg"
         icon.width: width / 2

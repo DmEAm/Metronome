@@ -1,21 +1,32 @@
 #include "tapper.hpp"
 
-TapperController::TapperController(QObject *parent) : QObject(parent)
-{
+TapperController::TapperController(QObject *parent)
+: QObject(parent)
+, _timeCache(2)
+, _tempoCache(10) { }
 
+qint64 TapperController::tempo() const
+{
+    qint64 tempo = 0;
+
+    for (int i = _tempoCache.firstIndex(); i <= _tempoCache.lastIndex(); i++)
+    {
+        tempo += _tempoCache.at(i);
+    }
+
+    return tempo / _tempoCache.size();
 }
 
-QString TapperController::userName()
+void TapperController::tap()
 {
-    return m_userName;
-}
+    _timeCache.append(QDateTime::currentDateTime().time());
 
-void TapperController::setUserName(const QString &userName)
-{
-    qDebug() << userName;
-    if (userName == m_userName)
-        return;
+    auto diff = _timeCache.first().msecsTo(_timeCache.last());
 
-    m_userName = userName;
-    emit userNameChanged();
+    _tempoCache.append(diff > 0 ? 1000L * 60 / diff : 0);
+
+    _tempoCache.normalizeIndexes();
+    _timeCache.normalizeIndexes();
+
+    emit tempoChanged();
 }

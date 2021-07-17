@@ -6,7 +6,7 @@ import Tapper 1.0
 
 Window {
     Tapper {
-
+        id: tapper
     }
 
     width: 640

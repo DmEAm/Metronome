@@ -6,13 +6,7 @@ import Tapper 1.0
 TapperForm {
 
     TapperController {
-        id: backend
+        id: controller
     }
 
-    TextField {
-        text: backend.userName
-        placeholderText: qsTr("User name")
-        anchors.centerIn: parent
-        onEditingFinished: backend.userName = text
-    }
 }
