@@ -1,0 +1,5 @@
+module Picker
+plugin PickerPlugin
+designersupported
+Picker 1.0 qrc:/picker/Picker.qml
+typeinfo plugin.qmltypes

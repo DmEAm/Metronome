@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/picker">
+        <file>Picker.qml</file>
+    </qresource>
+</RCC>
