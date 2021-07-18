@@ -2,4 +2,11 @@
     <qresource prefix="/">
         <file>main.qml</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>icons/fourth.png</file>
+        <file>icons/eighths.png</file>
+        <file>icons/shuffle.png</file>
+        <file>icons/sixteenth.png</file>
+        <file>icons/triplets.png</file>
+    </qresource>
 </RCC>
