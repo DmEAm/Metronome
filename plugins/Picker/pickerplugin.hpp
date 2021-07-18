@@ -4,6 +4,9 @@
 #include <QQmlExtensionPlugin>
 #include <QmlTypeAndRevisionsRegistration>
 
+#include "pickermodel.hpp"
+#include "pickercontroller.hpp"
+
 class PickerPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
