@@ -3,4 +3,8 @@
         <file>Player.qml</file>
         <file>PlayerForm.ui.qml</file>
     </qresource>
+    <qresource prefix="/audio">
+        <file alias="stick_1">audio/sticks_1(small).mp3</file>
+        <file alias="D">audio/D_riff.wav</file>
+    </qresource>
 </RCC>

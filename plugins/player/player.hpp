@@ -4,6 +4,11 @@
 #include <QObject>
 #include <QString>
 #include <QQuickItem>
+#include <QtMultimedia>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+
+#include "soundstruct.h"
 
 class PlayerController : public QObject
 {
@@ -22,6 +27,8 @@ signals:
 
 private:
     bool m_isWork;
+    QMediaPlayer *_player;
+    QMediaPlaylist *_playlist;
 };
 
 #endif // MAIN_HPP

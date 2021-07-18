@@ -31,6 +31,7 @@ endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+find_package(Qt5Multimedia REQUIRED)
 set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/plugins/player ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
 
 add_subdirectory(plugins)
@@ -59,5 +60,6 @@ target_compile_definitions(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Multimedia
     TapperPlugin
     PlayerPlugin)

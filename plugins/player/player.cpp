@@ -2,8 +2,13 @@
 
 PlayerController::PlayerController(QObject *parent) : QObject(parent)
 {
+    _player = new QMediaPlayer(this);
+    _playlist = new QMediaPlaylist(_player);
     m_isWork = false;
-    qDebug() << m_isWork;
+    _playlist->addMedia(QUrl("qrc:/audio/D"));
+    _playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    _player->setPlaylist(_playlist);
+    _player->setVolume(70);
 }
 
 bool PlayerController::isWork()
@@ -18,6 +23,18 @@ void PlayerController::setWorkState(const bool &workState)
         return;
 
     m_isWork = workState;
+    if(m_isWork)
+    {
+        qDebug() << _player->state();
+        _player->play();
+        qDebug() << _player->position();
+    }
+    else
+    {
+        qDebug() << _player->state();
+        _player->stop();
+        qDebug() << _player->position();
+    }
     emit workStateChanged();
 }
 
