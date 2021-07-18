@@ -25,6 +25,11 @@ public:
 signals:
     void workStateChanged();
 
+private slots:
+    void on_positionChanged(qint64 t);
+    void on_durationChanged(qint64 t);
+    void mediaStatuChngd(QMediaPlayer::MediaStatus t);
+
 private:
     bool m_isWork;
     QMediaPlayer *_player;

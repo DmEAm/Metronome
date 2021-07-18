@@ -1,4 +1,4 @@
 project(Plugins)
 
 add_subdirectory(Tapper)
-add_subdirectory(player)
+add_subdirectory(Player)

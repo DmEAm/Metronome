@@ -9,6 +9,10 @@ PlayerController::PlayerController(QObject *parent) : QObject(parent)
     _playlist->setPlaybackMode(QMediaPlaylist::Loop);
     _player->setPlaylist(_playlist);
     _player->setVolume(70);
+
+    connect(_player,SIGNAL(positionChanged(qint64)) ,this,SLOT(on_positionChanged(qint64)));
+    connect(_player,SIGNAL(durationChanged(qint64)) ,this,SLOT(on_durationChanged(qint64)));
+    connect(_player,SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),this,SLOT(mediaStatuChngd(QMediaPlayer::MediaStatus)));
 }
 
 bool PlayerController::isWork()
@@ -41,4 +45,19 @@ void PlayerController::setWorkState(const bool &workState)
 void PlayerController::changeWorkState()
 {
     setWorkState(!m_isWork);
+}
+
+void PlayerController::on_positionChanged(qint64 t)
+{
+    qDebug() << "position "<< t;
+}
+
+void PlayerController::on_durationChanged(qint64 t)
+{
+    qDebug() << "duration "<< t;
+}
+
+void PlayerController::mediaStatuChngd(QMediaPlayer::MediaStatus t)
+{
+    qDebug() << "Status "<< t;
 }
