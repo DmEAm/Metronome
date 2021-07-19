@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
+import QtQml.Models 2.15
 
 import Tapper 1.0
 import Picker 1.0
