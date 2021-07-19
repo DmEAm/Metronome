@@ -37,6 +37,9 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 add_subdirectory(plugins)
 include_directories(plugins)
 
+add_subdirectory(lib)
+include_directories(lib)
+
 file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
@@ -69,4 +72,5 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC
         TapperPlugin
         PickerPlugin
-        PlayerPlugin)
+        PlayerPlugin
+        Tempo)
