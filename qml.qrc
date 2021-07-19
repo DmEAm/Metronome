@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>TempoPicker.qml</file>
+        <file>DurationPicker.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/fourth.png</file>
