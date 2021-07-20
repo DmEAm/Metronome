@@ -7,6 +7,7 @@
 #include <QtMultimedia>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QTimer>
 
 #include "soundstruct.h"
 
@@ -29,11 +30,15 @@ private slots:
     void on_positionChanged(qint64 t);
     void on_durationChanged(qint64 t);
     void mediaStatuChngd(QMediaPlayer::MediaStatus t);
+    void click();
 
 private:
     bool m_isWork;
     QMediaPlayer *_player;
     QMediaPlaylist *_playlist;
+    QTimer *_timer;
+    QBuffer *buffer;
+
 };
 
 #endif // MAIN_HPP
