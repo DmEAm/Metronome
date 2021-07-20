@@ -8,11 +8,11 @@ Item {
     DelegateModel {
         id: delegateComponent
         model: [
-            "qrc:/icons/icons/fourth.png",
-            "qrc:/icons/icons/eighths.png",
-            "qrc:/icons/icons/shuffle.png",
-            "qrc:/icons/icons/sixteenth.png",
-            "qrc:/icons/icons/triplets.png"
+            "qrc:/icons/fourth.png",
+            "qrc:/icons/eighths.png",
+            "qrc:/icons/shuffle.png",
+            "qrc:/icons/sixteenth.png",
+            "qrc:/icons/triplets.png"
         ]
         delegate: Rectangle {
             color: "#343434"

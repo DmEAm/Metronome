@@ -5,10 +5,10 @@
         <file>DurationPicker.qml</file>
     </qresource>
     <qresource prefix="/icons">
-        <file>icons/fourth.png</file>
-        <file>icons/eighths.png</file>
-        <file>icons/shuffle.png</file>
-        <file>icons/sixteenth.png</file>
-        <file>icons/triplets.png</file>
+        <file alias="fourth.png">icons/fourth.png</file>
+        <file alias="eighths.png">icons/eighths.png</file>
+        <file alias="shuffle.png">icons/shuffle.png</file>
+        <file alias="sixteenth.png">icons/sixteenth.png</file>
+        <file alias="triplets.png">icons/triplets.png</file>
     </qresource>
 </RCC>
