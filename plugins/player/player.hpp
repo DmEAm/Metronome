@@ -1,6 +1,8 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
+#include <time.h>
+
 #include <QObject>
 #include <QString>
 #include <QQuickItem>
@@ -8,6 +10,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QTimer>
+#include <QDateTime>
 
 #include "soundstruct.h"
 
@@ -38,6 +41,9 @@ private:
     QMediaPlaylist *_playlist;
     QTimer *_timer;
     QBuffer *buffer;
+    QSoundEffect *sound;
+    int count;
+    int time;
 
 };
 
