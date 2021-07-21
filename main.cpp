@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 
 #include <Tapper/tapper.hpp>
-#include <player/player.hpp>
+#include <Player/player.hpp>
 
 
 int main(int argc, char *argv[])

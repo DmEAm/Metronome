@@ -42,7 +42,7 @@ void PlayerController::setWorkState(const bool &workState)
     m_isWork = workState;
     if(m_isWork)
     {
-        _timer->start(100);
+        _timer->start(1000);
         time = clock();
     }
     else
