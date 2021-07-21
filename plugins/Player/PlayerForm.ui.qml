@@ -13,6 +13,7 @@ Item {
         y: 0
         width: 150
         height: 150
-        text: "+"
+        icon.name: "Play"
+        icon.source: "qrc:/icons/play.svg"
     }
 }

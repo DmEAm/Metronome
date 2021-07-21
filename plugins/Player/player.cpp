@@ -1,66 +1,49 @@
 #include "player.hpp"
 
-PlayerController::PlayerController(QObject *parent) : QObject(parent)
+PlayerController::PlayerController(QObject *parent)
+: QObject(parent)
+, _effect(new QSoundEffect(this))
+, _timer(new QTimer(this))
+, _tempo(120)
+, _playing(false)
 {
-    m_isWork = false;
+    _effect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
+    _effect->setVolume(0.25f);
+    _effect->setLoopCount(0);
 
-    thread = new QThread;
-    sound = new QSoundEffect;
-    sound->setSource(QUrl("qrc:/audio/stick_1(wav)"));
-    sound->setVolume(0.25f);
-    sound->setLoopCount(1);
-    sound->moveToThread(thread);
-    connect(this, &PlayerController::click,  sound, &QSoundEffect::play);
-    connect(this, &PlayerController::stp,  sound, &QSoundEffect::stop);
-
-    _timer = new QTimer(this);
     _timer->setTimerType(Qt::PreciseTimer);
-    connect(_timer, &QTimer::timeout,  this, &PlayerController::sclick);
-
-    thread->start();
+    connect(_timer, &QTimer::timeout, _effect, &QSoundEffect::play);
 }
 
-PlayerController::~PlayerController()
+bool PlayerController::playing() const
 {
-    if(thread->isRunning())
-        thread->terminate();
-    delete sound;
-    delete _timer;
-    delete thread;
+    return _playing;
 }
 
-bool PlayerController::isWork()
+void PlayerController::toggle()
 {
-    return m_isWork;
-}
+    _playing = !_playing;
 
-void PlayerController::setWorkState(const bool &workState)
-{
-    if (workState == m_isWork)
-        return;
-
-    m_isWork = workState;
-    if(m_isWork)
+    if(_playing)
     {
-        _timer->start(1000);
-        time = clock();
+        _effect->play();
+        _timer->start(1000 * 60 / (int)_tempo);
     }
     else
     {
+        _effect->stop();
         _timer->stop();
     }
-    emit workStateChanged();
+    emit toggled();
 }
 
-void PlayerController::changeWorkState()
+bool PlayerController::tempo() const
 {
-    setWorkState(!m_isWork);
+    return _tempo;
 }
 
-void PlayerController::sclick()
+void PlayerController::setTempo(size_t tempo)
 {
-    qDebug() << sound->isPlaying();
-    qDebug() << "" << clock() - time;
-    time = clock();
-    emit click();
+    _tempo = tempo;
 }
+

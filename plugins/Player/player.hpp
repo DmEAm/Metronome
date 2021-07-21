@@ -1,45 +1,36 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
-#include <time.h>
-
-#include <QObject>
-#include <QString>
-#include <QQuickItem>
-#include <QtMultimedia>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
+#include <QtQml>
+#include <QSoundEffect>
 #include <QTimer>
-#include <QDateTime>
 
 #include "soundstruct.h"
 
 class PlayerController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool isWork READ isWork WRITE setWorkState NOTIFY workStateChanged)
-
-    int time;
+    Q_PROPERTY(bool playing READ playing NOTIFY toggled)
+    Q_PROPERTY(bool tempo READ tempo WRITE setTempo)
 
 public:
     explicit PlayerController(QObject *parent = nullptr);
-    ~PlayerController();
+    ~PlayerController() override = default;
 
-    bool isWork();
-    void setWorkState(const bool &workState);
-    Q_INVOKABLE void changeWorkState();
-    void sclick();
+    bool playing() const;
+    bool tempo() const;
+    void setTempo(size_t tempo);
+
+    Q_INVOKABLE void toggle();
 
 signals:
-    void workStateChanged();
-    void click();
-    void stp();
+    void toggled();
 
 private:
-    bool m_isWork;
+    size_t _tempo;
+    bool _playing;
     QTimer *_timer;
-    QSoundEffect *sound;
-    QThread *thread;
+    QSoundEffect *_effect;
 };
 
 #endif // MAIN_HPP

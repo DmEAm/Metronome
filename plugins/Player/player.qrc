@@ -1,4 +1,7 @@
 <RCC>
+    <qresource prefix="/icons">
+        <file alias="play.svg">icons/play.svg</file>
+    </qresource>
     <qresource prefix="/player">
         <file>Player.qml</file>
         <file>PlayerForm.ui.qml</file>
