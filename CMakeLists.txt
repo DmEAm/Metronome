@@ -38,6 +38,8 @@ add_subdirectory(plugins)
 include_directories(plugins)
 
 add_subdirectory(lib)
+add_subdirectory(tests)
+
 include_directories(lib)
 
 file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
