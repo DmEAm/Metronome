@@ -19,32 +19,27 @@ class PlayerController : public QObject
     Q_OBJECT
     Q_PROPERTY(bool isWork READ isWork WRITE setWorkState NOTIFY workStateChanged)
 
+    int time;
+
 public:
     explicit PlayerController(QObject *parent = nullptr);
+    ~PlayerController();
 
     bool isWork();
     void setWorkState(const bool &workState);
     Q_INVOKABLE void changeWorkState();
+    void sclick();
 
 signals:
     void workStateChanged();
-
-private slots:
-    void on_positionChanged(qint64 t);
-    void on_durationChanged(qint64 t);
-    void mediaStatuChngd(QMediaPlayer::MediaStatus t);
     void click();
+    void stp();
 
 private:
     bool m_isWork;
-    QMediaPlayer *_player;
-    QMediaPlaylist *_playlist;
     QTimer *_timer;
-    QBuffer *buffer;
     QSoundEffect *sound;
-    int count;
-    int time;
-
+    QThread *thread;
 };
 
 #endif // MAIN_HPP
