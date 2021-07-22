@@ -3,12 +3,13 @@
 PlayerController::PlayerController(QObject *parent)
 : QObject(parent)
 , _playing(false)
+, _tempo(120)
 , _tempoLimit(230)
 , _timer(new QTimer(this))
-, _soundStruct(new SoundStruct(this))
+, _mixer(new Mixer(this))
 {
     _timer->setTimerType(Qt::PreciseTimer);
-    connect(_timer, &QTimer::timeout, _soundStruct, &SoundStruct::click);
+    connect(_timer, &QTimer::timeout, _mixer, &Mixer::click);
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
 }
@@ -28,28 +29,31 @@ void PlayerController::changeState()
 {
     if(_playing)
     {
-        _soundStruct->click();
-        _timer->start(_soundStruct->interval());
+        _mixer->click();
+        _timer->start(interval());
     }
     else
     {
-        _soundStruct->stop();
+        _mixer->stop();
         _timer->stop();
     }
 }
 
-bool PlayerController::tempo() const
+size_t PlayerController::tempo() const
 {
-    return _soundStruct->_tempo;
+    return _tempo;
 }
 
 void PlayerController::setTempo(size_t tempo)
 {
-    if (tempo == _soundStruct->_tempo)
+    if(tempo > _tempoLimit)
         return;
-    else if((int)tempo > _tempoLimit)
-        return;
-    _soundStruct->_tempo = tempo;
+    _tempo = tempo;
     emit changedTempo();
+}
+
+int PlayerController::interval()
+{
+    return 1000 * 60 / (int)_tempo;
 }
 

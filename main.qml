@@ -12,7 +12,7 @@ Window {
     visible: true
     title: qsTr("Metronome")
 
-    Player.PlayerQML
+    Player.Player
     {
         id: player
         x: 125

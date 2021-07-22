@@ -8,7 +8,7 @@ PlayerForm {
     PlayerController {
             id: backend
         }
-    bStart.text: backend.userName
-    bStart.onPressed: backend.toggle()
+    play.text: backend.userName
+    play.onPressed: backend.toggle()
 
 }

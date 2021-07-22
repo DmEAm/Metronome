@@ -1,6 +1,6 @@
 module Player
 
-PlayerQML 1.0 qrc:/player/Player.qml
+Player 1.0 qrc:/player/Player.qml
 
 plugin PlayerPlugin
 

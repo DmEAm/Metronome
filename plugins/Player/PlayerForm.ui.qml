@@ -5,10 +5,10 @@ Item {
     id: element
     width: 150
     height: 150
-    property alias bStart: bStart
+    property alias play: play
 
     RoundButton {
-        id: bStart
+        id: play
         x: 0
         y: 0
         width: 150
