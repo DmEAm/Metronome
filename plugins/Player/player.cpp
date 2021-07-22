@@ -2,17 +2,15 @@
 
 PlayerController::PlayerController(QObject *parent)
 : QObject(parent)
-, _effect(new QSoundEffect(this))
-, _timer(new QTimer(this))
-, _tempo(120)
 , _playing(false)
+, _tempoLimit(230)
+, _timer(new QTimer(this))
+, _soundStruct(new SoundStruct(this))
 {
-    _effect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
-    _effect->setVolume(0.25f);
-    _effect->setLoopCount(0);
-
     _timer->setTimerType(Qt::PreciseTimer);
-    connect(_timer, &QTimer::timeout, _effect, &QSoundEffect::play);
+    connect(_timer, &QTimer::timeout, _soundStruct, &SoundStruct::click);
+    connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
+    connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
 }
 
 bool PlayerController::playing() const
@@ -23,27 +21,35 @@ bool PlayerController::playing() const
 void PlayerController::toggle()
 {
     _playing = !_playing;
+    emit toggled();
+}
 
+void PlayerController::changeState()
+{
     if(_playing)
     {
-        _effect->play();
-        _timer->start(1000 * 60 / (int)_tempo);
+        _soundStruct->click();
+        _timer->start(_soundStruct->interval());
     }
     else
     {
-        _effect->stop();
+        _soundStruct->stop();
         _timer->stop();
     }
-    emit toggled();
 }
 
 bool PlayerController::tempo() const
 {
-    return _tempo;
+    return _soundStruct->_tempo;
 }
 
 void PlayerController::setTempo(size_t tempo)
 {
-    _tempo = tempo;
+    if (tempo == _soundStruct->_tempo)
+        return;
+    else if((int)tempo > _tempoLimit)
+        return;
+    _soundStruct->_tempo = tempo;
+    emit changedTempo();
 }
 

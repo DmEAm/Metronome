@@ -25,12 +25,15 @@ public:
 
 signals:
     void toggled();
+    void changedTempo();
 
 private:
-    size_t _tempo;
     bool _playing;
+    int _tempoLimit;
     QTimer *_timer;
-    QSoundEffect *_effect;
+    SoundStruct *_soundStruct;
+
+    void changeState();
 };
 
 #endif // MAIN_HPP
