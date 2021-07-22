@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+
 #include <Tapper/tapper.hpp>
+#include <Player/player.hpp>
+
 
 int main(int argc, char *argv[])
 {

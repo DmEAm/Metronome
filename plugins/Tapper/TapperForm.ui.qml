@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.3
 
 Item {
     width: 400
@@ -21,8 +21,5 @@ Item {
     }
 }
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:1.5}
-}
-##^##*/
+
+

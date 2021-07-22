@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="play.svg">icons/play.svg</file>
+    </qresource>
+    <qresource prefix="/player">
+        <file>Player.qml</file>
+        <file>PlayerForm.ui.qml</file>
+    </qresource>
+    <qresource prefix="/audio">
+        <file alias="stick_1">audio/sticks_1(small).mp3</file>
+        <file alias="D">audio/D_riff.wav</file>
+        <file alias="stick_1(wav)">audio/sticks_1(small).wav</file>
+    </qresource>
+</RCC>
