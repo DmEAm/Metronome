@@ -10,12 +10,12 @@
 class TapperController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(qint64 tempo READ tempo NOTIFY tempoChanged)
+    Q_PROPERTY(int tempo READ tempo NOTIFY tempoChanged)
 
 public:
     explicit TapperController(QObject *parent = nullptr);
 
-    Q_REQUIRED_RESULT qint64 tempo() const;
+    Q_REQUIRED_RESULT int tempo() const;
     Q_INVOKABLE void tap();
 
 signals:

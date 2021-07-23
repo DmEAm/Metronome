@@ -11,6 +11,7 @@ import QtMultimedia 5.12
 
 Window {
     property alias playerController: player.controller
+    property alias tapperController: tapper.controller
     property alias tempoTumbler: tempoPicker.tumbler
 
     width: 400
@@ -43,7 +44,19 @@ Window {
     Connections {
             target: tempoTumbler
             function onCurrentIndexChanged(index) {
-                playerController.tempo = tempoTumbler.currentIndex  + playerController.tempoMin;
+                playerController.tempo = tempoTumbler.currentIndex  + tempoPicker.shift;
+            }
+        }
+
+    Connections {
+            target: tapperController
+            function onTempoChanged() {
+                if (tapperController.tempo > playerController.tempoMax)
+                    tempoTumbler.currentIndex = playerController.tempoMax - tempoPicker.shift;
+                else if (tapperController.tempo < playerController.tempoMin)
+                    tempoTumbler.currentIndex = playerController.tempoMin - tempoPicker.shift;
+                else
+                    tempoTumbler.currentIndex = tapperController.tempo - tempoPicker.shift;
             }
         }
 
