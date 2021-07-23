@@ -32,6 +32,6 @@ Item {
 
     Picker {
         id: picker
-
+        tumbler.onCurrentItemChanged: controller.value = tumbler.currentIndex + shift
     }
 }

@@ -7,12 +7,13 @@
 class PickerController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QVariant value READ value NOTIFY valueChanged)
+    Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY valueChanged)
 
 public:
     explicit PickerController(QObject *parent = nullptr);
 
     Q_REQUIRED_RESULT QVariant value() const;
+    void setValue(QVariant value);
     Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData);
 
 private:

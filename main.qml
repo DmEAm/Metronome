@@ -13,6 +13,7 @@ Window {
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
     property alias tempoTumbler: tempoPicker.tumbler
+    property alias pickerController: tempoPicker.controller
 
     width: 400
     height: 500
@@ -38,13 +39,13 @@ Window {
         y: 75
         delegateComponent.model: playerController.range
         shift: playerController.tempoMin
-        tumbler.currentIndex: playerController.tempo - playerController.tempoMin
+        tumbler.currentIndex: playerController.tempo - shift
 
     }
     Connections {
-            target: tempoTumbler
-            function onCurrentIndexChanged(index) {
-                playerController.tempo = tempoTumbler.currentIndex  + tempoPicker.shift;
+            target: pickerController
+            function onValueChanged() {
+                playerController.tempo = pickerController.value;
             }
         }
 
@@ -52,11 +53,12 @@ Window {
             target: tapperController
             function onTempoChanged() {
                 if (tapperController.tempo > playerController.tempoMax)
-                    tempoTumbler.currentIndex = playerController.tempoMax - tempoPicker.shift;
+                    tempoTumbler.currentIndex = playerController.tempoMax;
                 else if (tapperController.tempo < playerController.tempoMin)
-                    tempoTumbler.currentIndex = playerController.tempoMin - tempoPicker.shift;
+                    tempoTumbler.currentIndex = playerController.tempoMin;
                 else
-                    tempoTumbler.currentIndex = tapperController.tempo - tempoPicker.shift;
+                    tempoTumbler.currentIndex = tapperController.tempo;
+                tempoTumbler.currentIndex -= tempoPicker.shift;
             }
         }
 
