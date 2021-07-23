@@ -1,17 +1,21 @@
 #include "pickercontroller.hpp"
+#include <QDebug>
 
-PickerController::PickerController(QObject *parent) : QObject(parent)
+PickerController::PickerController(QObject *parent) :
+QObject(parent)
+, _value(QVariant(0))
 {
 
 }
 
 QVariant PickerController::value() const
 {
-    return QVariant(0);
+    return _value;
 }
+
 
 QVariant PickerController::formatText(const QVariant& count, const QVariant& modelData)
 {
-    auto data = count == 12 ? modelData.value<int>() + 1 : modelData;
-    return data.toString().length() < 2 ? "0" + data.toString() : data;
+    auto data = modelData.value<int>();
+    return data;
 }

@@ -4,7 +4,8 @@ PlayerController::PlayerController(QObject *parent)
 : QObject(parent)
 , _playing(false)
 , _tempo(120)
-, _tempoLimit(230)
+, _tempoMax(230)
+, _tempoMin(20)
 , _timer(new QTimer(this))
 , _mixer(new Mixer(this))
 {
@@ -39,14 +40,29 @@ void PlayerController::changeState()
     }
 }
 
-size_t PlayerController::tempo() const
+int PlayerController::tempo() const
 {
     return _tempo;
 }
 
-void PlayerController::setTempo(size_t tempo)
+int PlayerController::tempoMax() const
 {
-    if(tempo > _tempoLimit)
+    return _tempoMax;
+}
+
+int PlayerController::tempoMin() const
+{
+    return _tempoMin;
+}
+
+int PlayerController::range() const
+{
+    return _tempoMax - _tempoMin + 1;
+}
+
+void PlayerController::setTempo(int tempo)
+{
+    if(tempo > _tempoMax || tempo < _tempoMin)
         return;
     _tempo = tempo;
     emit changedTempo();
@@ -54,6 +70,6 @@ void PlayerController::setTempo(size_t tempo)
 
 int PlayerController::interval()
 {
-    return 1000 * 60 / (int)_tempo;
+    return 1000 * 60 / _tempo;
 }
 

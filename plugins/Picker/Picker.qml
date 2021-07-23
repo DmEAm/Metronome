@@ -6,4 +6,5 @@ import Picker 1.0
 
 PickerForm {
     id: picker
+
 }

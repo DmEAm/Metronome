@@ -17,6 +17,7 @@ Item {
         delegate: Rectangle {
             color: "#343434"
             Image {
+                x: 35
                 width: 30
                 height: 30
                 source: modelData
@@ -25,7 +26,12 @@ Item {
     }
 
     Picker {
-        width: 200
-        height: 200
+        id: picker
+        frame.width: 100
+        frame.height: 100
+        rectangle.width: 100
+        rectangle.height: 100
+        tumbler.width: 100
+        tumbler.height: 100
     }
 }
