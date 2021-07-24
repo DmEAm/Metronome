@@ -2,4 +2,6 @@ module Picker
 plugin PickerPlugin
 designersupported
 Picker 1.0 qrc:/picker/Picker.qml
+TempoPicker 1.0 qrc:/picker/TempoPicker
+DurationPicker 1.0 qrc:/picker/DurationPicker
 typeinfo plugin.qmltypes

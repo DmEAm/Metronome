@@ -2,5 +2,7 @@
     <qresource prefix="/picker">
         <file>Picker.qml</file>
         <file>PickerForm.ui.qml</file>
+        <file alias="TempoPicker">TempoPicker/TempoPicker.qml</file>
+        <file alias="DurationPicker">DurationPicker/DurationPicker.qml</file>
     </qresource>
 </RCC>

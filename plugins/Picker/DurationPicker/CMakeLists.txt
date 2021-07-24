@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(PickerPlugin LANGUAGES CXX)
+project(DurationPicker LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
@@ -15,14 +15,9 @@ file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-qt5_add_resources(PLUGIN_RESOURCES ${RESOURCE_FILES})
 set(PROJECT_SOURCES
     ${SOURCE_FILES}
-    ${PLUGIN_RESOURCES}
     ${HEADER_FILES})
-
-add_subdirectory(DurationPicker)
-add_subdirectory(TempoPicker)
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 
@@ -30,11 +25,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick)
 
-add_custom_command(
-    TARGET ${PROJECT_NAME}
-    POST_BUILD
-    COMMAND
-    ${CMAKE_COMMAND} -E copy
-    ${CMAKE_CURRENT_LIST_DIR}/qmldir
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>/qmldir
-)

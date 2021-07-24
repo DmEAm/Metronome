@@ -13,10 +13,10 @@ public:
     explicit PickerController(QObject *parent = nullptr);
 
     Q_REQUIRED_RESULT QVariant value() const;
-    void setValue(QVariant value);
+    virtual void setValue(QVariant value);
     Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData);
 
-private:
+protected:
     QVariant _value;
 
 signals:

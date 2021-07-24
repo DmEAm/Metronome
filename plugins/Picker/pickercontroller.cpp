@@ -1,5 +1,4 @@
 #include "pickercontroller.hpp"
-#include <QDebug>
 
 PickerController::PickerController(QObject *parent) :
 QObject(parent)
