@@ -4,6 +4,7 @@
 
 #include <QtTest>
 #include <QAudioDecoder>
+#include <QAudioDeviceInfo>
 
 #include "tempo.hpp"
 
@@ -11,19 +12,29 @@ class TempoDetectionTestCase : public QObject
 {
     Q_OBJECT
     QAudioDecoder *_decoder;
+    QAudioFormat _format;
 
 public:
     TempoDetectionTestCase();
     ~TempoDetectionTestCase() override = default;
 
 private slots:
+    void initTestCase();
     void initTestCase_data();
     void detectTempoTestCase();
+
 };
 
 TempoDetectionTestCase::TempoDetectionTestCase()
-: _decoder(new QAudioDecoder(this))
+: _format(QAudioDeviceInfo::defaultOutputDevice().preferredFormat())
+, _decoder(new QAudioDecoder(this))
 {
+    _decoder->setAudioFormat(_format);
+}
+
+void TempoDetectionTestCase::initTestCase()
+{
+    QVERIFY(_format.isValid());
 }
 
 void TempoDetectionTestCase::initTestCase_data()
@@ -34,16 +45,22 @@ void TempoDetectionTestCase::initTestCase_data()
     QDirIterator it(":audio", QDirIterator::Subdirectories);
     while (it.hasNext())
     {
-        _decoder->setSourceFilename(it.next());
+        QFile file(it.next());
+        auto fileName = it.fileName();
+        QFileInfo info(fileName);
 
-        auto file = it.fileName();
+//        this shit does not work
+//        file.open(QIODevice::ReadOnly);
+//        _decoder->setSourceDevice(&file);
+        _decoder->setSourceFilename(info.absoluteFilePath());
+        _decoder->start();
 
-        QTest::newRow(qPrintable(QString("Audio %1").arg(file)))
-        << file.leftRef(file.indexOf('_')).toInt()
+        while(!_decoder->bufferAvailable());
+
+        QTest::newRow(qPrintable(QString("Audio %1").arg(fileName)))
+        << fileName.leftRef(fileName.indexOf('_')).toInt()
         << _decoder->read();
     }
-
-    QTest::addColumn<QString>("path");
 }
 
 void TempoDetectionTestCase::detectTempoTestCase()
@@ -51,6 +68,8 @@ void TempoDetectionTestCase::detectTempoTestCase()
     QFETCH_GLOBAL(int, tempo);
     QFETCH_GLOBAL(QAudioBuffer, buffer);
 
+    QVERIFY(buffer.isValid());
+    QVERIFY(buffer.sampleCount());
     QCOMPARE(detectTempo(buffer), tempo);
 }
 

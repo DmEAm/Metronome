@@ -1,10 +1,11 @@
 <RCC>
     <qresource prefix="/audio">
-        <file>60_bpm.mp3</file>
-        <file>100_bpm.mp3</file>
-        <file>113_bpm.mp3</file>
-        <file>130_bpm.mp3</file>
-        <file>135_bpm.mp3</file>
-        <file>150_bpm.mp3</file>
+        <file>60_bpm.wav</file>
+        <file>100_bpm.wav</file>
+        <file>113_bpm.wav</file>
+        <file>130_bpm.wav</file>
+        <file>135_bpm.wav</file>
+        <file>150_bpm.wav</file>
+        <file>188_bpm.wav</file>
     </qresource>
 </RCC>

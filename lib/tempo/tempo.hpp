@@ -2,7 +2,11 @@
 #define TEMPO_LIBRARY_H
 
 #include <QAudioBuffer>
+#include <QDebug>
 
-size_t detectTempo(const QAudioBuffer& buffer);
+#include <chrono>
+#include <type_traits>
+
+int detectTempo(const QAudioBuffer &buffer);
 
 #endif //TEMPO_LIBRARY_H

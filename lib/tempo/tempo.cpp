@@ -1,6 +1,16 @@
 #include "tempo.hpp"
 
-size_t detectTempo(const QAudioBuffer& buffer) {
-    Q_UNUSED(buffer);
+int detectTempo(const QAudioBuffer &buffer)
+{
+    const auto &format = buffer.format();
+    const auto *data = buffer.constData<qint16>();
+
+    qDebug()<< buffer.duration() << buffer.sampleCount();
+
+    for (auto i = 0; i < buffer.sampleCount(); i += format.channelCount())
+    {
+        qDebug() << data[i];
+    }
+
     return 100;
 }
