@@ -10,7 +10,7 @@ Item {
     property alias controller: controller
     property alias shift: delegateComponent.shift
 
-    PickerController {
+    NumberController {
         id: controller
     }
 

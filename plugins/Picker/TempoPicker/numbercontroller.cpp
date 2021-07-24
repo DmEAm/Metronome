@@ -1,14 +1,15 @@
 #include "numbercontroller.h"
 
 NumberController::NumberController(QObject *parent) :
-  PickerController(parent),
-  _maxValue(100),
-  _minValue(0)
+  PickerController(parent)
+  //_maxValue(100),
+  //_minValue(0)
 {
     _value = 0;
 }
 
 
+/*
 void NumberController::setValue(QVariant value)
 {
     if(value.value<int>() > _maxValue)
@@ -44,4 +45,4 @@ void NumberController::setMinValue(int value)
     _minValue = value;
     emit minValueChanged();
 }
-
+*/

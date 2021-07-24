@@ -11,18 +11,28 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
-file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
-file(GLOB HEADER_FILES_H ${PROJECT_SOURCE_DIR}/*.h)
+set(PICKER_DIR "${CMAKE_SOURCE_DIR}/plugins/Picker/TempoPicker")
+
+file(GLOB SOURCE_FILES
+    ${PROJECT_SOURCE_DIR}/*.cpp
+    ${PICKER_DIR}/*.cpp)
+file(GLOB HEADER_FILES
+    ${PROJECT_SOURCE_DIR}/*.hpp
+    ${PICKER_DIR}/*.hpp)
+file(GLOB HEADER_FILES_H
+    ${PROJECT_SOURCE_DIR}/*.h)
+
+include_directories(${PICKER_DIR})
 
 set(PROJECT_SOURCES
     ${SOURCE_FILES}
     ${HEADER_FILES}
     ${HEADER_FILES_H})
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+add_library(${PROJECT_NAME} ${PROJECT_SOURCES})
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Qt5::Core
-        Qt5::Widgets)
+        Qt5::Widgets
+        )
