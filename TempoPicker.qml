@@ -3,12 +3,13 @@ import QtQuick.Controls 2.0
 import QtQml.Models 2.15
 
 import Picker 1.0
+import TempoPicker 1.0
 
 Item {
     property alias tumbler: picker.tumbler
     property alias delegateComponent: delegateComponent
     property alias controller: controller
-    property alias shift: delegateComponent.shift
+    property alias shift: controller.shift
 
     NumberController {
         id: controller
@@ -20,9 +21,8 @@ Item {
 
     DelegateModel {
         id: delegateComponent
-        property int shift: 0
         delegate: Label {
-            text: controller.formatText(Tumbler.tumbler.count, modelData + shift)
+            text: controller.formatText(Tumbler.tumbler.count, modelData)
             opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -32,6 +32,6 @@ Item {
 
     Picker {
         id: picker
-        tumbler.onCurrentItemChanged: controller.value = tumbler.currentIndex + shift
+        tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
     }
 }

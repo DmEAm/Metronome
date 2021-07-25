@@ -6,7 +6,6 @@
 
 #include "pickermodel.hpp"
 #include "pickercontroller.hpp"
-#include "TempoPicker/numbercontroller.h"
 
 class PickerPlugin : public QQmlExtensionPlugin
 {

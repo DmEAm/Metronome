@@ -11,14 +11,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
-set(TEMPO_PICKER_DIR "${PROJECT_SOURCE_DIR}/TempoPicker")
-
 file(GLOB SOURCE_FILES
-    ${PROJECT_SOURCE_DIR}/*.cpp
-    ${TEMPO_PICKER_DIR}/*.cpp)
+    ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES
-    ${PROJECT_SOURCE_DIR}/*.hpp
-    ${TEMPO_PICKER_DIR}/*.hpp)
+    ${PROJECT_SOURCE_DIR}/*.hpp)
+file(GLOB HEADER_FILES_H
+    ${PROJECT_SOURCE_DIR}/*.h)
 file(GLOB RESOURCE_FILES
     ${PROJECT_SOURCE_DIR}/*.qrc)
 
@@ -26,10 +24,9 @@ qt5_add_resources(PLUGIN_RESOURCES ${RESOURCE_FILES})
 set(PROJECT_SOURCES
     ${SOURCE_FILES}
     ${PLUGIN_RESOURCES}
-    ${HEADER_FILES})
+    ${HEADER_FILES}
+    ${HEADER_FILES_H})
 
-add_subdirectory(DurationPicker)
-add_subdirectory(TempoPicker)
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 

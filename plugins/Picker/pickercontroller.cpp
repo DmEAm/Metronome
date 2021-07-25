@@ -2,22 +2,22 @@
 
 PickerController::PickerController(QObject *parent) :
 QObject(parent)
-, _value(QVariant(0))
+, _index(QVariant(0))
 {
 
 }
 
-QVariant PickerController::value() const
+QVariant PickerController::index() const
 {
-    return _value;
+    return _index;
 }
 
-void PickerController::setValue(QVariant value)
+void PickerController::setIndex(QVariant index)
 {
-    if(_value == value)
+    if(_index == index)
         return;
-    _value = value;
-    emit valueChanged();
+    _index = index;
+    emit indexChanged();
 }
 
 QVariant PickerController::formatText(const QVariant& count, const QVariant& modelData)

@@ -7,13 +7,13 @@ import QtMultimedia 5.12
 
 import Player 1.0
 import Tapper 1.0
-import Picker 1.0 as Picker
+import Picker 1.0
 
 Window {
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
     property alias tempoTumbler: tempoPicker.tumbler
-    property alias pickerController: tempoPicker.controller
+    property alias tempoController: tempoPicker.controller
 
     width: 400
     height: 500
@@ -33,48 +33,55 @@ Window {
         y: 75
     }
 
-    Picker.TempoPicker {
+    TempoPicker {
         id: tempoPicker
         x: 100
         y: 75
         delegateComponent.model: playerController.range
+        controller.maxTempo: playerController.tempoMax
+        controller.minTempo: playerController.tempoMin
         shift: playerController.tempoMin
         tumbler.currentIndex: playerController.tempo - shift
 
     }
     Connections {
-            target: pickerController
-            function onValueChanged() {
-                playerController.tempo = pickerController.value;
+            target: tempoController
+            function onIndexChanged() {
+                console.log("id");
+                console.log(tempoController.tempo);
+                playerController.tempo = tempoController.tempo;
+            }
+        }
+
+    Connections {
+            target: tempoController
+            function onTempoChanged() {
+                console.log("--");
+                playerController.tempo = tempoController.tempo;
+                tempoTumbler.currentIndex = tempoController.index;
             }
         }
 
     Connections {
             target: tapperController
             function onTempoChanged() {
-                if (tapperController.tempo > playerController.tempoMax)
-                    tempoTumbler.currentIndex = playerController.tempoMax;
-                else if (tapperController.tempo < playerController.tempoMin)
-                    tempoTumbler.currentIndex = playerController.tempoMin;
-                else
-                    tempoTumbler.currentIndex = tapperController.tempo;
-                tempoTumbler.currentIndex -= tempoPicker.shift;
+                tempoController.tempo = tapperController.tempo;
             }
         }
 
-    Picker.DurationPicker {
+    DurationPicker {
         id: durationPicker
         x: 40
         y: 390
     }
 
-    Picker.DurationPicker {
+    DurationPicker {
         id: durationPicker_2
         x: 150
         y: 390
     }
 
-    Picker.DurationPicker {
+    DurationPicker {
         id: durationPicker_3
         x: 260
         y: 390

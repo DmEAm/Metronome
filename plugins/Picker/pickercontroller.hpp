@@ -7,20 +7,20 @@
 class PickerController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY valueChanged)
+    Q_PROPERTY(QVariant index READ index WRITE setIndex NOTIFY indexChanged)
 
 public:
     explicit PickerController(QObject *parent = nullptr);
 
-    Q_REQUIRED_RESULT QVariant value() const;
-    void setValue(QVariant value);
-    Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData);
+    Q_REQUIRED_RESULT QVariant index() const;
+    virtual void setIndex(QVariant index);
+    virtual Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData);
 
 protected:
-    QVariant _value;
+    QVariant _index;
 
 signals:
-    void valueChanged();
+    void indexChanged();
 
 };
 
