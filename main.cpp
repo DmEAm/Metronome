@@ -4,7 +4,7 @@
 #include <Tapper/tapper.hpp>
 #include <Player/player.hpp>
 
-#include "numbercontroller.h"
+#include "tempocontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.addImportPath("plugins");
-    qmlRegisterType<NumberController>("TempoPicker", 1, 0, "NumberController");
+    qmlRegisterType<TempoController>("TempoPicker", 1, 0, "TempoController");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

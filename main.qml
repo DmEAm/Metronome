@@ -12,8 +12,8 @@ import Picker 1.0
 Window {
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
-    property alias tempoTumbler: tempoPicker.tumbler
     property alias tempoController: tempoPicker.controller
+    property alias tempoTumbler: tempoPicker.tumbler
 
     width: 400
     height: 500
@@ -40,15 +40,13 @@ Window {
         delegateComponent.model: playerController.range
         controller.maxTempo: playerController.tempoMax
         controller.minTempo: playerController.tempoMin
-        shift: playerController.tempoMin
-        tumbler.currentIndex: playerController.tempo - shift
+        tumbler.currentIndex: playerController.tempo - playerController.tempoMin
 
     }
+
     Connections {
             target: tempoController
             function onIndexChanged() {
-                console.log("id");
-                console.log(tempoController.tempo);
                 playerController.tempo = tempoController.tempo;
             }
         }
@@ -56,7 +54,6 @@ Window {
     Connections {
             target: tempoController
             function onTempoChanged() {
-                console.log("--");
                 playerController.tempo = tempoController.tempo;
                 tempoTumbler.currentIndex = tempoController.index;
             }

@@ -6,12 +6,11 @@ import Picker 1.0
 import TempoPicker 1.0
 
 Item {
+    property alias controller: controller
     property alias tumbler: picker.tumbler
     property alias delegateComponent: delegateComponent
-    property alias controller: controller
-    property alias shift: controller.shift
 
-    NumberController {
+    TempoController {
         id: controller
     }
 
