@@ -27,6 +27,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick)
 
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        ${PROJECT_SOURCE_DIR})
+
 add_custom_command(
     TARGET ${PROJECT_NAME}
     POST_BUILD

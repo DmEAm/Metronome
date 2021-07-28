@@ -1,4 +1,4 @@
-#include "tempocontroller.h"
+#include "tempocontroller.hpp"
 
 TempoController::TempoController(QObject *parent) :
   PickerController(parent),

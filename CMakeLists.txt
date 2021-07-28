@@ -32,18 +32,10 @@ endif()
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 
-add_subdirectory(plugins)
-include_directories(plugins)
+add_subdirectory("${PROJECT_SOURCE_DIR}/plugins")
 
-set(PICKER "${PROJECT_SOURCE_DIR}/plugins/Picker")
-
-file(GLOB SOURCE_FILES
-    ${PROJECT_SOURCE_DIR}/*.cpp
-    ${PICKER}/*.cpp)
-file(GLOB HEADER_FILES
-    ${PROJECT_SOURCE_DIR}/*.hpp
-    ${PICKER}/*.hpp)
-file(GLOB HEADER_FILES_H ${PROJECT_SOURCE_DIR}/*.h)
+file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
 qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
@@ -51,8 +43,7 @@ qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
 set(PROJECT_SOURCES
     ${SOURCE_FILES}
     ${PROJECT_RESOURCES}
-    ${HEADER_FILES}
-    ${HEADER_FILES_H})
+    ${HEADER_FILES})
 
 if(ANDROID)
     add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
@@ -63,10 +54,12 @@ endif()
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core
-    Qt${QT_VERSION_MAJOR}::Quick
-    Qt${QT_VERSION_MAJOR}::Multimedia
-    TapperPlugin
-    PickerPlugin
-    PlayerPlugin)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Multimedia
+    PUBLIC
+        TapperPlugin
+        PickerPlugin
+        PlayerPlugin)

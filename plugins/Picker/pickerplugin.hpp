@@ -1,5 +1,5 @@
-#ifndef TAPPER_PLUGIN_HPP
-#define TAPPER_PLUGIN_HPP
+#ifndef PICKER_PLUGIN_HPP
+#define PICKER_PLUGIN_HPP
 
 #include <QQmlExtensionPlugin>
 #include <QmlTypeAndRevisionsRegistration>
@@ -16,4 +16,4 @@ public:
     void registerTypes(const char *uri) override;
 };
 
-#endif // TAPPER_PLUGIN_HPP
+#endif // PICKER_PLUGIN_HPP
