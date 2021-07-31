@@ -1,8 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "tapper.hpp"
-#include "player.hpp"
+#include <Tapper/tapper.hpp>
+#include <Player/player.hpp>
+
 #include "tempocontroller.hpp"
 
 int main(int argc, char *argv[])

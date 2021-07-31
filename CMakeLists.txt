@@ -14,6 +14,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(WIN32)
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
     set(CMAKE_STATIC_LIBRARY_PREFIX "")
+
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -32,7 +34,8 @@ endif()
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 
-add_subdirectory("${PROJECT_SOURCE_DIR}/plugins")
+add_subdirectory(plugins)
+include_directories(plugins)
 
 file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
@@ -53,6 +56,10 @@ endif()
 
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        ${PickerPlugin_BINARY_DIR})
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
