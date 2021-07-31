@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QVariant>
 
-class PickerController : public QObject
+#include <picker_plugin_export.h>
+
+class PICKER_PLUGIN_EXPORT PickerController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QVariant index READ index WRITE setIndex NOTIFY indexChanged)

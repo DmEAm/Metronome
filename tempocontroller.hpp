@@ -1,7 +1,7 @@
-#ifndef TEMPOCONTROLLER_H
-#define TEMPOCONTROLLER_H
+#ifndef TEMPO_CONTROLLER_HPP
+#define TEMPO_CONTROLLER_HPP
 
-#include "pickercontroller.hpp"
+#include <Picker/pickercontroller.hpp>
 
 class TempoController : public PickerController
 {
@@ -35,4 +35,4 @@ signals:
 
 };
 
-#endif // TEMPOCONTROLLER_H
+#endif // TEMPO_CONTROLLER_HPP
