@@ -11,6 +11,7 @@
 class TempoDetectionTestCase : public QObject
 {
     Q_OBJECT
+    const QAudioDeviceInfo _info;
     QAudioDecoder *_decoder;
     QAudioFormat _format;
 
@@ -26,7 +27,8 @@ private slots:
 };
 
 TempoDetectionTestCase::TempoDetectionTestCase()
-: _format(QAudioDeviceInfo::defaultOutputDevice().preferredFormat())
+: _info(QAudioDeviceInfo::defaultOutputDevice())
+, _format(_info.preferredFormat())
 , _decoder(new QAudioDecoder(this))
 {
     _decoder->setAudioFormat(_format);
@@ -35,6 +37,7 @@ TempoDetectionTestCase::TempoDetectionTestCase()
 void TempoDetectionTestCase::initTestCase()
 {
     QVERIFY(_format.isValid());
+    QVERIFY(_info.isFormatSupported(_format));
 }
 
 void TempoDetectionTestCase::initTestCase_data()
@@ -42,12 +45,11 @@ void TempoDetectionTestCase::initTestCase_data()
     QTest::addColumn<int>("tempo");
     QTest::addColumn<QAudioBuffer>("buffer");
 
-    QDirIterator it(":audio", QDirIterator::Subdirectories);
-    while (it.hasNext())
+    for(const auto &entry : QDir::current().entryList({"*.wav"}, QDir::Files))
     {
-        QFile file(it.next());
-        auto fileName = it.fileName();
-        QFileInfo info(fileName);
+        QFile file(entry);
+        QFileInfo info(file);
+        const auto &fileName = file.fileName();
 
 //        this shit does not work
 //        file.open(QIODevice::ReadOnly);
