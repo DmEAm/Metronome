@@ -5,11 +5,11 @@ int detectTempo(const QAudioBuffer &buffer)
     const auto &format = buffer.format();
     const auto *data = buffer.constData<qint16>();
 
-    qDebug()<< buffer.duration() << buffer.sampleCount() << format.sampleType();
+    QVector<qint16> channelData(buffer.sampleCount() / format.channelCount());
 
     for (auto i = 0; i < buffer.sampleCount(); i += format.channelCount())
     {
-        qDebug() << data[i];
+        channelData[i / format.channelCount()] = data[i];
     }
 
     return 100;
