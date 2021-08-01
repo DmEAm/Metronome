@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>DurationPicker.qml</file>
+        <file>TempoPicker.qml</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="fourth.png">icons/fourth.png</file>
+        <file alias="eighths.png">icons/eighths.png</file>
+        <file alias="shuffle.png">icons/shuffle.png</file>
+        <file alias="sixteenth.png">icons/sixteenth.png</file>
+        <file alias="triplets.png">icons/triplets.png</file>
     </qresource>
 </RCC>

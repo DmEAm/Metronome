@@ -1,18 +1,17 @@
 #include "tapper.hpp"
+#include <QDebug>
 
 TapperController::TapperController(QObject *parent)
 : QObject(parent)
 , _timeCache(2)
 , _tempoCache(10) { }
 
-qint64 TapperController::tempo() const
+int TapperController::tempo() const
 {
-    qint64 tempo = 0;
+    int tempo = 0;
 
     for (int i = _tempoCache.firstIndex(); i <= _tempoCache.lastIndex(); i++)
-    {
         tempo += _tempoCache.at(i);
-    }
 
     return tempo / _tempoCache.size();
 }
@@ -27,6 +26,5 @@ void TapperController::tap()
 
     _tempoCache.normalizeIndexes();
     _timeCache.normalizeIndexes();
-
     emit tempoChanged();
 }

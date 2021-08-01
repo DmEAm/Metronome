@@ -1,4 +1,6 @@
 project(Plugins)
 
-add_subdirectory(Tapper)
 add_subdirectory(Player)
+add_subdirectory(Tapper)
+add_subdirectory(Picker)
+

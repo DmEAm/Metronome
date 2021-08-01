@@ -4,11 +4,10 @@ import QtQuick.Controls 2.0
 import Player 1.0
 
 PlayerForm {
-
+    property alias controller: controller
     PlayerController {
-            id: backend
+            id: controller
         }
-    play.text: backend.userName
-    play.onPressed: backend.toggle()
+    play.onPressed: controller.toggle()
 
 }

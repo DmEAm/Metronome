@@ -11,7 +11,10 @@ class PlayerController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool playing READ playing NOTIFY toggled)
-    Q_PROPERTY(size_t tempo READ tempo WRITE setTempo)
+    Q_PROPERTY(int tempo READ tempo WRITE setTempo NOTIFY changedTempo)
+    Q_PROPERTY(int tempoMax READ tempoMax NOTIFY changedTempoMax)
+    Q_PROPERTY(int tempoMin READ tempoMin NOTIFY changedTempoMin)
+    Q_PROPERTY(int range READ range NOTIFY changedRange)
     Q_PROPERTY(int interval READ interval)
 
 public:
@@ -19,8 +22,11 @@ public:
     ~PlayerController() override = default;
 
     bool playing() const;
-    size_t tempo() const;
-    void setTempo(size_t tempo);
+    int tempo() const;
+    void setTempo(int tempo);
+    int tempoMax() const;
+    int tempoMin() const;
+    int range() const;
     int interval();
 
     Q_INVOKABLE void toggle();
@@ -28,11 +34,15 @@ public:
 signals:
     void toggled();
     void changedTempo();
+    void changedTempoMax();
+    void changedTempoMin();
+    void changedRange();
 
 private:
     bool _playing;
-    size_t _tempo;
-    size_t _tempoLimit;
+    int _tempo;
+    int _tempoMax;
+    int _tempoMin;
     QTimer *_timer;
     Mixer *_mixer;
 

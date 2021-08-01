@@ -4,13 +4,13 @@ import QtQuick.Controls 2.3
 Item {
     width: 400
     height: 400
+    property alias tapp: tapp
 
     RoundButton {
-        id: button
-        width: 150
-        height: 150
+        id: tapp
+        width: 100
+        height: 100
 
-        onPressed: controller.tap()
         icon.name: "Tap Tempo"
         icon.source: "qrc:/icons/tap.svg"
         icon.width: width / 2
@@ -20,6 +20,3 @@ Item {
         flat: true
     }
 }
-
-
-

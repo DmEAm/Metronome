@@ -14,6 +14,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(WIN32)
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
     set(CMAKE_STATIC_LIBRARY_PREFIX "")
+
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -29,10 +31,8 @@ endif()
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
-find_package(Qt5Multimedia REQUIRED)
-set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/plugins/player ${CMAKE_BINARY_DIR}/imports CACHE STRING "" FORCE)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Multimedia REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 
 add_subdirectory(plugins)
 include_directories(plugins)
@@ -57,9 +57,16 @@ endif()
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core
-    Qt${QT_VERSION_MAJOR}::Quick
-    Qt${QT_VERSION_MAJOR}::Multimedia
-    TapperPlugin
-    PlayerPlugin)
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        ${PickerPlugin_BINARY_DIR})
+
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Multimedia
+    PUBLIC
+        TapperPlugin
+        PickerPlugin
+        PlayerPlugin)
