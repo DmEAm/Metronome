@@ -13,6 +13,7 @@ Window {
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
     property alias tempoController: tempoPicker.controller
+    property alias accentController: accentPicker.controller
     property alias tempoTumbler: tempoPicker.tumbler
 
     width: 400
@@ -66,6 +67,13 @@ Window {
             }
         }
 
+    Connections {
+            target: accentController
+            function onIndexChanged() {
+                playerController.accent = accentController.index;
+            }
+        }
+
     DurationPicker {
         id: durationPicker
         x: 40
@@ -78,9 +86,10 @@ Window {
         y: 390
     }
 
-    DurationPicker {
-        id: durationPicker_3
+    AccentPicker {
+        id: accentPicker
         x: 260
         y: 390
+        delegateComponent.model: 13
     }
 }

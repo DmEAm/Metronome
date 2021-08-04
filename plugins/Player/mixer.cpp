@@ -2,43 +2,71 @@
 
 Mixer::Mixer(QObject *parent)
 : QObject(parent)
-, currentEffect(0)
+, _stdEffect(new QSoundEffect(this))
+, _accEffect(new QSoundEffect(this))
+, _currentEffect(0)
 {
-    setStandartMode();
+    initStandardEffect();
+    initAccentEffect();
+    setStandardMode();
 }
 
-void Mixer::setStandartMode()
+void Mixer::setStandardMode()
 {
     _effects.clear();
-    QSoundEffect *_effect = new QSoundEffect();
-    _effect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
-    _effect->setVolume(0.25f);
-    _effect->setLoopCount(0);
-    _effects.append(_effect);
+    _effects.append(_stdEffect);
     resetPosition();
+}
+
+void Mixer::setAccentMode(int accent)
+{
+    if(accent == 0)
+    {
+        setStandardMode();
+        return;
+    }
+    _effects.clear();
+    _effects.append(_accEffect);
+    for(int i = 1; i < accent; i++)
+        _effects.append(_stdEffect);
+    resetPosition();
+}
+
+void Mixer::initStandardEffect()
+{
+    _stdEffect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
+    _stdEffect->setVolume(0.25f);
+    _stdEffect->setLoopCount(0);
+}
+
+void Mixer::initAccentEffect()
+{
+    _accEffect->setSource(QUrl("qrc:/audio/accient_1(wav)"));
+    _accEffect->setVolume(0.25f);
+    _accEffect->setLoopCount(0);
 }
 
 void Mixer::upPosition()
 {
-    currentEffect += 1;
-    if(currentEffect >= _effects.size())
-        currentEffect = 0;
+    _currentEffect += 1;
+    if(_currentEffect >= _effects.size())
+        _currentEffect = 0;
 }
 
 void Mixer::resetPosition()
 {
-    currentEffect = 0;
+    _currentEffect = 0;
 }
 
 void Mixer::click()
 {
-    _effects[currentEffect]->play();
+    _effects[_currentEffect]->play();
     upPosition();
 }
 
 void Mixer::stop()
 {
-    if(_effects[currentEffect]->isPlaying())
-        _effects[currentEffect]->stop();
+    if(_effects[_currentEffect]->isPlaying())
+        _effects[_currentEffect]->stop();
     resetPosition();
 }
