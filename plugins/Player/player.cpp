@@ -4,6 +4,7 @@ PlayerController::PlayerController(QObject *parent)
 : QObject(parent)
 , _playing(false)
 , _tempo(120)
+, _accent(0)
 , _tempoMax(230)
 , _tempoMin(20)
 , _timer(new QTimer(this))
@@ -13,6 +14,7 @@ PlayerController::PlayerController(QObject *parent)
     connect(_timer, &QTimer::timeout, _mixer, &Mixer::click);
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
+    connect(this, &PlayerController::changedAccent, this, &PlayerController::changeAccent);
 }
 
 bool PlayerController::playing() const
@@ -40,9 +42,20 @@ void PlayerController::changeState()
     }
 }
 
+void PlayerController::changeAccent()
+{
+    _mixer->setAccentMode(_accent);
+    changeState();
+}
+
 int PlayerController::tempo() const
 {
     return _tempo;
+}
+
+int PlayerController::accent() const
+{
+    return _accent;
 }
 
 int PlayerController::tempoMax() const
@@ -66,6 +79,14 @@ void PlayerController::setTempo(int tempo)
         return;
     _tempo = tempo;
     emit changedTempo();
+}
+
+void PlayerController::setAccent(int accent)
+{
+    if(_accent == accent)
+        return;
+    _accent = accent;
+    emit changedAccent();
 }
 
 int PlayerController::interval()

@@ -7,8 +7,7 @@
         <file>PlayerForm.ui.qml</file>
     </qresource>
     <qresource prefix="/audio">
-        <file alias="stick_1">audio/sticks_1(small).mp3</file>
-        <file alias="D">audio/D_riff.wav</file>
         <file alias="stick_1(wav)">audio/sticks_1(small).wav</file>
+        <file alias="accient_1(wav)">audio/actient_1_wav.wav</file>
     </qresource>
 </RCC>

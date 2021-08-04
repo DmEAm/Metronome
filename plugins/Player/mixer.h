@@ -13,6 +13,7 @@ public:
     ~Mixer() override = default;
 
     void setStandartMode();
+    void setAccentMode(int accent);
 
 public slots:
     void click();
@@ -22,6 +23,8 @@ private:
     QVector<QSoundEffect*> _effects;
     int currentEffect;
 
+    QSoundEffect * standartEffect();
+    QSoundEffect * accentEffect();
     void upPosition();
     void resetPosition();
 };
