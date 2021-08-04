@@ -26,6 +26,7 @@ void Mixer::setAccentMode(int accent)
     _effects.append(accentEffect());
     for(int i = 1; i < accent; i++)
         _effects.append(standartEffect());
+    resetPosition();
 }
 
 QSoundEffect * Mixer::standartEffect()
