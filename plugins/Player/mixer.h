@@ -10,7 +10,7 @@ class Mixer : public QObject
 
 public:
     explicit Mixer(QObject *parent = nullptr);
-    ~Mixer();
+    ~Mixer() override = default;
 
     void setStandardMode();
     void setAccentMode(int accent);

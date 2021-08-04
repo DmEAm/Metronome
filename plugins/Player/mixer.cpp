@@ -2,20 +2,13 @@
 
 Mixer::Mixer(QObject *parent)
 : QObject(parent)
-, _stdEffect(new QSoundEffect())
-, _accEffect(new QSoundEffect())
+, _stdEffect(new QSoundEffect(this))
+, _accEffect(new QSoundEffect(this))
 , _currentEffect(0)
 {
     initStandardEffect();
     initAccentEffect();
     setStandardMode();
-}
-
-Mixer::~Mixer()
-{
-    _effects.clear();
-    delete _stdEffect;
-    delete _accEffect;
 }
 
 void Mixer::setStandardMode()
