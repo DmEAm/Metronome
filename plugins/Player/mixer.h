@@ -10,9 +10,9 @@ class Mixer : public QObject
 
 public:
     explicit Mixer(QObject *parent = nullptr);
-    ~Mixer() override = default;
+    ~Mixer();
 
-    void setStandartMode();
+    void setStandardMode();
     void setAccentMode(int accent);
 
 public slots:
@@ -21,10 +21,12 @@ public slots:
 
 private:
     QVector<QSoundEffect*> _effects;
-    int currentEffect;
+    QSoundEffect *_stdEffect;
+    QSoundEffect *_accEffect;
+    int _currentEffect;
 
-    QSoundEffect * standartEffect();
-    QSoundEffect * accentEffect();
+    void initStandardEffect();
+    void initAccentEffect();
     void upPosition();
     void resetPosition();
 };
