@@ -36,6 +36,12 @@ Window{
             Item{
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
+                AudioRecorder {
+                    id: audioRecorder
+                    x: 0
+                    y: 75
+                }
             }
             Item{
                 Layout.fillWidth: true

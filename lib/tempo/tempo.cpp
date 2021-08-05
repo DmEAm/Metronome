@@ -1,7 +1,5 @@
 #include "tempo.hpp"
 
-QVector<size_t> findExtremum(const QVector<qint16> &values);
-
 int detectTempo(const QAudioBuffer &buffer)
 {
     using mcs = std::chrono::microseconds;
@@ -46,4 +44,9 @@ QVector<size_t> findExtremum(const QVector<qint16> &values)
     while(++last != values.end());
 
     return vector;
+}
+
+TempoDetector::TempoDetector(QObject *parent) : QObject(parent)
+{
+
 }

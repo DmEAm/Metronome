@@ -4,6 +4,7 @@
         <file>DurationPicker.qml</file>
         <file>TempoPicker.qml</file>
         <file>AccentPicker.qml</file>
+        <file>AudioRecorder.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file alias="fourth.png">icons/fourth.png</file>
@@ -11,5 +12,6 @@
         <file alias="shuffle.png">icons/shuffle.png</file>
         <file alias="sixteenth.png">icons/sixteenth.png</file>
         <file alias="triplets.png">icons/triplets.png</file>
+        <file alias="record.svg">icons/record.svg</file>
     </qresource>
 </RCC>
