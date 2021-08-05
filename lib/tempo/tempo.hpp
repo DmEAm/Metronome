@@ -3,6 +3,7 @@
 
 #include <QAudioBuffer>
 #include <QDebug>
+#include <QTime>
 
 #include <chrono>
 #include <type_traits>

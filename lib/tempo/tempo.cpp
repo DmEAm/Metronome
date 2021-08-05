@@ -4,14 +4,22 @@ QVector<size_t> findExtremum(const QVector<qint16> &values);
 
 int detectTempo(const QAudioBuffer &buffer)
 {
-    const auto &format = buffer.format();
-    const auto *data = buffer.constData<qint16>();
+    using mcs = std::chrono::microseconds;
+    using ms = std::chrono::milliseconds;
+    using AudioFrame = QAudioBuffer::S16S;
+    using std::chrono::duration_cast;
 
+    qDebug() << duration_cast<ms>(mcs(buffer.duration())).count();
+    auto duration = QTime::fromMSecsSinceStartOfDay(buffer.duration());
+    const auto &format = buffer.format();
+
+    qDebug() << buffer.frameCount() << format.sampleRate() << buffer.duration() << duration;
+    const auto *data = buffer.constData<AudioFrame>();
     QVector<qint16> channelData(buffer.sampleCount() / format.channelCount());
 
-    for (auto i = 0; i < buffer.sampleCount(); i += format.channelCount())
+    for (auto i = 0; i < buffer.frameCount(); i++)
     {
-        channelData[i / format.channelCount()] = data[i];
+        channelData[i / format.channelCount()] = data[i].average();
     }
 
     auto ext = findExtremum(channelData);
