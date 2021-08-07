@@ -12,6 +12,13 @@ Item {
         id: controller
     }
 
+    Connections {
+        target: controller
+        function onRecorded(fileInfo) {
+            tempoDetector.detect(fileInfo);
+        }
+    }
+
     RoundButton {
         id: record
         width: 100

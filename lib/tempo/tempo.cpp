@@ -45,8 +45,3 @@ QVector<size_t> findExtremum(const QVector<qint16> &values)
 
     return vector;
 }
-
-TempoDetector::TempoDetector(QObject *parent) : QObject(parent)
-{
-
-}

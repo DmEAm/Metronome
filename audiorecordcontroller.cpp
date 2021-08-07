@@ -24,5 +24,5 @@ void AudioRecordController::record()
 void AudioRecordController::stop()
 {
     _recorder->stop();
-    emit recorded(QFileInfo(_recorder->outputLocation().toString()));
+    emit recorded(_recorder->outputLocation());
 }

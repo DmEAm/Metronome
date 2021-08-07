@@ -8,13 +8,6 @@
 #include <chrono>
 #include <type_traits>
 
-class TempoDetector : public QObject
-{
-    Q_OBJECT
-    explicit TempoDetector(QObject *parent = nullptr);
-
-};
-
 int detectTempo(const QAudioBuffer &buffer);
 
 QVector<size_t> findExtremum(const QVector<qint16> &values);

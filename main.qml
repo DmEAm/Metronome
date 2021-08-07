@@ -8,6 +8,7 @@ import QtMultimedia 5.12
 import Player 1.0
 import Tapper 1.0
 import Picker 1.0
+import TempoDetector 1.0
 
 Window{
     property alias playerController: player.controller
@@ -25,6 +26,15 @@ Window{
 
     visible: true
     title: qsTr("Metronome")
+
+    TempoDetector {
+        id: tempoDetector
+    }
+
+    DropArea {
+        anchors.fill: parent
+        onDropped: tempoDetector.detect(drop.text)
+    }
 
     ColumnLayout{
         spacing: 0
@@ -128,6 +138,13 @@ Window{
         target: accentController
         function onIndexChanged(){
             playerController.accent = accentController.index;
+        }
+    }
+
+    Connections {
+        target: tempoDetector
+        function onDetected(tempo) {
+            tempoController.tempo = tempo;
         }
     }
 }

@@ -21,7 +21,7 @@ public slots:
     void stop();
 
 signals:
-    void recorded(QFileInfo info);
+    void recorded(const QUrl &url);
 
 private:
     QAudioRecorder *_recorder;
