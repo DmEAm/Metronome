@@ -2,13 +2,12 @@
 
 int detectTempo(const QAudioBuffer &buffer)
 {
-    using mcs = std::chrono::microseconds;
-    using ms = std::chrono::milliseconds;
+    using namespace std::chrono;
     using AudioFrame = QAudioBuffer::S16S;
-    using std::chrono::duration_cast;
 
-    qDebug() << duration_cast<ms>(mcs(buffer.duration())).count();
-    auto duration = QTime::fromMSecsSinceStartOfDay(buffer.duration());
+    auto ms = duration_cast<milliseconds>(microseconds(buffer.duration())).count();
+    auto duration = QTime::fromMSecsSinceStartOfDay(static_cast<int>(ms));
+
     const auto &format = buffer.format();
 
     qDebug() << buffer.frameCount() << format.sampleRate() << buffer.duration() << duration;

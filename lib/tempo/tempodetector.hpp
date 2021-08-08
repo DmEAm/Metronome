@@ -19,6 +19,7 @@ class TEMPO_EXPORT TempoDetector : public QObject
     const QAudioDeviceInfo _info;
     QAudioDecoder *_decoder;
     QAudioFormat _format;
+    QByteArray _buffer;
 
 public:
     explicit TempoDetector(QObject *parent = nullptr);
@@ -32,6 +33,7 @@ signals:
 
 private:
     void detect();
+    void readBuffer();
 };
 
 
