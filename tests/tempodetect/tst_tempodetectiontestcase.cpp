@@ -58,11 +58,17 @@ void TempoDetectionTestCase::initTestCase_data()
         _decoder->setSourceFilename(info.absoluteFilePath());
         _decoder->start();
 
-        while(!_decoder->bufferAvailable());
+        QByteArray buffer;
+
+        while(QTest::qWaitFor([&](){ return _decoder->bufferAvailable(); }, 1000))
+        {
+            auto chunk = _decoder->read();
+            buffer.append(chunk.constData<char>(), chunk.byteCount());
+        }
 
         QTest::newRow(qPrintable(QString("Audio %1").arg(fileName)))
         << fileName.leftRef(fileName.indexOf('_')).toInt()
-        << _decoder->read();
+        << QAudioBuffer(buffer, _format);
     }
 }
 
