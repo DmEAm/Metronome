@@ -32,7 +32,7 @@ endif()
 #endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Multimedia REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Charts Multimedia Widgets REQUIRED)
 
 add_subdirectory(plugins)
 include_directories(plugins)
@@ -70,7 +70,9 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Charts
         Qt${QT_VERSION_MAJOR}::Multimedia
+        Qt${QT_VERSION_MAJOR}::Widgets
     PUBLIC
         TapperPlugin
         PickerPlugin

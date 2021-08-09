@@ -2,6 +2,7 @@
 #define AUDIO_CHART_HPP
 
 #include <QTimer>
+#include <QChartView>
 #include <QChart>
 #include <QSplineSeries>
 #include <QValueAxis>
@@ -21,14 +22,12 @@ public slots:
     void handleTimeout();
 
 private:
-    QTimer m_timer;
-    QSplineSeries *m_series;
-    QStringList m_titles;
-    QValueAxis *m_axisX;
-    QValueAxis *m_axisY;
-    qreal m_step;
-    qreal m_x;
-    qreal m_y;
+    QTimer _timer;
+    QSplineSeries *_series;
+    QValueAxis *_axisX;
+    QValueAxis *_axisY;
+    qreal _x;
+    qreal _y;
 };
 
 #endif //AUDIO_CHART_HPP

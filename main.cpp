@@ -1,8 +1,12 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 
 #include <Tapper/tapper.hpp>
 #include <Player/player.hpp>
+#include <QMainWindow>
+#include <audiochart.hpp>
+#include <QtCharts/QChart>
+#include <QtCharts/QChartView>
 
 #include "tempocontroller.hpp"
 
@@ -10,7 +14,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     QQmlApplicationEngine engine;
     engine.addImportPath("plugins");
 
@@ -20,7 +24,7 @@ int main(int argc, char *argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
+            QApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
 

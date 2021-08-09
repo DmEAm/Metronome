@@ -4,7 +4,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQml.Models 2.15
 import QtMultimedia 5.12
-import QtCharts 2.10
+import QtCharts 2.15
 
 import Player 1.0
 import Tapper 1.0
@@ -44,8 +44,29 @@ Window{
         focus: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
-        contentItem: ProgressBar {
-            id: progress
+        contentItem: ColumnLayout {
+            anchors.fill: parent
+
+            ChartView {
+                title: "Audio"
+                anchors.fill: parent
+                antialiasing: true
+
+                SplineSeries {
+                    name: "SplineSeries"
+                    XYPoint { x: 0; y: 0.0 }
+                    XYPoint { x: 1.1; y: 3.2 }
+                    XYPoint { x: 1.9; y: 2.4 }
+                    XYPoint { x: 2.1; y: 2.1 }
+                    XYPoint { x: 2.9; y: 2.6 }
+                    XYPoint { x: 3.4; y: 2.3 }
+                    XYPoint { x: 4.1; y: 3.1 }
+                }
+            }
+
+            ProgressBar {
+                id: progress
+            }
         }
 
     }

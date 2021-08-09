@@ -2,43 +2,42 @@
 
 AudioChart::AudioChart(QGraphicsItem *parent, Qt::WindowFlags wFlags)
 : QChart(QChart::ChartTypeCartesian, parent, wFlags)
-, m_series(0)
-, m_axisX(new QValueAxis())
-, m_axisY(new QValueAxis())
-, m_step(0)
-, m_x(5)
-, m_y(1)
+, _series(new QSplineSeries(this))
+, _axisX(new QValueAxis(this))
+, _axisY(new QValueAxis(this))
+, _x(5)
+, _y(1)
 {
-    QObject::connect(&m_timer, &QTimer::timeout, this, &AudioChart::handleTimeout);
-    m_timer.setInterval(1000);
+    QObject::connect(&_timer, &QTimer::timeout, this, &AudioChart::handleTimeout);
+    _timer.setInterval(1000);
 
-    m_series = new QSplineSeries(this);
     QPen green(Qt::red);
     green.setWidth(3);
-    m_series->setPen(green);
-    m_series->append(m_x, m_y);
 
-    addSeries(m_series);
+    _series->setPen(green);
+    _series->append(_x, _y);
 
-    addAxis(m_axisX,Qt::AlignBottom);
-    addAxis(m_axisY,Qt::AlignLeft);
-    m_series->attachAxis(m_axisX);
-    m_series->attachAxis(m_axisY);
-    m_axisX->setTickCount(5);
-    m_axisX->setRange(0, 10);
-    m_axisY->setRange(-5, 10);
+    addSeries(_series);
 
-    m_timer.start();
+    addAxis(_axisX, Qt::AlignBottom);
+    addAxis(_axisY, Qt::AlignLeft);
+    _series->attachAxis(_axisX);
+    _series->attachAxis(_axisY);
+    _axisX->setTickCount(5);
+    _axisX->setRange(0, 10);
+    _axisY->setRange(-5, 10);
+
+    _timer.start();
 }
 
 void AudioChart::handleTimeout()
 {
-    qreal x = plotArea().width() / m_axisX->tickCount();
-    qreal y = (m_axisX->max() - m_axisX->min()) / m_axisX->tickCount();
-    m_x += y;
-    m_y = QRandomGenerator::global()->bounded(5) - 2.5;
-    m_series->append(m_x, m_y);
+    qreal x = plotArea().width() / _axisX->tickCount();
+    qreal y = (_axisX->max() - _axisX->min()) / _axisX->tickCount();
+    _x += y;
+    _y = QRandomGenerator::global()->bounded(5) - 2.5;
+    _series->append(_x, _y);
     scroll(x, 0);
-    if (m_x == 100)
-        m_timer.stop();
+    if (_x == 100)
+        _timer.stop();
 }
