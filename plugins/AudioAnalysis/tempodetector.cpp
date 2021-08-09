@@ -26,12 +26,16 @@ void TempoDetector::detect(const QUrl &url)
 
     _decoder->setSourceFilename(info.absoluteFilePath());
     _decoder->start();
+
+    emit detecting();
 }
 
 void TempoDetector::readBuffer()
 {
     const auto &chunk = _decoder->read();
     _buffer.append(chunk.constData<char>(), chunk.byteCount());
+
+    emit progress(_buffer.size() % 100);
 }
 
 void TempoDetector::detect()

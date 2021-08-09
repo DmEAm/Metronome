@@ -1,7 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.3
 
-import TempoDetector 1.0
+import AudioAnalysis 1.0
 
 Item {
     width: 200

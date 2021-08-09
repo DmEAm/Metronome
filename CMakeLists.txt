@@ -75,4 +75,4 @@ target_link_libraries(${PROJECT_NAME}
         TapperPlugin
         PickerPlugin
         PlayerPlugin
-        Tempo)
+        AudioAnalysisPlugin)

@@ -10,9 +10,9 @@
 
 #include "tempo.hpp"
 
-#include "tempo_export.h"
+#include "audio_analysis_plugin_export.h"
 
-class TEMPO_EXPORT TempoDetector : public QObject
+class AUDIO_ANALYSIS_PLUGIN_EXPORT TempoDetector : public QObject
 {
     Q_OBJECT
 
@@ -29,6 +29,8 @@ public slots:
     void detect(const QUrl &url);
 
 signals:
+    void detecting();
+    void progress(int percent);
     void detected(int tempo);
 
 private:

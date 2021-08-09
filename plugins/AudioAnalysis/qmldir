@@ -1,0 +1,5 @@
+module AudioAnalysis
+plugin AudioAnalysisPlugin
+designersupported
+AudioRecorder 1.0 qrc:/audioanalysis/AudioRecorder.qml
+typeinfo plugin.qmltypes

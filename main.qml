@@ -4,11 +4,12 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import QtQml.Models 2.15
 import QtMultimedia 5.12
+import QtCharts 2.10
 
 import Player 1.0
 import Tapper 1.0
 import Picker 1.0
-import TempoDetector 1.0
+import AudioAnalysis 1.0
 
 Window{
     property alias playerController: player.controller
@@ -29,6 +30,36 @@ Window{
 
     TempoDetector {
         id: tempoDetector
+        onDetecting: popup.open()
+//        onDetected: popup.close()
+    }
+
+    Popup {
+        id: popup
+        x: 100
+        y: 100
+        width: 200
+        height: 300
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+        contentItem: ProgressBar {
+            id: progress
+        }
+
+    }
+
+    Connections {
+        target: tempoDetector
+
+        function onProgress(percent) {
+            progress.value = percent;
+        }
+
+        function onDetecting() {
+            progress.value = 0;
+        }
     }
 
     DropArea {

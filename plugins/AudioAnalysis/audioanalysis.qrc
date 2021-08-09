@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>record.svg</file>
+    </qresource>
+    <qresource prefix="/audioanalysis">
+        <file>AudioRecorder.qml</file>
+    </qresource>
+</RCC>
