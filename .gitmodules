@@ -1,0 +1,3 @@
+[submodule "lib/essentia"]
+	path = lib/essentia
+	url = https://github.com/kupns-aka-kupa/essentia.git
