@@ -3,10 +3,13 @@
 int detectTempo(const QAudioBuffer &buffer)
 {
     using namespace std::chrono;
+    using namespace essentia::streaming;
     using AudioFrame = QAudioBuffer::S16S;
 
     auto ms = duration_cast<milliseconds>(microseconds(buffer.duration())).count();
     auto duration = QTime::fromMSecsSinceStartOfDay(static_cast<int>(ms));
+
+    RhythmExtractor2013 extractor;
 
     const auto &format = buffer.format();
 

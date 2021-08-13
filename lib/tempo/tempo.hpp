@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTime>
 
+#include <rhythmextractor2013.h>
 #include <chrono>
 #include <type_traits>
 
