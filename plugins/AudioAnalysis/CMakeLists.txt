@@ -28,6 +28,8 @@ add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 generate_export_header(${PROJECT_NAME} BASE_NAME AUDIO_ANALYSIS_PLUGIN)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 
+target_link_directories(${PROJECT_NAME} PRIVATE ${ESSENTIA_LINK_DIR})
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Charts

@@ -66,6 +66,10 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${PickerPlugin_BINARY_DIR})
 
+target_link_directories(${PROJECT_NAME} PRIVATE ${ESSENTIA_LINK_DIR})
+
+add_dependencies(${PROJECT_NAME} Essentia)
+
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Qt${QT_VERSION_MAJOR}::Core

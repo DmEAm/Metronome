@@ -2,11 +2,17 @@
 #define TEMPO_LIBRARY_H
 
 #include <QAudioBuffer>
+#include <QScopedPointer>
 #include <QDebug>
 #include <QTime>
 
 #include <rhythmextractor2013.h>
-#include <chrono>
+#include <poolstorage.h>
+#include <network.h>
+#include <algorithmfactory.h>
+#include <types.h>
+
+#include <vector>
 #include <type_traits>
 
 int detectTempo(const QAudioBuffer &buffer);

@@ -9,9 +9,12 @@
 #include <QtCharts/QChartView>
 
 #include "tempocontroller.hpp"
+#include "tempo.hpp"
 
 int main(int argc, char *argv[])
 {
+    essentia::init();
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication app(argc, argv);

@@ -27,11 +27,14 @@ file(COPY ${TEST_FILES} DESTINATION ${PROJECT_BINARY_DIR})
 add_executable(${PROJECT_NAME} tst_tempodetectiontestcase.cpp)
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 
+target_link_directories(${PROJECT_NAME} PRIVATE ${ESSENTIA_LINK_DIR})
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt5::Test
     Qt5::Multimedia
-    Tempo)
+    Tempo
+    essentia)
 
-target_link_directories(${PROJECT_NAME} PRIVATE ${ESSENTIA_LINK_DIR})
+add_dependencies(${PROJECT_NAME} Essentia)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${ESSENTIA_INCLUDE_DIR})
