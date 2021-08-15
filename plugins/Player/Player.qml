@@ -5,9 +5,19 @@ import Player 1.0
 
 PlayerForm {
     property alias controller: controller
+    property string iconPlay: "qrc:/icons/play.svg"
+    property string iconPause: "qrc:/icons/pause.svg"
+
     PlayerController {
             id: controller
         }
-    play.onPressed: controller.toggle()
+    play.icon.width: 60;
+    play.icon.height: 60;
+    play.icon.source: iconPlay;
+    play.onPressed:
+    {
+        controller.toggle();
+        play.icon.source = controller.playing ? iconPause: iconPlay;
+    }
 
 }

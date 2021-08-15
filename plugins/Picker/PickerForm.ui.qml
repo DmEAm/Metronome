@@ -3,27 +3,25 @@ import QtQml.Models 2.2
 import QtQuick.Controls 2.12
 
 Item {
+    id: element
     property alias rectangle: rectangle
     property alias frame: frame
     property alias tumbler: tumbler
+    width: 200
+    height: 100
+    property alias element: element
     Rectangle {
         id: rectangle
-        width: 200
-        height: 100
+        anchors.fill: parent
         Frame {
             id: frame
-            x: 0
-            y: 0
-            width: 200
-            height: 100
+            anchors.fill: parent
             padding: 0
-            anchors.centerIn: parent
 
             Tumbler {
                 visibleItemCount: 3
                 id: tumbler
-                width: 200
-                height: 100
+                anchors.fill: parent
                 model: delegateComponent
             }
         }
@@ -32,7 +30,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:0.8999999761581421;height:480;width:640}
+    D{i:0;formeditorZoom:0.8999999761581421}D{i:3}D{i:2}D{i:1}
 }
 ##^##*/
 

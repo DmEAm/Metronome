@@ -9,5 +9,4 @@ TapperForm {
         id: controller
     }
     tapp.onPressed: controller.tap()
-
 }

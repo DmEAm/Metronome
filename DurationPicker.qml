@@ -5,6 +5,11 @@ import QtQml.Models 2.15
 import Picker 1.0
 
 Item {
+    property alias element: picker.element
+
+    width: element.width
+    height: element.height
+
     DelegateModel {
         id: delegateComponent
         model: [
@@ -27,11 +32,7 @@ Item {
 
     Picker {
         id: picker
-        frame.width: 100
-        frame.height: 100
-        rectangle.width: 100
-        rectangle.height: 100
-        tumbler.width: 100
-        tumbler.height: 100
+        element.width: 100
+        element.height: 100
     }
 }

@@ -7,7 +7,11 @@ import Picker 1.0
 Item {
     property alias controller: controller
     property alias tumbler: picker.tumbler
+    property alias element: picker.element
     property alias delegateComponent: delegateComponent
+
+    width: element.width
+    height: element.height
 
     PickerController {
         id: controller
@@ -30,12 +34,8 @@ Item {
 
     Picker {
         id: picker
-        frame.width: 100
-        frame.height: 100
-        rectangle.width: 100
-        rectangle.height: 100
-        tumbler.width: 100
-        tumbler.height: 100
+        element.width: 100
+        element.height: 100
         tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
     }
 }

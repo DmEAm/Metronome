@@ -9,7 +9,7 @@ import Player 1.0
 import Tapper 1.0
 import Picker 1.0
 
-Window {
+Window{
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
     property alias tempoController: tempoPicker.controller
@@ -18,78 +18,110 @@ Window {
 
     width: 400
     height: 500
+    maximumHeight: height
+    maximumWidth: width
+    minimumHeight: height
+    minimumWidth: width
+
     visible: true
     title: qsTr("Metronome")
 
-    Player
-    {
-        id: player
-        x: 125
-        y: 220
-    }
+    ColumnLayout{
+        spacing: 0
+        anchors.fill: parent
 
-    Tapper {
-        id: tapper
-        x: 300
-        y: 75
-    }
+        TempoPicker{
+            id: tempoPicker
+            Layout.alignment: Qt.AlignCenter
+            delegateComponent.model: playerController.range
+            controller.maxTempo: playerController.tempoMax
+            controller.minTempo: playerController.tempoMin
+            tumbler.currentIndex: playerController.tempo - playerController.tempoMin
+        }
 
-    TempoPicker {
-        id: tempoPicker
-        x: 100
-        y: 75
-        delegateComponent.model: playerController.range
-        controller.maxTempo: playerController.tempoMax
-        controller.minTempo: playerController.tempoMin
-        tumbler.currentIndex: playerController.tempo - playerController.tempoMin
-
-    }
-
-    Connections {
-            target: tempoController
-            function onIndexChanged() {
-                playerController.tempo = tempoController.tempo;
+        RowLayout{
+            spacing: 2
+            Layout.minimumHeight: player.height
+            Item{
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+            Item{
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+                Player{
+                    id: player
+                    anchors.centerIn: parent
+                }
+            }
+            Item{
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+                Tapper{
+                    id: tapper
+                    anchors.centerIn: parent
+                }
             }
         }
 
-    Connections {
-            target: tempoController
-            function onTempoChanged() {
-                playerController.tempo = tempoController.tempo;
-                tempoTumbler.currentIndex = tempoController.index;
+        RowLayout{
+            spacing: 2
+            Layout.minimumHeight: accentPicker.height
+            Item{
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                DurationPicker{
+                    id: durationPicker
+                    anchors.centerIn: parent
+                }
+            }
+            Item{
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+                DurationPicker{
+                    id: durationPicker_2
+                    anchors.centerIn: parent
+                }
+            }
+            Item{
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+                AccentPicker{
+                    id: accentPicker
+                    delegateComponent.model: 13
+                    anchors.centerIn: parent
+                }
             }
         }
-
-    Connections {
-            target: tapperController
-            function onTempoChanged() {
-                tempoController.tempo = tapperController.tempo;
-            }
-        }
-
-    Connections {
-            target: accentController
-            function onIndexChanged() {
-                playerController.accent = accentController.index;
-            }
-        }
-
-    DurationPicker {
-        id: durationPicker
-        x: 40
-        y: 390
     }
 
-    DurationPicker {
-        id: durationPicker_2
-        x: 150
-        y: 390
+    Connections{
+        target: tempoController
+        function onIndexChanged(){
+            playerController.tempo = tempoController.tempo;
+        }
+
     }
 
-    AccentPicker {
-        id: accentPicker
-        x: 260
-        y: 390
-        delegateComponent.model: 13
+    Connections{
+        target: tempoController
+        function onTempoChanged(){
+            playerController.tempo = tempoController.tempo;
+            tempoTumbler.currentIndex = tempoController.index;
+        }
+    }
+
+    Connections{
+        target: tapperController
+        function onTempoChanged(){
+            tempoController.tempo = tapperController.tempo;
+        }
+    }
+
+    Connections{
+        target: accentController
+        function onIndexChanged(){
+            playerController.accent = accentController.index;
+        }
     }
 }

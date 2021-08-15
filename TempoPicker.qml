@@ -8,7 +8,11 @@ import TempoPicker 1.0
 Item {
     property alias controller: controller
     property alias tumbler: picker.tumbler
+    property alias element: picker.element
     property alias delegateComponent: delegateComponent
+
+    width: element.width
+    height: element.height
 
     TempoController {
         id: controller
