@@ -9,6 +9,7 @@ Item {
     property alias tumbler: tumbler
     width: 200
     height: 100
+    property alias currentItemFrame: currentItemFrame
     property alias element: element
     Rectangle {
         id: rectangle
@@ -23,6 +24,16 @@ Item {
                 id: tumbler
                 anchors.fill: parent
                 model: delegateComponent
+
+                Frame {
+                    id: currentItemFrame
+                    x: 14
+                    y: 30
+                    width: 200
+                    height: 40
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
         }
     }
@@ -30,7 +41,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.8999999761581421}D{i:3}D{i:2}D{i:1}
+    D{i:0;formeditorZoom:0.8999999761581421}D{i:4}D{i:3}D{i:2}D{i:1}
 }
 ##^##*/
 

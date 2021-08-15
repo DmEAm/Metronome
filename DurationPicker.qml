@@ -7,8 +7,8 @@ import Picker 1.0
 Item {
     property alias element: picker.element
 
-    width: element.width
-    height: element.height
+    width: 100
+    height: 100
 
     DelegateModel {
         id: delegateComponent
@@ -20,7 +20,8 @@ Item {
             "qrc:/icons/triplets.png"
         ]
         delegate: Rectangle {
-            color: "#343434"
+            color: "#343434";
+            radius: 1;
             Image {
                 x: 35
                 width: 30
@@ -32,7 +33,6 @@ Item {
 
     Picker {
         id: picker
-        element.width: 100
-        element.height: 100
+        anchors.fill: parent
     }
 }

@@ -10,8 +10,8 @@ Item {
     property alias element: picker.element
     property alias delegateComponent: delegateComponent
 
-    width: element.width
-    height: element.height
+    width: 100
+    height: 100
 
     PickerController {
         id: controller
@@ -34,8 +34,7 @@ Item {
 
     Picker {
         id: picker
-        element.width: 100
-        element.height: 100
+        anchors.fill: parent
         tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
     }
 }
