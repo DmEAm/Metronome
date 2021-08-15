@@ -11,7 +11,7 @@ Item {
     property alias element: picker.element
     property alias delegateComponent: delegateComponent
 
-    width: element.width
+    width: 180
     height: element.height
 
     TempoController {
@@ -35,6 +35,7 @@ Item {
 
     Picker {
         id: picker
+        anchors.fill: parent
         tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
     }
 }

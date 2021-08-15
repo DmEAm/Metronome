@@ -30,18 +30,9 @@ Window{
         spacing: 0
         anchors.fill: parent
 
-        TempoPicker{
-            id: tempoPicker
-            Layout.alignment: Qt.AlignCenter
-            delegateComponent.model: playerController.range
-            controller.maxTempo: playerController.tempoMax
-            controller.minTempo: playerController.tempoMin
-            tumbler.currentIndex: playerController.tempo - playerController.tempoMin
-        }
-
         RowLayout{
-            spacing: 2
-            Layout.minimumHeight: player.height
+            spacing: 4
+            Layout.minimumHeight: tempoPicker.height
             Item{
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -49,19 +40,28 @@ Window{
             Item{
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
-                Player{
-                    id: player
+                TempoPicker{
+                    id: tempoPicker
                     anchors.centerIn: parent
+                    delegateComponent.model: playerController.range
+                    controller.maxTempo: playerController.tempoMax
+                    controller.minTempo: playerController.tempoMin
+                    tumbler.currentIndex: playerController.tempo - playerController.tempoMin
                 }
             }
             Item{
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter
+                Layout.alignment: Qt.AlignRight
                 Tapper{
                     id: tapper
                     anchors.centerIn: parent
                 }
             }
+        }
+
+        Player{
+            id: player
+            Layout.alignment: Qt.AlignHCenter
         }
 
         RowLayout{
