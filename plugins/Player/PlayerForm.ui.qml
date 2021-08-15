@@ -9,11 +9,7 @@ Item {
 
     RoundButton {
         id: play
-        x: 0
-        y: 0
-        width: 150
-        height: 150
+        anchors.fill: parent
         icon.name: "Play"
-        icon.source: "qrc:/icons/play.svg"
     }
 }

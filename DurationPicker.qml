@@ -5,6 +5,11 @@ import QtQml.Models 2.15
 import Picker 1.0
 
 Item {
+    property alias element: picker.element
+
+    width: 100
+    height: 100
+
     DelegateModel {
         id: delegateComponent
         model: [
@@ -15,7 +20,8 @@ Item {
             "qrc:/icons/triplets.png"
         ]
         delegate: Rectangle {
-            color: "#343434"
+            color: "#343434";
+            radius: 1;
             Image {
                 x: 35
                 width: 30
@@ -27,11 +33,6 @@ Item {
 
     Picker {
         id: picker
-        frame.width: 100
-        frame.height: 100
-        rectangle.width: 100
-        rectangle.height: 100
-        tumbler.width: 100
-        tumbler.height: 100
+        anchors.fill: parent
     }
 }

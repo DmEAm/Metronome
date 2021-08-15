@@ -6,5 +6,10 @@ import Picker 1.0
 
 PickerForm {
     id: picker
-
+    currentItemFrame.width: parent.width;
+    currentItemFrame.background: Rectangle{
+        border.color: "black"}
+    frame.background: Rectangle{
+        border.width: 3;
+        radius: 10}
 }
