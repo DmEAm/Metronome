@@ -16,6 +16,8 @@ Window{
     property alias accentController: accentPicker.controller
     property alias tempoTumbler: tempoPicker.tumbler
 
+    property string iconSett: "qrc:/icons/setting_line.svg"
+
     width: 400
     height: 500
     maximumHeight: height
@@ -29,6 +31,32 @@ Window{
     ColumnLayout{
         spacing: 0
         anchors.fill: parent
+
+        RowLayout{
+            spacing: 0
+            Layout.maximumHeight: settButton.height
+            Layout.minimumHeight: settButton.height
+            Item{
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Rectangle{
+                    id: background
+                    anchors.fill: parent
+                    color: "#E0E0E0"
+                }
+            }
+            Item{
+                Layout.preferredWidth: settButton.width
+                Layout.alignment: Qt.AlignRight
+                Button{
+                    id: settButton
+                    width: 50;
+                    height: 40;
+                    anchors.centerIn: parent
+                    icon.source: iconSett;
+                }
+            }
+        }
 
         RowLayout{
             spacing: 4
