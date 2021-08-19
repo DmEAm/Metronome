@@ -12,5 +12,6 @@
         <file alias="sixteenth.png">icons/sixteenth.png</file>
         <file alias="triplets.png">icons/triplets.png</file>
         <file alias="setting_line.svg">icons/setting-lines.svg</file>
+        <file alias="back.svg">icons/back.svg</file>
     </qresource>
 </RCC>

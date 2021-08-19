@@ -9,14 +9,20 @@ import Player 1.0
 import Tapper 1.0
 import Picker 1.0
 
-Window{
+ApplicationWindow{
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
+    property alias settView: settView
     property alias tempoController: tempoPicker.controller
     property alias accentController: accentPicker.controller
     property alias tempoTumbler: tempoPicker.tumbler
+    property alias stack: stack
 
     property string iconSett: "qrc:/icons/setting_line.svg"
+    property string iconBack: "qrc:/icons/back.svg"
+
+    title: qsTr("Metronome")
+    visible: true
 
     width: 400
     height: 500
@@ -25,12 +31,16 @@ Window{
     minimumHeight: height
     minimumWidth: width
 
-    visible: true
-    title: qsTr("Metronome")
+    StackView {
+            id: stack
+            initialItem: mainView
+            anchors.fill: parent
+        }
 
     ColumnLayout{
+        id: mainView
         spacing: 0
-        anchors.fill: parent
+        //anchors.fill: parent
 
         RowLayout{
             spacing: 0
@@ -40,7 +50,6 @@ Window{
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Rectangle{
-                    id: background
                     anchors.fill: parent
                     color: "#E0E0E0"
                 }
@@ -54,6 +63,7 @@ Window{
                     height: 40;
                     anchors.centerIn: parent
                     icon.source: iconSett;
+                    onClicked: stack.push(settView)
                 }
             }
         }
@@ -119,6 +129,49 @@ Window{
                     delegateComponent.model: 13
                     anchors.centerIn: parent
                 }
+            }
+        }
+    }
+
+    Component {
+        id: settView
+        ColumnLayout{
+            spacing: 0
+            RowLayout{
+                spacing: 0
+                Layout.fillWidth: true
+                Layout.maximumHeight: returnButton.height
+                Layout.minimumHeight: returnButton.height
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                Item{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    ComboBox {
+                        anchors.fill: parent
+                        currentIndex: 2
+                        textRole: "text"
+                        valueRole: "value"
+                        model: ListModel {
+                               id: cbItems
+                               ListElement { text: "Banana"; color: "Yellow"}
+                               ListElement { text: "Apple"; color: "Green" }
+                               ListElement { text: "Coconut"; color: "Brown" }
+                           }
+                      }
+                }
+                Item{
+                    Layout.preferredWidth: returnButton.width
+                    Layout.alignment: Qt.AlignRight
+                    Button{
+                        id: returnButton
+                        width: 50;
+                        height: 40;
+                        anchors.centerIn: parent
+                        icon.source: iconBack;
+                        onClicked: stack.pop()
+                    }
+                }
+
             }
         }
     }
