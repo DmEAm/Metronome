@@ -1,0 +1,5 @@
+module PlayerSettings
+plugin PlayerSettingsPlugin
+designersupported
+PlayerSettings 1.0 qrc:/playersettings/PlayerSettings.qml
+typeinfo plugin.qmltypes

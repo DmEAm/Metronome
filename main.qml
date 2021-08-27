@@ -6,6 +6,7 @@ import QtQml.Models 2.15
 import QtMultimedia 5.12
 
 import Player 1.0
+import PlayerSettings 1.0
 import Tapper 1.0
 import Picker 1.0
 
@@ -41,6 +42,9 @@ ApplicationWindow{
         id: mainView
         spacing: 0
         //anchors.fill: parent
+        PlayerSettings{
+            id:sss
+        }
 
         RowLayout{
             spacing: 0

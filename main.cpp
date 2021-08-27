@@ -3,7 +3,7 @@
 
 #include <Tapper/tapper.hpp>
 #include <Player/player.hpp>
-
+#include <PlayerSettings/playersettingscontroller.hpp>
 #include "tempocontroller.hpp"
 
 int main(int argc, char *argv[])
