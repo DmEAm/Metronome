@@ -1,4 +1,5 @@
 #include "mixer.h"
+#include <QDebug>
 
 Mixer::Mixer(QObject *parent)
 : QObject(parent)
@@ -30,6 +31,14 @@ void Mixer::setAccentMode(int accent)
     for(int i = 1; i < accent; i++)
         _effects.append(_stdEffect);
     resetPosition();
+}
+
+void Mixer::loadSettingsVolume()
+{
+    QString volume = QSettings().value( "Player/Volume", "0.25" ).toString();
+    _stdEffect->setVolume(volume.toFloat());
+    _accEffect->setVolume(volume.toFloat());
+    qDebug() << _stdEffect->volume();
 }
 
 void Mixer::initStandardEffect()

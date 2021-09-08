@@ -15,6 +15,7 @@ PlayerController::PlayerController(QObject *parent)
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedAccent, this, &PlayerController::changeAccent);
+    loadSettings();
 }
 
 bool PlayerController::playing() const
@@ -26,6 +27,11 @@ void PlayerController::toggle()
 {
     _playing = !_playing;
     emit toggled();
+}
+
+void PlayerController::loadSettings()
+{
+    _mixer->loadSettingsVolume();
 }
 
 void PlayerController::changeState()

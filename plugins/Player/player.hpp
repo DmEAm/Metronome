@@ -33,6 +33,7 @@ public:
     void setAccent(int accent);
 
     Q_INVOKABLE void toggle();
+    Q_INVOKABLE void loadSettings();
 
 signals:
     void toggled();

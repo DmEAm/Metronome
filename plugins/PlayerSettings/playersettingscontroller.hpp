@@ -11,6 +11,7 @@
 class PlayerSettingsController :public ICongigurable
 {
     Q_OBJECT
+    Q_PROPERTY(int volume READ volume WRITE setVolume NOTIFY changedVolume)
 
 public:
     explicit PlayerSettingsController(QObject *parent = nullptr);
@@ -19,9 +20,12 @@ public:
         VOLUME
     };
 
-signals:
+    int volume() const;
 
-private:
+    Q_INVOKABLE void setVolume(int volume);
+
+signals:
+    void changedVolume();
 
 };
 

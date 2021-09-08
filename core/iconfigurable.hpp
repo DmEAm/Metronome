@@ -15,7 +15,7 @@ public:
     ~ICongigurable() override = default;
 
     void configure(QStringList settings, QStringList basic);
-    void save();
+    Q_INVOKABLE void save();
 
 protected:
     QHash<QString, QString> _settings;

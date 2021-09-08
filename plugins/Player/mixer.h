@@ -2,6 +2,7 @@
 #define MIXER_H
 
 #include <QObject>
+#include <QSettings>
 #include <QSoundEffect>
 
 class Mixer : public QObject
@@ -14,6 +15,7 @@ public:
 
     void setStandardMode();
     void setAccentMode(int accent);
+    void loadSettingsVolume();
 
 public slots:
     void click();

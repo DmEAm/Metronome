@@ -8,6 +8,8 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setOrganizationName("DmEAm");
+    QCoreApplication::setApplicationName("Metronome");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
