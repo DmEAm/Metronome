@@ -16,6 +16,8 @@ public:
     void setStandardMode();
     void setAccentMode(int accent);
     void loadSettingsVolume();
+    void loadSettingsBaseSound();
+    void loadSettingsAccentSound();
 
 public slots:
     void click();

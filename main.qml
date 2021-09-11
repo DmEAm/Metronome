@@ -152,9 +152,9 @@ ApplicationWindow{
                             valueRole: "value"
                             model: ListModel {
                                    id: cbItems
-                                   ListElement { text: "Banana"; color: "Yellow"}
-                                   ListElement { text: "Apple"; color: "Green" }
-                                   ListElement { text: "Coconut"; color: "Brown" }
+                                   ListElement { text: "Player"; color: "Yellow"}
+                                   ListElement { text: "Tempo"; color: "Green" }
+                                   ListElement { text: "Tapper"; color: "Brown" }
                                }
                           }
                     }

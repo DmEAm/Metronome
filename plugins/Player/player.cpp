@@ -32,6 +32,8 @@ void PlayerController::toggle()
 void PlayerController::loadSettings()
 {
     _mixer->loadSettingsVolume();
+    _mixer->loadSettingsBaseSound();
+    _mixer->loadSettingsAccentSound();
 }
 
 void PlayerController::changeState()

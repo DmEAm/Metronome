@@ -38,20 +38,27 @@ void Mixer::loadSettingsVolume()
     QString volume = QSettings().value( "Player/Volume", "0.25" ).toString();
     _stdEffect->setVolume(volume.toFloat());
     _accEffect->setVolume(volume.toFloat());
-    qDebug() << _stdEffect->volume();
+}
+
+void Mixer::loadSettingsBaseSound()
+{
+    QString baseSound = QSettings().value( "Player/BaseSound", "qrc:/audio/stick_1(wav)" ).toString();
+    _stdEffect->setSource(QUrl(baseSound));
+}
+
+void Mixer::loadSettingsAccentSound()
+{
+    QString accentSound = QSettings().value( "Player/AccentSound", "qrc:/audio/accient_1(wav)" ).toString();
+    _accEffect->setSource(QUrl(accentSound));
 }
 
 void Mixer::initStandardEffect()
 {
-    _stdEffect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
-    _stdEffect->setVolume(0.25f);
     _stdEffect->setLoopCount(0);
 }
 
 void Mixer::initAccentEffect()
 {
-    _accEffect->setSource(QUrl("qrc:/audio/accient_1(wav)"));
-    _accEffect->setVolume(0.25f);
     _accEffect->setLoopCount(0);
 }
 
