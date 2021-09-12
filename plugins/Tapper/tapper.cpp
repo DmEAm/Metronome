@@ -4,7 +4,10 @@
 TapperController::TapperController(QObject *parent)
 : QObject(parent)
 , _timeCache(2)
-, _tempoCache(10) { }
+, _tempoCache(10)
+{
+   loadSettings();
+}
 
 int TapperController::tempo() const
 {
@@ -27,4 +30,19 @@ void TapperController::tap()
     _tempoCache.normalizeIndexes();
     _timeCache.normalizeIndexes();
     emit tempoChanged();
+}
+
+void TapperController::loadSettings()
+{
+    setInertia(QSettings().value( "Tapper/Inertia", "10" ).toInt());
+}
+
+int TapperController::inertia()
+{
+    return _tempoCache.capacity();
+}
+
+void TapperController::setInertia(int inertia)
+{
+    _tempoCache.setCapacity(inertia);
 }

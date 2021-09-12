@@ -8,6 +8,7 @@ import QtMultimedia 5.12
 import Player 1.0
 import PlayerSettings 1.0
 import Tapper 1.0
+import TapperSettings 1.0
 import Picker 1.0
 import TempoSettings 1.0
 
@@ -159,6 +160,8 @@ ApplicationWindow{
                                     stackSettings.push(settViewPlayer);
                                 else if(currentIndex == 1)
                                     stackSettings.push(settViewTempo);
+                                else if(currentIndex == 2)
+                                    stackSettings.push(settViewTapper);
                                 settIndex = currentIndex;
                             }
                             Component.onCompleted: {currentIndex = settIndex;}
@@ -189,14 +192,33 @@ ApplicationWindow{
                             Item{
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
+                                property alias playerSettingsController: playerSettings.controller
                                 PlayerSettings{
                                     id: playerSettings
                                     element.width: parent.width
                                     anchors.top: parent.top
                                     anchors.horizontalCenter: parent.horizontalCenter
-                                    controller.onVolumeChanged: {playerController.setVolume(controller.getStrVolume());}
-                                    controller.onIdBaseSoundChanged: {playerController.setBaseSound(controller.getStrBaseSound());}
-                                    controller.onIdAccentSoundChanged: {playerController.setAccentSound(controller.getStrAccentSound());}
+                                }
+
+                                Connections{
+                                    target: playerSettingsController
+                                    function onVolumeChanged(){
+                                        playerController.setVolume(playerSettingsController.getStrVolume());
+                                    }
+                                }
+
+                                Connections{
+                                    target: playerSettingsController
+                                    function onIdBaseSoundChanged(){
+                                        playerController.setBaseSound(playerSettingsController.getStrBaseSound());
+                                    }
+                                }
+
+                                Connections{
+                                    target: playerSettingsController
+                                    function onIdAccentSoundChanged(){
+                                        playerController.setAccentSound(playerSettingsController.getStrAccentSound());
+                                    }
                                 }
                             }
                         }
@@ -230,6 +252,28 @@ ApplicationWindow{
                                     function onMinTempoChanged(){
                                         tempoController.minTempo = tempoSettingsController.minTempo;
                                         tempoController.tempo = tempoSettingsController.tempo;
+                                    }
+                                }
+                            }
+                        }
+
+                        Component {
+                            id: settViewTapper
+                            Item{
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                property alias tapperSettingsController: tapperSettings.controller
+                                TapperSettings{
+                                    id: tapperSettings
+                                    element.width: parent.width
+                                    anchors.top: parent.top
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+
+                                Connections{
+                                    target: tapperSettingsController
+                                    function onInertiaChanged(){
+                                        tapperController.inertia = tapperSettingsController.inertia;
                                     }
                                 }
                             }
