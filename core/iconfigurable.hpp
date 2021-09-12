@@ -12,7 +12,7 @@ class ICongigurable: public QObject
 public:
 
     explicit ICongigurable(QObject *parent = nullptr);
-    ~ICongigurable() override = default;
+    ~ICongigurable();
 
     void configure(QStringList settings, QStringList basic);
     Q_INVOKABLE void save();
@@ -24,6 +24,7 @@ public:
 protected:
     QHash<QString, QString> _settings;
     QList<QString> _keys;
+    bool isInit;
 
 };
 

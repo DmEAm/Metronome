@@ -19,6 +19,10 @@ public:
     void loadSettingsBaseSound();
     void loadSettingsAccentSound();
 
+    void setVolume(QString volume);
+    void setBaseSound(QString baseSound);
+    void setAccentSound(QString accentSound);
+
 public slots:
     void click();
     void stop();

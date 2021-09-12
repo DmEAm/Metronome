@@ -36,19 +36,34 @@ void Mixer::setAccentMode(int accent)
 void Mixer::loadSettingsVolume()
 {
     QString volume = QSettings().value( "Player/Volume", "0.25" ).toString();
-    _stdEffect->setVolume(volume.toFloat());
-    _accEffect->setVolume(volume.toFloat());
+    setVolume(volume);
 }
 
 void Mixer::loadSettingsBaseSound()
 {
     QString baseSound = QSettings().value( "Player/BaseSound", "qrc:/audio/stick_1(wav)" ).toString();
-    _stdEffect->setSource(QUrl(baseSound));
+    setBaseSound(baseSound);
 }
 
 void Mixer::loadSettingsAccentSound()
 {
     QString accentSound = QSettings().value( "Player/AccentSound", "qrc:/audio/accient_1(wav)" ).toString();
+    setAccentSound(accentSound);
+}
+
+void Mixer::setVolume(QString volume)
+{
+    _stdEffect->setVolume(volume.toFloat());
+    _accEffect->setVolume(volume.toFloat());
+}
+
+void Mixer::setBaseSound(QString baseSound)
+{
+    _stdEffect->setSource(QUrl(baseSound));
+}
+
+void Mixer::setAccentSound(QString accentSound)
+{
     _accEffect->setSource(QUrl(accentSound));
 }
 

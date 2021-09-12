@@ -38,4 +38,18 @@ Item {
         anchors.fill: parent
         tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
     }
+
+    Connections{
+        target: controller
+        function onRangeChanged(){
+            delegateComponent.model = controller.range;
+        }
+    }
+
+    Component.onCompleted: {
+        delegateComponent.model = controller.range;
+        //Load again settings after config model range
+        controller.loadTempo();
+        tumbler.currentIndex = controller.index;
+    }
 }

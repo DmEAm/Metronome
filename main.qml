@@ -9,6 +9,7 @@ import Player 1.0
 import PlayerSettings 1.0
 import Tapper 1.0
 import Picker 1.0
+import TempoSettings 1.0
 
 ApplicationWindow{
     property alias playerController: player.controller
@@ -36,7 +37,7 @@ ApplicationWindow{
         id: stack
         initialItem: mainView
         anchors.fill: parent
-        signal trigger;
+        signal playerTrigger;
         ColumnLayout{
             id: mainView
             spacing: 0
@@ -80,10 +81,6 @@ ApplicationWindow{
                     TempoPicker{
                         id: tempoPicker
                         anchors.centerIn: parent
-                        delegateComponent.model: playerController.range
-                        controller.maxTempo: playerController.tempoMax
-                        controller.minTempo: playerController.tempoMin
-                        tumbler.currentIndex: playerController.tempo - playerController.tempoMin
                     }
                 }
                 Item{
@@ -147,7 +144,7 @@ ApplicationWindow{
                         Layout.fillHeight: true
                         ComboBox {
                             anchors.fill: parent
-                            currentIndex: 2
+                            currentIndex: 0
                             textRole: "text"
                             valueRole: "value"
                             model: ListModel {
@@ -167,12 +164,9 @@ ApplicationWindow{
                             height: 40;
                             anchors.centerIn: parent
                             icon.source: iconBack;
-                            onClicked: {playerSettings.controller.save();
-                                        stack.trigger();
-                                        stack.pop()}
+                            onClicked: {stack.pop()}
                         }
                     }
-
                 }
                 Item{
                     Layout.fillWidth: true
@@ -182,10 +176,27 @@ ApplicationWindow{
                         element.width: parent.width
                         anchors.top: parent.top
                         anchors.horizontalCenter: parent.horizontalCenter
+                        controller.onVolumeChanged: {playerController.setVolume(controller.getStrVolume());}
+                        controller.onIdBaseSoundChanged: {playerController.setBaseSound(controller.getStrBaseSound());}
+                        controller.onIdAccentSoundChanged: {playerController.setAccentSound(controller.getStrAccentSound());}
+                    }
+                }
+                Item{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    TempoSettings{
+                        id: tempoSettings
+                        element.width: parent.width
+                        anchors.top: parent.top
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        controller.onTempoChanged: tempoController.tempo = controller.tempo;
+                        controller.onMaxTempoChanged: {tempoController.maxTempo = controller.maxTempo;
+                                                       tempoController.tempo = controller.tempo;}
+                        controller.onMinTempoChanged: {tempoController.minTempo = controller.minTempo;
+                                                       tempoController.tempo = controller.tempo;}
                     }
                 }
             }
-
         }
     }
 
@@ -194,7 +205,6 @@ ApplicationWindow{
         function onIndexChanged(){
             playerController.tempo = tempoController.tempo;
         }
-
     }
 
     Connections{
@@ -216,13 +226,6 @@ ApplicationWindow{
         target: accentController
         function onIndexChanged(){
             playerController.accent = accentController.index;
-        }
-    }
-
-    Connections{
-        target: stack
-        function onTrigger(){
-            playerController.loadSettings();
         }
     }
 }

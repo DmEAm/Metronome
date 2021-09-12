@@ -1,9 +1,15 @@
 #include "iconfigurable.hpp"
 
 ICongigurable::ICongigurable(QObject *parent)
-: QObject(parent)
+: QObject(parent),
+  isInit(false)
 {
 
+}
+
+ICongigurable::~ICongigurable()
+{
+    save();
 }
 
 void ICongigurable::save()
@@ -18,4 +24,5 @@ void ICongigurable::configure(QStringList settings, QStringList basic)
     _keys = settings;
     for(int i = 0; i < settings.size(); i++)
         _settings[settings[i]] = QSettings().value( settings[i], basic[i] ).toString();
+    isInit = true;
 }

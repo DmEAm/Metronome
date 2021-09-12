@@ -8,7 +8,6 @@ PlayerSettingsForm {
     PlayerSettingsController{
         id: controller;
     }
-    sVolume.value: controller.volume;
     sVolume.onValueChanged: {controller.setVolume(sVolume.value);}
 
     // Base Combo Box
@@ -22,7 +21,6 @@ PlayerSettingsForm {
            ListElement { text: "Basic 5"; color: "Brown" }
            ListElement { text: "Kick 1"; color: "Brown" }
        }
-    cbBaseSound.currentIndex: controller.idBaseSound;
     cbBaseSound.onCurrentIndexChanged: {controller.setIdBaseSound(cbBaseSound.currentIndex);}
 
     // Accent Combo Box
@@ -32,7 +30,13 @@ PlayerSettingsForm {
            ListElement { text: "Actient 1"; color: "Yellow"}
            ListElement { text: "Actient 2"; color: "Green" }
        }
-    cbAccentSound.currentIndex: controller.idAccentSound;
     cbAccentSound.onCurrentIndexChanged: {controller.setIdAccentSound(cbAccentSound.currentIndex);}
+
+    Component.onCompleted: {
+        controller.init();
+        sVolume.value = controller.volume;
+        cbBaseSound.currentIndex = controller.idBaseSound;
+        cbAccentSound.currentIndex = controller.idAccentSound;
+    }
 
 }
