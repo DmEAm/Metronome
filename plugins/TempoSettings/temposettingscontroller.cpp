@@ -4,7 +4,8 @@
 TempoSettingsController::TempoSettingsController(QObject *parent)
 : ICongigurable(parent),
   _strongMaxTempo(250),
-  _strongMinTempo(10)
+  _strongMinTempo(10),
+  _deltaTempo(5)
 {
 
 }
@@ -50,7 +51,7 @@ void TempoSettingsController::setMaxTempo(int maxTempo)
 {
     if(!isInit) return;
 
-    if(maxTempo <= value(MINTEMPO).toInt())
+    if(maxTempo - value(MINTEMPO).toInt() <= _deltaTempo)
         return;
     QString strMaxTempo = QString::number(maxTempo);
     if(value(MAXTEMPO) != strMaxTempo)
@@ -66,7 +67,7 @@ void TempoSettingsController::setMinTempo(int minTempo)
 {
     if(!isInit) return;
 
-    if(minTempo >= value(MAXTEMPO).toInt())
+    if(value(MAXTEMPO).toInt() - minTempo <= _deltaTempo)
         return;
     QString strMinTempo = QString::number(minTempo);
     if(value(MINTEMPO) != strMinTempo)

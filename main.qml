@@ -19,6 +19,8 @@ ApplicationWindow{
     property alias accentController: accentPicker.controller
     property alias tempoTumbler: tempoPicker.tumbler
     property alias stack: stack
+    property alias settButton: settButton
+    property int settIndex: 0
 
     property string iconSett: "qrc:/icons/setting_line.svg"
     property string iconBack: "qrc:/icons/back.svg"
@@ -37,7 +39,6 @@ ApplicationWindow{
         id: stack
         initialItem: mainView
         anchors.fill: parent
-        signal playerTrigger;
         ColumnLayout{
             id: mainView
             spacing: 0
@@ -63,7 +64,6 @@ ApplicationWindow{
                         height: 40;
                         anchors.centerIn: parent
                         icon.source: iconSett;
-                        onClicked: stack.push(settView)
                     }
                 }
             }
@@ -153,6 +153,15 @@ ApplicationWindow{
                                    ListElement { text: "Tempo"; color: "Green" }
                                    ListElement { text: "Tapper"; color: "Brown" }
                                }
+                            onCurrentIndexChanged: {
+                                stackSettings.clear();
+                                if(currentIndex == 0)
+                                    stackSettings.push(settViewPlayer);
+                                else if(currentIndex == 1)
+                                    stackSettings.push(settViewTempo);
+                                settIndex = currentIndex;
+                            }
+                            Component.onCompleted: {currentIndex = settIndex;}
                           }
                     }
                     Item{
@@ -171,29 +180,60 @@ ApplicationWindow{
                 Item{
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    PlayerSettings{
-                        id: playerSettings
-                        element.width: parent.width
-                        anchors.top: parent.top
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        controller.onVolumeChanged: {playerController.setVolume(controller.getStrVolume());}
-                        controller.onIdBaseSoundChanged: {playerController.setBaseSound(controller.getStrBaseSound());}
-                        controller.onIdAccentSoundChanged: {playerController.setAccentSound(controller.getStrAccentSound());}
-                    }
-                }
-                Item{
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    TempoSettings{
-                        id: tempoSettings
-                        element.width: parent.width
-                        anchors.top: parent.top
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        controller.onTempoChanged: tempoController.tempo = controller.tempo;
-                        controller.onMaxTempoChanged: {tempoController.maxTempo = controller.maxTempo;
-                                                       tempoController.tempo = controller.tempo;}
-                        controller.onMinTempoChanged: {tempoController.minTempo = controller.minTempo;
-                                                       tempoController.tempo = controller.tempo;}
+                    StackView {
+                        id: stackSettings
+                        initialItem: settViewPlayer
+                        anchors.fill: parent
+                        Component {
+                            id: settViewPlayer
+                            Item{
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                PlayerSettings{
+                                    id: playerSettings
+                                    element.width: parent.width
+                                    anchors.top: parent.top
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    controller.onVolumeChanged: {playerController.setVolume(controller.getStrVolume());}
+                                    controller.onIdBaseSoundChanged: {playerController.setBaseSound(controller.getStrBaseSound());}
+                                    controller.onIdAccentSoundChanged: {playerController.setAccentSound(controller.getStrAccentSound());}
+                                }
+                            }
+                        }
+                        Component {
+                            id: settViewTempo
+                            Item{
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                property alias tempoSettingsController: tempoSettings.controller
+                                TempoSettings{
+                                    id: tempoSettings
+                                    element.width: parent.width
+                                    anchors.top: parent.top
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                                Connections{
+                                    target: tempoSettingsController
+                                    function onTempoChanged(){
+                                        tempoController.tempo = tempoSettingsController.tempo;
+                                    }
+                                }
+                                Connections{
+                                    target: tempoSettingsController
+                                    function onMaxTempoChanged(){
+                                        tempoController.maxTempo = tempoSettingsController.maxTempo;
+                                        tempoController.tempo = tempoSettingsController.tempo;
+                                    }
+                                }
+                                Connections{
+                                    target: tempoSettingsController
+                                    function onMinTempoChanged(){
+                                        tempoController.minTempo = tempoSettingsController.minTempo;
+                                        tempoController.tempo = tempoSettingsController.tempo;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -226,6 +266,14 @@ ApplicationWindow{
         target: accentController
         function onIndexChanged(){
             playerController.accent = accentController.index;
+        }
+    }
+
+    Connections{
+        target: settButton
+        function onClicked(){
+            tempoController.saveTempo();
+            stack.push(settView);
         }
     }
 }

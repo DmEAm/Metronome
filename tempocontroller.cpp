@@ -9,6 +9,11 @@ TempoController::TempoController(QObject *parent) :
     loadSettings();
 }
 
+TempoController::~TempoController()
+{
+   saveTempo();
+}
+
 void TempoController::setIndex(QVariant index)
 {
     if(index.value<int>() == _index)
@@ -20,7 +25,6 @@ void TempoController::setIndex(QVariant index)
     else
         _index = index;
     emit indexChanged();
-    saveTempo();
 }
 
 QVariant TempoController::formatText(const QVariant& count, const QVariant& modelData)
@@ -75,7 +79,6 @@ void TempoController::setTempo(int tempo)
     else
         _index = tempo - _minTempo;
     emit tempoChanged();
-    saveTempo();
 }
 
 int TempoController::range() const

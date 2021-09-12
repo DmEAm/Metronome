@@ -47,6 +47,7 @@ signals:
 private:
     int _strongMaxTempo;
     int _strongMinTempo;
+    int _deltaTempo;
 };
 
 #endif // TEMPO_SETTINGS_HPP
