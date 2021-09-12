@@ -6,6 +6,7 @@ Item {
     id: element
     width: 200
     height: 200
+    property alias lVolume: lVolume
     property alias cbAccentSound: cbAccentSound
     property alias cbBaseSound: cbBaseSound
     property alias sVolume: sVolume
@@ -51,6 +52,19 @@ Item {
                     anchors.fill: parent
                     to: 100
                     value: 0.5
+                }
+            }
+
+            Item {
+                id: element7
+                width: 40
+                height: 15
+
+                Label {
+                    id: lVolume
+                    width: 40
+                    height: 15
+                    text: qsTr("Label")
                 }
             }
         }

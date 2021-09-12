@@ -32,9 +32,17 @@ PlayerSettingsForm {
        }
     cbAccentSound.onCurrentIndexChanged: {controller.setIdAccentSound(cbAccentSound.currentIndex);}
 
+    Connections{
+        target: controller
+        function onVolumeChanged(){
+            lVolume.text = controller.volume;
+        }
+    }
+
     Component.onCompleted: {
         controller.init();
         sVolume.value = controller.volume;
+        lVolume.text = controller.volume;
         cbBaseSound.currentIndex = controller.idBaseSound;
         cbAccentSound.currentIndex = controller.idAccentSound;
     }
