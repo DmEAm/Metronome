@@ -28,7 +28,7 @@ public slots:
     void stop();
 
 private:
-    QVector<QSoundEffect*> _effects;
+    QVector<QSoundEffect *> _effects;
     QSoundEffect *_stdEffect;
     QSoundEffect *_accEffect;
     int _currentEffect;

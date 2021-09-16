@@ -4,8 +4,8 @@
 #include <QQmlExtensionPlugin>
 #include <QmlTypeAndRevisionsRegistration>
 
-#include "pickermodel.hpp"
 #include "pickercontroller.hpp"
+#include "pickermodel.hpp"
 
 class PickerPlugin : public QQmlExtensionPlugin
 {

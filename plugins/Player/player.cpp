@@ -1,12 +1,12 @@
 #include "player.hpp"
 
 PlayerController::PlayerController(QObject *parent)
-: QObject(parent)
-, _playing(false)
-, _tempo(120)
-, _accent(0)
-, _timer(new QTimer(this))
-, _mixer(new Mixer(this))
+    : QObject(parent)
+    , _playing(false)
+    , _tempo(120)
+    , _accent(0)
+    , _timer(new QTimer(this))
+    , _mixer(new Mixer(this))
 {
     _timer->setTimerType(Qt::PreciseTimer);
     connect(_timer, &QTimer::timeout, _mixer, &Mixer::click);
@@ -51,7 +51,7 @@ void PlayerController::setAccentSound(QString accentSound)
 
 void PlayerController::changeState()
 {
-    if(_playing)
+    if (_playing)
     {
         _mixer->click();
         _timer->start(interval());
@@ -89,7 +89,7 @@ void PlayerController::setTempo(int tempo)
 
 void PlayerController::setAccent(int accent)
 {
-    if(_accent == accent)
+    if (_accent == accent)
         return;
     _accent = accent;
     emit changedAccent();

@@ -2,12 +2,11 @@
 
 PickerModel::PickerModel(QObject *parent)
     : QAbstractListModel(parent)
-{
-}
+{}
 
 QHash<int, QByteArray> PickerModel::roleNames() const
 {
-  return { {Qt::UserRole, "value"} };
+    return { { Qt::UserRole, "value" } };
 }
 
 int PickerModel::rowCount(const QModelIndex &parent) const

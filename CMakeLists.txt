@@ -11,12 +11,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(WIN32)
+if (WIN32)
     set(CMAKE_SHARED_LIBRARY_PREFIX "")
     set(CMAKE_STATIC_LIBRARY_PREFIX "")
 
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-endif()
+endif ()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
@@ -44,29 +44,29 @@ file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
 
 set(PROJECT_SOURCES
-    ${SOURCE_FILES}
-    ${PROJECT_RESOURCES}
-    ${HEADER_FILES})
+        ${SOURCE_FILES}
+        ${PROJECT_RESOURCES}
+        ${HEADER_FILES})
 
-if(ANDROID)
+if (ANDROID)
     add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
-else()
+else ()
     add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
-endif()
+endif ()
 
 target_compile_definitions(${PROJECT_NAME}
-  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+        PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 target_include_directories(${PROJECT_NAME}
-    PRIVATE
+        PRIVATE
         ${PickerPlugin_BINARY_DIR})
 
 target_link_libraries(${PROJECT_NAME}
-    PRIVATE
+        PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Multimedia
-    PUBLIC
+        PUBLIC
         TapperPlugin
         PickerPlugin
         PlayerPlugin)

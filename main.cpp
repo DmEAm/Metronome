@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include <Player/player.hpp>
+#include <Tapper/tapper.hpp>
+
 #include "tempocontroller.hpp"
 #include "temposettingscontroller.hpp"
 #include "updowncontroller.hpp"
@@ -20,11 +23,15 @@ int main(int argc, char *argv[])
     qmlRegisterType<UpDownController>("UpDown", 1, 0, "UpDownController");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
+    QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreated,
+        &app,
+        [url](QObject *obj, const QUrl &objUrl) {
+            if (!obj && url == objUrl)
+                QCoreApplication::exit(-1);
+        },
+        Qt::QueuedConnection);
     engine.load(url);
 
     return app.exec();

@@ -1,9 +1,9 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
-#include <QtQml>
 #include <QSoundEffect>
 #include <QTimer>
+#include <QtQml>
 
 #include "mixer.hpp"
 
