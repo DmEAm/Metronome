@@ -49,7 +49,8 @@ void TempoSettingsController::setTempo(int tempo)
 
 void TempoSettingsController::setMaxTempo(int maxTempo)
 {
-    if(!isInit) return;
+    if(!isInit)
+        return;
 
     if(maxTempo - value(MINTEMPO).toInt() <= _deltaTempo)
         return;

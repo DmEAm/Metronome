@@ -30,8 +30,8 @@ public:
 
     Q_INVOKABLE void setInertia(int inertia);
 
-    int strongMaxInertia() const {return _strongMaxInertia;}
-    int strongMinInertia() const {return _strongMinInertia;}
+    Q_DECL_RELAXED_CONSTEXPR int strongMaxInertia() const {return _strongMaxInertia;}
+    Q_DECL_RELAXED_CONSTEXPR int strongMinInertia() const {return _strongMinInertia;}
 
 signals:
     void inertiaChanged();

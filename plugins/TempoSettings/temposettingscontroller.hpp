@@ -32,8 +32,8 @@ public:
     int maxTempo() const;
     int minTempo() const;
 
-    int strongMaxTempo() const {return _strongMaxTempo;}
-    int strongMinTempo() const {return _strongMinTempo;}
+    Q_DECL_RELAXED_CONSTEXPR int strongMaxTempo() const {return _strongMaxTempo;}
+    Q_DECL_RELAXED_CONSTEXPR int strongMinTempo() const {return _strongMinTempo;}
 
     Q_INVOKABLE void setTempo(int tempo);
     Q_INVOKABLE void setMaxTempo(int maxTempo);
