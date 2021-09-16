@@ -1,12 +1,12 @@
 #ifndef TAPPER_HPP
 #define TAPPER_HPP
 
+#include <QContiguousCache>
 #include <QObject>
+#include <QQuickItem>
 #include <QString>
 #include <QSettings>
 #include <QTime>
-#include <QContiguousCache>
-#include <QQuickItem>
 
 class TapperController : public QObject
 {

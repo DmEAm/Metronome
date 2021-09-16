@@ -23,7 +23,6 @@ protected:
 
 signals:
     void indexChanged();
-
 };
 
 #endif // PICKER_CONTROLLER_H

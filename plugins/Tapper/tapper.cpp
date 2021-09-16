@@ -2,9 +2,9 @@
 #include <QDebug>
 
 TapperController::TapperController(QObject *parent)
-: QObject(parent)
-, _timeCache(2)
-, _tempoCache(10)
+    : QObject(parent)
+    , _timeCache(2)
+    , _tempoCache(10)
 {
    loadSettings();
 }
