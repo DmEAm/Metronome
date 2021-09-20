@@ -1,5 +1,9 @@
-
 #include "tempo.hpp"
+
+Tempo::Tempo(QObject *parent)
+    : QObject(parent)
+    , _current(Default)
+{}
 
 void Tempo::setCurrent(int tempo)
 {

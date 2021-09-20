@@ -22,11 +22,11 @@ public:
 
     int interval()
     {
-        return QTime(0, 1, 0, 0).second() / _tempo.current();
+        return QTime(0, 1, 0, 0).second() / _tempo->current();
     }
 
 private:
-    Tempo _tempo;
+    Tempo *_tempo;
 };
 
 #endif // TEMPO_CONTROLLER_HPP

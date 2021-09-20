@@ -2,6 +2,7 @@
 
 TempoController::TempoController(QObject *parent)
     : PickerController(parent)
+    , _tempo(new Tempo(this))
 {
     _index = 0;
 }
@@ -21,5 +22,5 @@ QVariant TempoController::formatText(const QVariant &count, const QVariant &mode
 
 const Tempo *TempoController::tempo() const
 {
-    return &_tempo;
+    return _tempo;
 }

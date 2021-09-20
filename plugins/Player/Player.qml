@@ -4,7 +4,7 @@ import QtQuick.Controls 2.0
 import Player 1.0
 
 PlayerForm {
-    property alias controller: PlayerController
+    property var controller: PlayerController
     property string iconPlay: "qrc:/icons/play.svg"
     property string iconPause: "qrc:/icons/pause.svg"
 

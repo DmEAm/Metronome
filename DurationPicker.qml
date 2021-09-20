@@ -1,6 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.0
-import QtQml.Models 2.15
+import QtQml.Models 2.12
 
 import Picker 1.0
 

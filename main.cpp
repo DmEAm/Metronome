@@ -4,10 +4,10 @@
 
 #include <Player/player.hpp>
 #include <Tapper/tapper.hpp>
+#include <Picker/tempocontroller.hpp>
 
 #include "tempocontroller.hpp"
 #include "temposettingscontroller.hpp"
-#include "plugins/Picker/tempocontroller.hpp"
 
 int main(int argc, char *argv[])
 {
