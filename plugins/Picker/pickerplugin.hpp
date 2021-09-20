@@ -2,7 +2,7 @@
 #define PICKER_PLUGIN_HPP
 
 #include <QQmlExtensionPlugin>
-#include <QmlTypeAndRevisionsRegistration>
+#include <QtQml>
 
 #include "pickercontroller.hpp"
 #include "pickermodel.hpp"

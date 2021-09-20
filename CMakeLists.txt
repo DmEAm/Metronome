@@ -4,6 +4,9 @@ project(Metronome LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+find_program(CLANG_TIDY NAMES "clang-tidy")
+#set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY} ${SOURCE_FILES} -warnings-as-errors=clang-analyzer-* -header-filter=.*)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -41,11 +44,9 @@ file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-qt5_add_resources(PROJECT_RESOURCES ${RESOURCE_FILES})
-
 set(PROJECT_SOURCES
         ${SOURCE_FILES}
-        ${PROJECT_RESOURCES}
+        ${RESOURCE_FILES}
         ${HEADER_FILES})
 
 if (ANDROID)

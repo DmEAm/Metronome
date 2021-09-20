@@ -6,24 +6,20 @@
 #include <QtQml>
 
 #include "mixer.hpp"
+#include "tempocontroller.hpp"
 
 class PlayerController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool playing READ playing NOTIFY toggled)
-    Q_PROPERTY(int tempo READ tempo WRITE setTempo NOTIFY changedTempo)
     Q_PROPERTY(int accent READ accent WRITE setAccent NOTIFY changedAccent)
-    Q_PROPERTY(int interval READ interval)
 
 public:
     explicit PlayerController(QObject *parent = nullptr);
     ~PlayerController() override = default;
 
     bool playing() const;
-    int tempo() const;
     int accent() const;
-    int interval();
-    void setTempo(int tempo);
     void setAccent(int accent);
 
     Q_INVOKABLE void toggle();
@@ -40,10 +36,10 @@ signals:
 
 private:
     bool _playing;
-    int _tempo;
     int _accent;
     QTimer *_timer;
     Mixer *_mixer;
+    TempoController *_tempoController;
 
     void changeState();
     void changeAccent();

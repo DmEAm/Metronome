@@ -4,10 +4,13 @@
 #include <QObject>
 #include <QSettings>
 #include <QSoundEffect>
+#include <QVector>
 
 class Mixer : public QObject
 {
     Q_OBJECT
+
+    constexpr static qreal StandardVolume = .25;
 
 public:
     explicit Mixer(QObject *parent = nullptr);
@@ -33,8 +36,6 @@ private:
     QSoundEffect *_accEffect;
     int _currentEffect;
 
-    void initStandardEffect();
-    void initAccentEffect();
     void upPosition();
     void resetPosition();
 };

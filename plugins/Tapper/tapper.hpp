@@ -14,6 +14,7 @@ class TapperController : public QObject
     Q_PROPERTY(int tempo READ tempo NOTIFY tempoChanged)
     Q_PROPERTY(int inertia READ inertia WRITE setInertia)
 
+    const int Inertia = 10;
 public:
     explicit TapperController(QObject *parent = nullptr);
 

@@ -14,7 +14,7 @@ int PickerModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return 10;
+    return RowCount;
 }
 
 QVariant PickerModel::data(const QModelIndex &index, int role) const
@@ -22,8 +22,8 @@ QVariant PickerModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    QVector<int> data(10);
-    std::iota(data.begin(), data.end(), 1000);
+    QVector<int> data(RowCount);
+    std::iota(data.begin(), data.end(), RowCount);
 
     return QVariant::fromValue(data.at(index.row()));
 }

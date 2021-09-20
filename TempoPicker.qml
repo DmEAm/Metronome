@@ -6,17 +6,13 @@ import Picker 1.0
 import TempoPicker 1.0
 
 Item {
-    property alias controller: controller
+    property alias controller: TempoController
     property alias tumbler: picker.tumbler
     property alias element: picker.element
     property alias delegateComponent: delegateComponent
 
     width: 180
     height: element.height
-
-    TempoController {
-        id: controller
-    }
 
     FontMetrics {
         id: fontMetrics

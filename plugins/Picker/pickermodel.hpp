@@ -6,6 +6,7 @@
 class PickerModel : public QAbstractListModel
 {
     Q_OBJECT
+    constexpr static int RowCount = 10;
 
 public:
     explicit PickerModel(QObject *parent = nullptr);
