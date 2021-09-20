@@ -23,9 +23,7 @@ public:
     static constexpr int Default = 120;
     static constexpr int Min = 20;
 
-    explicit Tempo(int t = Default)
-        : _current(t)
-    {}
+    explicit Tempo(QObject *parent = nullptr);
 
     static int range() { return Max - Min + 1; }
 

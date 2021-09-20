@@ -4,6 +4,7 @@
 
 #include <Player/player.hpp>
 #include <Tapper/tapper.hpp>
+#include <Picker/tempocontroller.hpp>
 
 #include "tempocontroller.hpp"
 #include "temposettingscontroller.hpp"
