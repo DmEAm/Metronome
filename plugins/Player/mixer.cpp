@@ -1,5 +1,4 @@
 #include "mixer.hpp"
-#include <QDebug>
 
 Mixer::Mixer(QObject *parent)
     : QObject(parent)
@@ -7,8 +6,18 @@ Mixer::Mixer(QObject *parent)
     , _accEffect(new QSoundEffect(this))
     , _currentEffect(0)
 {
-    initStandardEffect();
-    initAccentEffect();
+    {
+        _stdEffect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
+        _stdEffect->setVolume(StandardVolume);
+        _stdEffect->setLoopCount(0);
+    }
+
+    {
+        _accEffect->setSource(QUrl("qrc:/audio/accient_1(wav)"));
+        _accEffect->setVolume(StandardVolume);
+        _accEffect->setLoopCount(0);
+    }
+
     setStandardMode();
 }
 
@@ -65,16 +74,6 @@ void Mixer::setBaseSound(QString baseSound)
 void Mixer::setAccentSound(QString accentSound)
 {
     _accEffect->setSource(QUrl(accentSound));
-}
-
-void Mixer::initStandardEffect()
-{
-    _stdEffect->setLoopCount(0);
-}
-
-void Mixer::initAccentEffect()
-{
-    _accEffect->setLoopCount(0);
 }
 
 void Mixer::upPosition()

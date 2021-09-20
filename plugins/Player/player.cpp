@@ -3,7 +3,6 @@
 PlayerController::PlayerController(QObject *parent)
     : QObject(parent)
     , _playing(false)
-    , _tempo(120)
     , _accent(0)
     , _timer(new QTimer(this))
     , _mixer(new Mixer(this))
@@ -54,7 +53,7 @@ void PlayerController::changeState()
     if (_playing)
     {
         _mixer->click();
-        _timer->start(interval());
+        _timer->start(_tempoController->interval());
     }
     else
     {
@@ -69,22 +68,9 @@ void PlayerController::changeAccent()
     changeState();
 }
 
-int PlayerController::tempo() const
-{
-    return _tempo;
-}
-
 int PlayerController::accent() const
 {
     return _accent;
-}
-
-void PlayerController::setTempo(int tempo)
-{
-    if(tempo == _tempo)
-        return;
-    _tempo = tempo;
-    emit changedTempo();
 }
 
 void PlayerController::setAccent(int accent)
@@ -94,9 +80,3 @@ void PlayerController::setAccent(int accent)
     _accent = accent;
     emit changedAccent();
 }
-
-int PlayerController::interval()
-{
-    return 1000 * 60 / _tempo;
-}
-
