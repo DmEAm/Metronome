@@ -8,6 +8,8 @@
 #include <QSettings>
 #include <QTime>
 
+#include <chrono>
+
 class TapperController : public QObject
 {
     Q_OBJECT

@@ -20,7 +20,7 @@ QVariant TempoController::formatText(const QVariant &count, const QVariant &mode
     return data;
 }
 
-const Tempo *TempoController::tempo() const
+Tempo *TempoController::tempo() const
 {
     return _tempo;
 }

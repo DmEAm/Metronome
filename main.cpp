@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<TempoSettingsController>("TempoPicker", 1, 0, "TempoSettingsController");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    QQmlComponent component(&engine, url);
 
     QObject::connect(
         &engine,
@@ -34,7 +33,6 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
-    engine.load(url);
 
     auto context = engine.rootContext();
 
@@ -46,6 +44,7 @@ int main(int argc, char *argv[])
 
     context->setContextProperty(playerController->metaObject()->className(),
                                 playerController);
+    engine.load(url);
 
     return QGuiApplication::exec();
 }

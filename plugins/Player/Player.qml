@@ -13,7 +13,7 @@ PlayerForm {
     play.icon.source: iconPlay;
     play.onPressed:
     {
-        controller.toggle();
+        PlayerController.toggle();
         play.icon.source = controller.playing ? iconPause: iconPlay;
     }
 
