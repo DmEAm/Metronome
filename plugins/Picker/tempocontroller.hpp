@@ -9,7 +9,7 @@
 class TempoController : public PickerController
 {
     Q_OBJECT
-    Q_PROPERTY(Tempo tempo READ tempo)
+    Q_PROPERTY(Tempo * tempo READ tempo CONSTANT FINAL)
     Q_PROPERTY(int interval READ interval)
 
 public:
@@ -18,11 +18,11 @@ public:
     void setIndex(QVariant index) override;
     Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData) override;
 
-    const Tempo *tempo() const;
+    Tempo *tempo() const;
 
     int interval()
     {
-        return QTime(0, 1, 0, 0).second() / _tempo->current();
+        return Tempo::MsecsInMinute / _tempo->current();
     }
 
 private:

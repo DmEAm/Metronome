@@ -5,6 +5,7 @@ Tempo::Tempo(QObject *parent)
     , _current(Default)
 {}
 
+#include <QDebug>
 void Tempo::setCurrent(int tempo)
 {
     if (tempo >= Max)
@@ -20,6 +21,7 @@ void Tempo::setCurrent(int tempo)
         _current = tempo;
     }
 
+    qDebug() << _current;
     emit currentChanged();
 }
 

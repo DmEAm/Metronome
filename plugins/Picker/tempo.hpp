@@ -19,6 +19,12 @@ signals:
     void rangeChanged();
 
 public:
+    using min = std::chrono::minutes;
+    using msec = std::chrono::milliseconds;
+
+    // QTime().msecsTo(QTime(0, 1, 0, 0)) doesnt constexpr
+    static constexpr int MsecsInMinute = std::chrono::duration_cast<msec>(min(1)).count();
+
     static constexpr int Max = 230;
     static constexpr int Default = 120;
     static constexpr int Min = 20;

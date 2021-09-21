@@ -1,5 +1,4 @@
 #include "tapper.hpp"
-#include <QDebug>
 
 TapperController::TapperController(QObject *parent)
     : QObject(parent)
@@ -23,11 +22,16 @@ int TapperController::tempo() const
 
 void TapperController::tap()
 {
+    using min = std::chrono::minutes;
+    using msec = std::chrono::milliseconds;
+    using std::chrono::duration_cast;
+
     _timeCache.append(QDateTime::currentDateTime().time());
 
     auto diff = _timeCache.first().msecsTo(_timeCache.last());
 
-    _tempoCache.append(diff > 0 ? QTime(0, 1, 0, 0).second() / diff : 0);
+    // QTime().msecsTo(QTime(0, 1, 0, 0)) doesnt constexpr
+    _tempoCache.append(diff > 0 ? duration_cast<msec>(min(1)).count() / diff : 0);
 
     _tempoCache.normalizeIndexes();
     _timeCache.normalizeIndexes();
