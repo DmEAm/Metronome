@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/tappersettings">
-        <file>TapperSettings.qml</file>
-        <file>TapperSettingsForm.ui.qml</file>
-    </qresource>
-</RCC>

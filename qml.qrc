@@ -3,6 +3,8 @@
         <file>main.qml</file>
         <file>DurationPicker.qml</file>
         <file>TempoPicker.qml</file>
+		<file>TempoSettings.qml</file>
+        <file>TempoSettingsForm.ui.qml</file>
         <file>AccentPicker.qml</file>
     </qresource>
     <qresource prefix="/icons">

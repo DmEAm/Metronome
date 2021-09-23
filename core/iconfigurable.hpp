@@ -24,7 +24,7 @@ public:
 protected:
     QHash<QString, QString> _settings;
     QList<QString> _keys;
-    bool isInit;
+    bool isConfigure;
 
 };
 

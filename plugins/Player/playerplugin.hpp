@@ -4,6 +4,7 @@
 #include <QQmlExtensionPlugin>
 
 #include "player.hpp"
+#include "playersettingscontroller.hpp"
 
 class PlayerPlugin : public QQmlExtensionPlugin
 {

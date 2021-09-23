@@ -11,25 +11,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
-file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
-file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
+file(GLOB SOURCE_FILES   ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB HEADER_FILES   ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-qt5_add_resources(PLUGIN_RESOURCES ${RESOURCE_FILES})
+include_directories(${CORE_INCLUDE_DIR})
+
 set(PROJECT_SOURCES
     ${SOURCE_FILES}
-    ${PLUGIN_RESOURCES}
+    ${RESOURCE_FILES}
     ${HEADER_FILES})
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core
-    Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+    PUBLIC
+        core)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${PROJECT_SOURCE_DIR})
+        ${PROJECT_SOURCE_DIR}
+        ${CORE_INCLUDE_DIR})
 
 add_custom_command(
     TARGET ${PROJECT_NAME}

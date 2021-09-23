@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/playersettings">
-        <file>PlayerSettings.qml</file>
-        <file>PlayerSettingsForm.ui.qml</file>
-    </qresource>
-</RCC>

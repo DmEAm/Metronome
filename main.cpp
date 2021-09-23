@@ -1,10 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include <Tapper/tapper.hpp>
-#include <Player/player.hpp>
-#include <PlayerSettings/playersettingscontroller.hpp>
 #include "tempocontroller.hpp"
+#include "temposettingscontroller.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +13,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
     engine.addImportPath("plugins");
+
     qmlRegisterType<TempoController>("TempoPicker", 1, 0, "TempoController");
+    qmlRegisterType<TempoSettingsController>("TempoPicker", 1, 0, "TempoSettingsController");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

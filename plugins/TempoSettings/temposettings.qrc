@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/temposettings">
-        <file>TempoSettings.qml</file>
-        <file>TempoSettingsForm.ui.qml</file>
-    </qresource>
-</RCC>

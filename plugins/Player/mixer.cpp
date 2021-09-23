@@ -1,4 +1,4 @@
-#include "mixer.h"
+#include "mixer.hpp"
 #include <QDebug>
 
 Mixer::Mixer(QObject *parent)

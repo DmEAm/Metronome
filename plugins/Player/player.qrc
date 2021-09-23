@@ -6,6 +6,8 @@
     <qresource prefix="/player">
         <file>Player.qml</file>
         <file>PlayerForm.ui.qml</file>
+		<file>PlayerSettings.qml</file>
+        <file>PlayerSettingsForm.ui.qml</file>
     </qresource>
     <qresource prefix="/audio">
         <file alias="stick_1(wav)">audio/sticks_1(small).wav</file>

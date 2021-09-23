@@ -6,9 +6,9 @@ import QtQml.Models 2.15
 import QtMultimedia 5.12
 
 import Player 1.0
-import PlayerSettings 1.0
+//import PlayerSettings 1.0
 import Tapper 1.0
-import TapperSettings 1.0
+//import TapperSettings 1.0
 import Picker 1.0
 import TempoSettings 1.0
 

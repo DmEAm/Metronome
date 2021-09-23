@@ -1,5 +1,5 @@
-#ifndef MIXER_H
-#define MIXER_H
+#ifndef MIXER_HPP
+#define MIXER_HPP
 
 #include <QObject>
 #include <QSettings>
@@ -39,4 +39,4 @@ private:
     void resetPosition();
 };
 
-#endif // MIXER_H
+#endif // MIXER_HPP

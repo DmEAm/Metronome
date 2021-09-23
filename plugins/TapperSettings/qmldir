@@ -1,5 +1,0 @@
-module TapperSettings
-plugin TapperSettingsPlugin
-designersupported
-TapperSettings 1.0 qrc:/tappersettings/TapperSettings.qml
-typeinfo plugin.qmltypes

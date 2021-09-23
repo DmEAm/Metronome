@@ -5,7 +5,7 @@
 #include <QSoundEffect>
 #include <QTimer>
 
-#include "mixer.h"
+#include "mixer.hpp"
 
 class PlayerController : public QObject
 {

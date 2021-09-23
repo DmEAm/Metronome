@@ -1,5 +1,0 @@
-module TempoSettings
-plugin TempoSettingsPlugin
-designersupported
-TempoSettings 1.0 qrc:/temposettings/TempoSettings.qml
-typeinfo plugin.qmltypes

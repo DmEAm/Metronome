@@ -23,7 +23,7 @@ int TapperSettingsController::inertia() const
 
 void TapperSettingsController::setInertia(int inertia)
 {
-    if(!isInit) return;
+    if(!isConfigure) return;
     if(inertia > _strongMaxInertia || inertia < _strongMinInertia)
         return;
     QString stringInertia = QString::number(inertia);

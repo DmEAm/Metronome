@@ -2,4 +2,5 @@ module Tapper
 plugin TapperPlugin
 designersupported
 Tapper 1.0 qrc:/tapper/Tapper.qml
+TapperSettings 1.0 qrc:/tapper/TapperSettings.qml
 typeinfo plugin.qmltypes

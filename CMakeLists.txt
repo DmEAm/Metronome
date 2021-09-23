@@ -71,5 +71,4 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC
         TapperPlugin
         PickerPlugin
-        PlayerPlugin
-        PlayerSettingsPlugin)
+        PlayerPlugin)

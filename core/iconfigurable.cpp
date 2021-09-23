@@ -2,7 +2,7 @@
 
 ICongigurable::ICongigurable(QObject *parent)
 : QObject(parent),
-  isInit(false)
+  isConfigure(false)
 {
 
 }
@@ -24,5 +24,5 @@ void ICongigurable::configure(QStringList settings, QStringList basic)
     _keys = settings;
     for(int i = 0; i < settings.size(); i++)
         _settings[settings[i]] = QSettings().value( settings[i], basic[i] ).toString();
-    isInit = true;
+    isConfigure = true;
 }

@@ -34,7 +34,7 @@ int TempoSettingsController::minTempo() const
 
 void TempoSettingsController::setTempo(int tempo)
 {
-    if(!isInit) return;
+    if(!isConfigure) return;
     if(tempo < value(MINTEMPO).toInt())
         tempo = value(MINTEMPO).toInt();
     else if(tempo > value(MAXTEMPO).toInt())
@@ -49,7 +49,7 @@ void TempoSettingsController::setTempo(int tempo)
 
 void TempoSettingsController::setMaxTempo(int maxTempo)
 {
-    if(!isInit)
+    if(!isConfigure)
         return;
 
     if(maxTempo - value(MINTEMPO).toInt() <= _deltaTempo)
@@ -66,7 +66,7 @@ void TempoSettingsController::setMaxTempo(int maxTempo)
 
 void TempoSettingsController::setMinTempo(int minTempo)
 {
-    if(!isInit) return;
+    if(!isConfigure) return;
 
     if(value(MAXTEMPO).toInt() - minTempo <= _deltaTempo)
         return;
