@@ -20,7 +20,9 @@ file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-include_directories(${CORE_INCLUDE_DIR})
+get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR}} DIRECTORY)
+set(CORE_INCLUDE_DIR "${PARENT_DIR}/core")
+include_directories("${CORE_INCLUDE_DIR}")
 
 set(PROJECT_SOURCES
     ${SOURCE_FILES}

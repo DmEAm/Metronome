@@ -34,8 +34,6 @@ endif()
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 
-add_subdirectory(core)
-include_directories(core)
 add_subdirectory(plugins)
 include_directories(plugins)
 

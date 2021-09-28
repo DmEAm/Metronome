@@ -6,7 +6,7 @@
 #include <QTimer>
 #include <QQmlEngine>
 
-#include "iconfigurable.hpp"
+#include "core/iconfigurable.hpp"
 
 class TempoSettingsController :public ICongigurable
 {

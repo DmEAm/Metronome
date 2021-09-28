@@ -10,7 +10,7 @@ import Player 1.0
 import Tapper 1.0
 //import TapperSettings 1.0
 import Picker 1.0
-import TempoSettings 1.0
+import TempoPicker 1.0
 
 ApplicationWindow{
     property alias playerController: player.controller
