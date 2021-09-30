@@ -11,6 +11,7 @@
 class TempoSettingsController :public ICongigurable
 {
     Q_OBJECT
+    Q_INTERFACES(ICongigurable)
 
     Q_PROPERTY(int tempo READ tempo WRITE setTempo NOTIFY tempoChanged)
     Q_PROPERTY(int maxTempo READ maxTempo WRITE setMaxTempo NOTIFY maxTempoChanged)

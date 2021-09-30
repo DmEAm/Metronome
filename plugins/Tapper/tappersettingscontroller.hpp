@@ -9,9 +9,9 @@
 class TapperSettingsController :public ICongigurable
 {
     Q_OBJECT
+    Q_INTERFACES(ICongigurable)
 
     Q_PROPERTY(int inertia READ inertia WRITE setInertia NOTIFY inertiaChanged)
-
     Q_PROPERTY(int strongMaxInertia READ strongMaxInertia)
     Q_PROPERTY(int strongMinInertia READ strongMinInertia)
 

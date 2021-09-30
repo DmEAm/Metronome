@@ -9,6 +9,7 @@
 class PlayerSettingsController :public ICongigurable
 {
     Q_OBJECT
+    Q_INTERFACES(ICongigurable)
 
     Q_PROPERTY(int volume READ volume WRITE setVolume NOTIFY volumeChanged)
     Q_PROPERTY(int idBaseSound READ idBaseSound WRITE setIdBaseSound NOTIFY idBaseSoundChanged)

@@ -7,7 +7,6 @@
 
 class ICongigurable: public QObject
 {
-    //Q_OBJECT
 
 public:
 
@@ -27,5 +26,9 @@ protected:
     bool isConfigure;
 
 };
+
+#define ICongigurable_iid "com.acme.ICongigurable"
+
+Q_DECLARE_INTERFACE(ICongigurable, ICongigurable_iid)
 
 #endif // ICONFURABLE_H
