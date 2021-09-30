@@ -5,8 +5,6 @@ PlayerController::PlayerController(QObject *parent)
 , _playing(false)
 , _tempo(120)
 , _accent(0)
-, _tempoMax(230)
-, _tempoMin(20)
 , _timer(new QTimer(this))
 , _mixer(new Mixer(this))
 {
@@ -15,6 +13,7 @@ PlayerController::PlayerController(QObject *parent)
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedAccent, this, &PlayerController::changeAccent);
+    loadSettings();
 }
 
 bool PlayerController::playing() const
@@ -26,6 +25,28 @@ void PlayerController::toggle()
 {
     _playing = !_playing;
     emit toggled();
+}
+
+void PlayerController::loadSettings()
+{
+    _mixer->loadSettingsVolume();
+    _mixer->loadSettingsBaseSound();
+    _mixer->loadSettingsAccentSound();
+}
+
+void PlayerController::setVolume(QString volume)
+{
+    _mixer->setVolume(volume);
+}
+
+void PlayerController::setBaseSound(QString baseSound)
+{
+    _mixer->setBaseSound(baseSound);
+}
+
+void PlayerController::setAccentSound(QString accentSound)
+{
+    _mixer->setAccentSound(accentSound);
 }
 
 void PlayerController::changeState()
@@ -58,24 +79,9 @@ int PlayerController::accent() const
     return _accent;
 }
 
-int PlayerController::tempoMax() const
-{
-    return _tempoMax;
-}
-
-int PlayerController::tempoMin() const
-{
-    return _tempoMin;
-}
-
-int PlayerController::range() const
-{
-    return _tempoMax - _tempoMin + 1;
-}
-
 void PlayerController::setTempo(int tempo)
 {
-    if(tempo > _tempoMax || tempo < _tempoMin)
+    if(tempo == _tempo)
         return;
     _tempo = tempo;
     emit changedTempo();

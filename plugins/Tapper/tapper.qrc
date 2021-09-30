@@ -5,5 +5,7 @@
     <qresource prefix="/tapper">
         <file>Tapper.qml</file>
         <file>TapperForm.ui.qml</file>
+		<file>TapperSettings.qml</file>
+        <file>TapperSettingsForm.ui.qml</file>
     </qresource>
 </RCC>

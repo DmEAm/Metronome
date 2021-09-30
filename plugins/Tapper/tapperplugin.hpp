@@ -4,6 +4,7 @@
 #include <QQmlExtensionPlugin>
 
 #include "tapper.hpp"
+#include "tappersettingscontroller.hpp"
 
 class TapperPlugin : public QQmlExtensionPlugin
 {

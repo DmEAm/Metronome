@@ -6,9 +6,17 @@
     <qresource prefix="/player">
         <file>Player.qml</file>
         <file>PlayerForm.ui.qml</file>
+		<file>PlayerSettings.qml</file>
+        <file>PlayerSettingsForm.ui.qml</file>
     </qresource>
     <qresource prefix="/audio">
         <file alias="stick_1(wav)">audio/sticks_1(small).wav</file>
         <file alias="accient_1(wav)">audio/actient_1_wav.wav</file>
+        <file alias="stick_2(wav)">audio/sticks_2(small_wav).wav</file>
+        <file alias="stick_3(wav)">audio/sticks_3 (small_wav).wav</file>
+        <file alias="stick_4(wav)">audio/sticks_4 (small_wav).wav</file>
+        <file alias="stick_5(wav)">audio/stick_5(small_wav).wav</file>
+        <file alias="kick_1(wav)">audio/kick_1(small_wav).wav</file>
+        <file alias="accient_2(wav)">audio/actient_2(wav).wav</file>
     </qresource>
 </RCC>

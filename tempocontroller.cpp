@@ -6,9 +6,13 @@ TempoController::TempoController(QObject *parent) :
   _minTempo(0)
 {
     _index = 0;
+    loadSettings();
 }
 
-
+TempoController::~TempoController()
+{
+   saveTempo();
+}
 
 void TempoController::setIndex(QVariant index)
 {
@@ -51,6 +55,7 @@ void TempoController::setMaxTempo(int value)
         return;
     _maxTempo = value;
     emit maxTempoChanged();
+    emit rangeChanged();
 }
 
 
@@ -60,6 +65,7 @@ void TempoController::setMinTempo(int value)
         return;
     _minTempo = value;
     emit minTempoChanged();
+    emit rangeChanged();
 }
 
 void TempoController::setTempo(int tempo)
@@ -73,4 +79,26 @@ void TempoController::setTempo(int tempo)
     else
         _index = tempo - _minTempo;
     emit tempoChanged();
+}
+
+int TempoController::range() const
+{
+    return _maxTempo - _minTempo + 1;
+}
+
+void TempoController::loadSettings()
+{
+     _minTempo = QSettings().value( "Tempo/MinTempo", "20" ).toInt();
+     _maxTempo = QSettings().value( "Tempo/MaxTempo", "230" ).toInt();
+     loadTempo();
+}
+
+void TempoController::loadTempo()
+{
+    setTempo(QSettings().value( "Tempo/Tempo", "120" ).toInt());
+}
+
+void TempoController::saveTempo()
+{
+    QSettings().setValue( "Tempo/Tempo", QString::number(tempo()) );
 }

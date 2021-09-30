@@ -3,6 +3,8 @@
         <file>main.qml</file>
         <file>DurationPicker.qml</file>
         <file>TempoPicker.qml</file>
+		<file>TempoSettings.qml</file>
+        <file>TempoSettingsForm.ui.qml</file>
         <file>AccentPicker.qml</file>
     </qresource>
     <qresource prefix="/icons">
@@ -11,5 +13,7 @@
         <file alias="shuffle.png">icons/shuffle.png</file>
         <file alias="sixteenth.png">icons/sixteenth.png</file>
         <file alias="triplets.png">icons/triplets.png</file>
+        <file alias="setting_line.svg">icons/setting-lines.svg</file>
+        <file alias="back.svg">icons/back.svg</file>
     </qresource>
 </RCC>

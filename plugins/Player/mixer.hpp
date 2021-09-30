@@ -1,7 +1,8 @@
-#ifndef MIXER_H
-#define MIXER_H
+#ifndef MIXER_HPP
+#define MIXER_HPP
 
 #include <QObject>
+#include <QSettings>
 #include <QSoundEffect>
 
 class Mixer : public QObject
@@ -14,6 +15,13 @@ public:
 
     void setStandardMode();
     void setAccentMode(int accent);
+    void loadSettingsVolume();
+    void loadSettingsBaseSound();
+    void loadSettingsAccentSound();
+
+    void setVolume(QString volume);
+    void setBaseSound(QString baseSound);
+    void setAccentSound(QString accentSound);
 
 public slots:
     void click();
@@ -31,4 +39,4 @@ private:
     void resetPosition();
 };
 
-#endif // MIXER_H
+#endif // MIXER_HPP

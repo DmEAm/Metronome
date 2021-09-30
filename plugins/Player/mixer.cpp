@@ -1,4 +1,5 @@
-#include "mixer.h"
+#include "mixer.hpp"
+#include <QDebug>
 
 Mixer::Mixer(QObject *parent)
 : QObject(parent)
@@ -32,17 +33,47 @@ void Mixer::setAccentMode(int accent)
     resetPosition();
 }
 
+void Mixer::loadSettingsVolume()
+{
+    QString volume = QSettings().value( "Player/Volume", "0.25" ).toString();
+    setVolume(volume);
+}
+
+void Mixer::loadSettingsBaseSound()
+{
+    QString baseSound = QSettings().value( "Player/BaseSound", "qrc:/audio/stick_1(wav)" ).toString();
+    setBaseSound(baseSound);
+}
+
+void Mixer::loadSettingsAccentSound()
+{
+    QString accentSound = QSettings().value( "Player/AccentSound", "qrc:/audio/accient_1(wav)" ).toString();
+    setAccentSound(accentSound);
+}
+
+void Mixer::setVolume(QString volume)
+{
+    _stdEffect->setVolume(volume.toFloat());
+    _accEffect->setVolume(volume.toFloat());
+}
+
+void Mixer::setBaseSound(QString baseSound)
+{
+    _stdEffect->setSource(QUrl(baseSound));
+}
+
+void Mixer::setAccentSound(QString accentSound)
+{
+    _accEffect->setSource(QUrl(accentSound));
+}
+
 void Mixer::initStandardEffect()
 {
-    _stdEffect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
-    _stdEffect->setVolume(0.25f);
     _stdEffect->setLoopCount(0);
 }
 
 void Mixer::initAccentEffect()
 {
-    _accEffect->setSource(QUrl("qrc:/audio/accient_1(wav)"));
-    _accEffect->setVolume(0.25f);
     _accEffect->setLoopCount(0);
 }
 

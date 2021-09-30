@@ -8,7 +8,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(QT_USE_QTMULTIMEDIA TRUE)
-#QT5_USE_MODULES(${PROJECT_NAME} Multimedia MultimediaWidgets)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
@@ -19,27 +18,32 @@ find_package(Qt5MultimediaWidgets REQUIRED )
 
 file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
-file(GLOB HEADER_FILES_H ${PROJECT_SOURCE_DIR}/*.h)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-qt5_add_resources(PLUGIN_RESOURCES ${RESOURCE_FILES})
+get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR}} DIRECTORY)
+set(CORE_INCLUDE_DIR "${PARENT_DIR}/core")
+include_directories("${CORE_INCLUDE_DIR}")
+
 set(PROJECT_SOURCES
     ${SOURCE_FILES}
-    ${PLUGIN_RESOURCES}
-    ${HEADER_FILES}
-    ${HEADER_FILES_H})
+    ${RESOURCE_FILES}
+    ${HEADER_FILES})
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core
-    Qt${QT_VERSION_MAJOR}::Quick
-    Qt${QT_VERSION_MAJOR}::Multimedia
-    Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        Qt${QT_VERSION_MAJOR}::Multimedia
+        Qt${QT_VERSION_MAJOR}::Widgets
+    PUBLIC
+        core)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${PROJECT_SOURCE_DIR})
+        ${PROJECT_SOURCE_DIR}
+        ${CORE_INCLUDE_DIR})
 
 add_custom_command(
     TARGET ${PROJECT_NAME}

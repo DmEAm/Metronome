@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QSettings>
 #include <QTime>
 #include <QContiguousCache>
 #include <QQuickItem>
@@ -11,12 +12,18 @@ class TapperController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int tempo READ tempo NOTIFY tempoChanged)
+    Q_PROPERTY(int inertia READ inertia WRITE setInertia)
 
 public:
     explicit TapperController(QObject *parent = nullptr);
 
     Q_REQUIRED_RESULT int tempo() const;
+    Q_REQUIRED_RESULT int inertia();
     Q_INVOKABLE void tap();
+
+    Q_INVOKABLE void loadSettings();
+
+    void setInertia(int inertia);
 
 signals:
     void tempoChanged();
