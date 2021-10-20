@@ -8,11 +8,13 @@ import QtMultimedia 5.12
 import Player 1.0
 import Tapper 1.0
 import Picker 1.0
+import UpDown 1.0
 import TempoPicker 1.0
 
 ApplicationWindow{
     property alias playerController: player.controller
     property alias tapperController: tapper.controller
+    property alias updownController: updown.controller
     property alias settView: settView
     property alias tempoController: tempoPicker.controller
     property alias accentController: accentPicker.controller
@@ -72,7 +74,11 @@ ApplicationWindow{
                 Layout.minimumHeight: tempoPicker.height
                 Item{
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignLeft
+                    UpDown{
+                        id: updown
+                        anchors.centerIn: parent
+                    }
                 }
                 Item{
                     Layout.fillWidth: true
@@ -316,6 +322,20 @@ ApplicationWindow{
         function onClicked(){
             tempoController.saveTempo();
             stack.push(settView);
+        }
+    }
+
+    Connections{
+        target: updownController
+        function onUp(){
+            tempoTumbler.positionViewAtIndex(tempoTumbler.currentIndex - 1, Tumbler.Center);
+        }
+    }
+
+    Connections{
+        target: updownController
+        function onDown(){
+            tempoTumbler.positionViewAtIndex(tempoTumbler.currentIndex + 1, Tumbler.Center);
         }
     }
 }

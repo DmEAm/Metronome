@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/updown">
+        <file>UpDown.qml</file>
+        <file>UpDownForm.ui.qml</file>
+    </qresource>
+</RCC>
