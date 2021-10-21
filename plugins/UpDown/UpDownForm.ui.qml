@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.11
 
 Item {
     id: element
-    width: 70
+    width: 50
     height: 50
     property alias buttonDown: buttonDown
     property alias buttonUp: buttonUp
@@ -21,7 +21,7 @@ Item {
 
             Button {
                 id: buttonUp
-                text: qsTr("Up")
+                text: qsTr("")
                 anchors.fill: parent
             }
         }
@@ -33,16 +33,9 @@ Item {
 
             Button {
                 id: buttonDown
-                text: qsTr("Down")
+                text: qsTr("")
                 anchors.fill: parent
             }
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:1}
-}
-##^##*/
-

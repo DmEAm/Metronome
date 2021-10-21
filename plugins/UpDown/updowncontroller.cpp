@@ -5,7 +5,7 @@ UpDownController::UpDownController(QObject *parent)
   _isMoveUp(false),
   _isMoveDown(false),
   _timer(new QTimer(this)),
-  _timeLoopMin(100),
+  _timeLoopMin(80),
   _timeLoopDefaulth(350),
   _timeLoopDecrease(40),
   _timeLoopCurrent(_timeLoopDefaulth)
