@@ -6,13 +6,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_program(CLANG_TIDY NAMES "clang-tidy")
-#set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY}; -warnings-as-errors=clang-analyzer-* -header-filter=.* -p ${CMAKE_BINARY_DIR})
-file(WRITE "${CMAKE_BINARY_DIR}/.clang-tidy" "
----
-Checks: '-*,llvm-twine-local'
-...
-")
 
+if (CLANG_TIDY)
+    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+endif ()
+
+#set(CMAKE_AUTOGEN_VERBOSE ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -66,7 +65,7 @@ target_compile_definitions(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE
-        ${PickerPlugin_BINARY_DIR})
+        $<TARGET_PROPERTY:PickerPlugin,INCLUDE_DIRECTORIES>)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE

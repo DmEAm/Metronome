@@ -4,8 +4,12 @@ Checks: >
   clang-analyzer-*,
   cppcoreguidelines-*,
   modernize-*,
+  android-*,
+  -cppcoreguidelines-macro-usage,
+  -cppcoreguidelines-owning-memory,
   -modernize-use-trailing-return-type
-WarningsAsErrors: true
+WarningsAsErrors: >
+  clang-analyzer-*
 HeaderFilterRegex: '.*'
 AnalyzeTemporaryDtors: false
 FormatStyle: none

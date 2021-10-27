@@ -25,8 +25,9 @@ private:
     QList<QString> _keys;
 };
 
+
 #define IConfigurable_iid "com.acme.IConfigurable"
 
-Q_DECLARE_INTERFACE(IConfigurable, IConfigurable_iid)
+Q_DECLARE_INTERFACE(IConfigurable, IConfigurable_iid) // NOLINT
 
 #endif // I_CONFIGURABLE_HPP
