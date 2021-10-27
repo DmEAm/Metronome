@@ -10,7 +10,7 @@ class PlayerSettingsController : public IConfigurable
 {
     Q_OBJECT
     Q_INTERFACES(IConfigurable)
-    Q_DISABLE_COPY_AND_MOVE(PlayerSettingsController)
+    Q_DISABLE_COPY_MOVE(PlayerSettingsController)
 
     Q_PROPERTY(int volume READ volume WRITE setVolume NOTIFY volumeChanged)
     Q_PROPERTY(int idBaseSound READ idBaseSound WRITE setIdBaseSound NOTIFY idBaseSoundChanged)

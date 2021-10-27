@@ -10,7 +10,7 @@
 class TapperSettingsController : public IConfigurable
 {
     Q_OBJECT
-    Q_DISABLE_COPY_AND_MOVE(TapperSettingsController)
+    Q_DISABLE_COPY_MOVE(TapperSettingsController)
     Q_INTERFACES(IConfigurable)
 
     Q_PROPERTY(int inertia READ inertia WRITE setInertia NOTIFY inertiaChanged)

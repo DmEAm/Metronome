@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
-import QtQml.Models 2.15
+import QtQml.Models 2.12
 import QtMultimedia 5.12
 
 import Player 1.0
@@ -16,7 +16,6 @@ ApplicationWindow{
     property alias tapperController: tapper.controller
     property alias updownController: updown.controller
     property alias settView: settView
-    property alias tempoController: tempoPicker.controller
     property alias accentController: accentPicker.controller
     property alias tempoTumbler: tempoPicker.tumbler
     property alias stack: stack
@@ -151,7 +150,7 @@ ApplicationWindow{
                             anchors.fill: parent
                             currentIndex: 0
                             textRole: "text"
-                            valueRole: "value"
+//                            valueRole: "value"
                             model: ListModel {
                                    id: cbItems
                                    ListElement { text: "Player"; color: "Yellow"}
@@ -247,15 +246,15 @@ ApplicationWindow{
                                 Connections{
                                     target: tempoSettingsController
                                     function onMaxTempoChanged(){
-                                        tempoController.maxTempo = tempoSettingsController.maxTempo;
-                                        tempoController.tempo = tempoSettingsController.tempo;
+                                        tempoController.tempo.max = tempoSettingsController.maxTempo;
+                                        tempoController.tempo.current = tempoSettingsController.tempo;
                                     }
                                 }
                                 Connections{
                                     target: tempoSettingsController
                                     function onMinTempoChanged(){
-                                        tempoController.minTempo = tempoSettingsController.minTempo;
-                                        tempoController.tempo = tempoSettingsController.tempo;
+                                        tempoController.tempo.min = tempoSettingsController.minTempo;
+                                        tempoController.tempo.current = tempoSettingsController.tempo;
                                     }
                                 }
                             }
@@ -289,24 +288,9 @@ ApplicationWindow{
     }
 
     Connections{
-        target: tempoController
-        function onIndexChanged(){
-            playerController.tempo = tempoController.tempo;
-        }
-    }
-
-    Connections{
-        target: tempoController
-        function onTempoChanged(){
-            playerController.tempo = tempoController.tempo;
+        target: tempoController.tempo
+        function onCurrentChanged(){
             tempoTumbler.currentIndex = tempoController.index;
-        }
-    }
-
-    Connections{
-        target: tapperController
-        function onTempoChanged(){
-            tempoController.tempo = tapperController.tempo;
         }
     }
 

@@ -11,7 +11,7 @@ PlayerSettingsForm {
     sVolume.onValueChanged: {controller.setVolume(sVolume.value);}
 
     // Base Combo Box
-    cbBaseSound.valueRole: "value"
+//    cbBaseSound.valueRole: "value"
     cbBaseSound.model: ListModel {
            id: cbBaseItems
            ListElement { text: "Basic 1"; color: "Yellow"}
@@ -24,7 +24,7 @@ PlayerSettingsForm {
     cbBaseSound.onCurrentIndexChanged: {controller.setIdBaseSound(cbBaseSound.currentIndex);}
 
     // Accent Combo Box
-    cbAccentSound.valueRole: "value"
+//    cbAccentSound.valueRole: "value"
     cbAccentSound.model: ListModel {
            id: cbAccentItems
            ListElement { text: "Actient 1"; color: "Yellow"}

@@ -2,21 +2,27 @@
 #include <QQmlApplicationEngine>
 #include <QQmlComponent>
 #include <QScopedPointer>
+#include <QDebug>
+#include <QQuickItem>
 
-#include <Picker/tempocontroller.hpp>
 #include <Player/player.hpp>
 #include <Tapper/tapper.hpp>
+#include <tempocontroller.hpp>
 
+#include "contextobject.hpp"
 #include "temposettingscontroller.hpp"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setOrganizationName("DmEAm");
-    QCoreApplication::setApplicationName("Metronome");
+    QCoreApplication::setApplicationName(PROJECT_NAME);
+    QCoreApplication::setApplicationVersion(PROJECT_VERSION);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+    QQmlComponent component(&engine);
+    ContextObject object;
     engine.addImportPath("plugins");
 
     qmlRegisterType<TempoController>("TempoPicker", 1, 0, "TempoController");
@@ -35,13 +41,8 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
     auto context = engine.rootContext();
+    context->setContextObject(&object);
 
-    auto tempoController = new TempoController(&app);
-    auto playerController = new PlayerController(tempoController);
-
-    context->setContextProperty(tempoController->metaObject()->className(), tempoController);
-
-    context->setContextProperty(playerController->metaObject()->className(), playerController);
     engine.load(url);
 
     return QGuiApplication::exec();

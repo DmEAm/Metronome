@@ -1,7 +1,8 @@
 #include "player.hpp"
 
-PlayerController::PlayerController(QObject *parent)
+PlayerController::PlayerController(TempoController *parent)
     : QObject(parent)
+    , _tempoController(parent)
     , _playing(false)
     , _accent(0)
     , _timer(new QTimer(this))

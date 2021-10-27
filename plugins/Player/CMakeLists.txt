@@ -15,10 +15,6 @@ file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR}} DIRECTORY)
-set(CORE_INCLUDE_DIR "${PARENT_DIR}/core")
-include_directories("${CORE_INCLUDE_DIR}")
-
 set(PROJECT_SOURCES
         ${SOURCE_FILES}
         ${RESOURCE_FILES}
@@ -33,12 +29,12 @@ target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Multimedia
         Qt${QT_VERSION_MAJOR}::Widgets
     PUBLIC
-        core)
+        Metronome::Core)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         ${PROJECT_SOURCE_DIR}
-        ${CORE_INCLUDE_DIR}
+        $<TARGET_PROPERTY:Core,SOURCE_DIR>
         $<TARGET_PROPERTY:PickerPlugin,INCLUDE_DIRECTORIES>)
 
 add_custom_command(

@@ -17,3 +17,18 @@ Tempo *TempoController::tempo() const
 {
     return _tempo;
 }
+
+void TempoController::loadSettings()
+{
+    loadTempo();
+}
+
+void TempoController::loadTempo()
+{
+    _tempo->setCurrent(QSettings().value("Tempo/Tempo", "120").toInt());
+}
+
+void TempoController::saveTempo()
+{
+    QSettings().setValue("Tempo/Tempo", QString::number(tempo()->current()));
+}

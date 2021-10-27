@@ -4,8 +4,8 @@
 #include <QContiguousCache>
 #include <QObject>
 #include <QQuickItem>
-#include <QString>
 #include <QSettings>
+#include <QString>
 #include <QTime>
 
 #include <chrono>
@@ -13,10 +13,13 @@
 class TapperController : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TapperController)
+
     Q_PROPERTY(int tempo READ tempo NOTIFY tempoChanged)
     Q_PROPERTY(int inertia READ inertia WRITE setInertia)
 
     const int Inertia = 10;
+
 public:
     explicit TapperController(QObject *parent = nullptr);
 

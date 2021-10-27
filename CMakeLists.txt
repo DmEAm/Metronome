@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Metronome LANGUAGES CXX)
+project(Metronome VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -8,7 +8,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_program(CLANG_TIDY NAMES "clang-tidy")
 
 if (CLANG_TIDY)
-    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+#    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
 endif ()
 
 #set(CMAKE_AUTOGEN_VERBOSE ON)
@@ -43,6 +43,7 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Multimedia REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Multimedia REQUIRED)
 
 add_subdirectory(plugins)
+add_subdirectory(lib)
 include_directories(plugins)
 
 file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
@@ -61,7 +62,11 @@ else ()
 endif ()
 
 target_compile_definitions(${PROJECT_NAME}
-        PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+        PUBLIC
+        PROJECT_NAME="${PROJECT_NAME}"
+        PROJECT_VERSION="${PROJECT_VERSION}"
+        PRIVATE
+        $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE
