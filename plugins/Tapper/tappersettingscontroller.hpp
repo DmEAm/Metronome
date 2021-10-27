@@ -6,10 +6,10 @@
 
 #include "iconfigurable.hpp"
 
-class TapperSettingsController :public ICongigurable
+class TapperSettingsController :public IConfigurable
 {
     Q_OBJECT
-    Q_INTERFACES(ICongigurable)
+    Q_INTERFACES(IConfigurable)
 
     Q_PROPERTY(int inertia READ inertia WRITE setInertia NOTIFY inertiaChanged)
     Q_PROPERTY(int strongMaxInertia READ strongMaxInertia)

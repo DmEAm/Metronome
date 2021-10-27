@@ -15,7 +15,6 @@ class TempoController : public PickerController
 public:
     explicit TempoController(QObject *parent = nullptr);
 
-    void setIndex(QVariant index) override;
     Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData) override;
 
     Tempo *tempo() const;

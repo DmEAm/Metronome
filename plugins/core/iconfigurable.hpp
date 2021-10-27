@@ -1,34 +1,32 @@
-#ifndef ICONFURABLE_H
-#define ICONFURABLE_H
+#ifndef I_CONFIGURABLE_HPP
+#define I_CONFIGURABLE_HPP
 
+#include "global.hpp"
 #include <QObject>
 #include <QSettings>
-#include <QtPlugin>
 
-class ICongigurable: public QObject
+class IConfigurable : public QObject
 {
-
+    Q_DISABLE_COPY_AND_MOVE(IConfigurable);
 public:
 
-    explicit ICongigurable(QObject *parent = nullptr);
-    ~ICongigurable();
+    explicit IConfigurable(QObject *parent = nullptr);
+    ~IConfigurable() override;
 
     void configure(QStringList settings, QStringList basic);
     Q_INVOKABLE void save();
-    Q_INVOKABLE QList<QString> keys() const {return _keys;}
-    Q_INVOKABLE QString key(int id)   const {return _keys[id];}
-    Q_INVOKABLE QString& valueRef(int idKey)   {return _settings[key(idKey)];}
-    Q_INVOKABLE QString value(int idKey) const  {return _settings[key(idKey)];}
+    Q_INVOKABLE QList<QString> keys() const { return _keys; }
+    Q_INVOKABLE QString key(int id) const { return _keys[id]; }
+    Q_INVOKABLE QString& valueRef(int idKey) { return _settings[key(idKey)]; }
+    Q_INVOKABLE QString value(int idKey) const { return _settings[key(idKey)]; }
 
-protected:
+private:
     QHash<QString, QString> _settings;
     QList<QString> _keys;
-    bool isConfigure;
-
 };
 
-#define ICongigurable_iid "com.acme.ICongigurable"
+#define IConfigurable_iid "com.acme.IConfigurable"
 
-Q_DECLARE_INTERFACE(ICongigurable, ICongigurable_iid)
+Q_DECLARE_INTERFACE(IConfigurable, IConfigurable_iid)
 
-#endif // ICONFURABLE_H
+#endif // I_CONFIGURABLE_HPP

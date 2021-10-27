@@ -6,9 +6,12 @@
 #include <QSoundEffect>
 #include <QVector>
 
+#include <global.hpp>
+
 class Mixer : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_AND_MOVE(Mixer)
 
     constexpr static qreal StandardVolume = .25;
 
