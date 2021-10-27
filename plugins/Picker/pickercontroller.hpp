@@ -18,7 +18,7 @@ public:
     virtual void setIndex(QVariant index);
     virtual Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData);
 
-protected:
+private:
     QVariant _index;
 
 signals:

@@ -11,6 +11,8 @@
 class PlayerController : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_AND_MOVE(PlayerController)
+
     Q_PROPERTY(bool playing READ playing NOTIFY toggled)
     Q_PROPERTY(int accent READ accent WRITE setAccent NOTIFY changedAccent)
 
@@ -35,14 +37,15 @@ signals:
     void changedRange();
 
 private:
+    void changeState();
+    void changeAccent();
+
+private:
     bool _playing;
     int _accent;
     QTimer *_timer;
     Mixer *_mixer;
     TempoController *_tempoController;
-
-    void changeState();
-    void changeAccent();
 };
 
 #endif // MAIN_HPP

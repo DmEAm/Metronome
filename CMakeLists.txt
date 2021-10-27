@@ -3,9 +3,15 @@ cmake_minimum_required(VERSION 3.14)
 project(Metronome LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_program(CLANG_TIDY NAMES "clang-tidy")
-#set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY} ${SOURCE_FILES} -warnings-as-errors=clang-analyzer-* -header-filter=.*)
+#set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY}; -warnings-as-errors=clang-analyzer-* -header-filter=.* -p ${CMAKE_BINARY_DIR})
+file(WRITE "${CMAKE_BINARY_DIR}/.clang-tidy" "
+---
+Checks: '-*,llvm-twine-local'
+...
+")
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
