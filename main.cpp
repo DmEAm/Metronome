@@ -1,12 +1,12 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlComponent>
+#include <QScopedPointer>
 
+#include <Picker/tempocontroller.hpp>
 #include <Player/player.hpp>
 #include <Tapper/tapper.hpp>
-#include <Picker/tempocontroller.hpp>
 
-#include "tempocontroller.hpp"
 #include "temposettingscontroller.hpp"
 
 int main(int argc, char *argv[])
@@ -39,11 +39,9 @@ int main(int argc, char *argv[])
     auto tempoController = new TempoController(&app);
     auto playerController = new PlayerController(tempoController);
 
-    context->setContextProperty(tempoController->metaObject()->className(),
-                                tempoController);
+    context->setContextProperty(tempoController->metaObject()->className(), tempoController);
 
-    context->setContextProperty(playerController->metaObject()->className(),
-                                playerController);
+    context->setContextProperty(playerController->metaObject()->className(), playerController);
     engine.load(url);
 
     return QGuiApplication::exec();

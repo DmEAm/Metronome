@@ -1,18 +1,13 @@
 #include "tappersettingscontroller.hpp"
-#include <QDebug>
 
 TapperSettingsController::TapperSettingsController(QObject *parent)
     : IConfigurable(parent)
-    , _strongMaxInertia(10)
-    , _strongMinInertia(2)
-{
-
-}
+{}
 
 void TapperSettingsController::init()
 {
-    QStringList sett = {"Tapper/Inertia"};
-    QStringList basic = {"10"};
+    QStringList sett = { "Tapper/Inertia" };
+    QStringList basic = { "10" };
     configure(sett, basic);
 }
 
@@ -23,10 +18,13 @@ int TapperSettingsController::inertia() const
 
 void TapperSettingsController::setInertia(int inertia)
 {
-    if(inertia > _strongMaxInertia || inertia < _strongMinInertia)
+    if (inertia > Inertia::Max || inertia < Inertia::Min)
+    {
         return;
+    }
+
     QString stringInertia = QString::number(inertia);
-    if(value(INERTIA) != stringInertia)
+    if (value(INERTIA) != stringInertia)
     {
         valueRef(INERTIA) = stringInertia;
         emit inertiaChanged();
