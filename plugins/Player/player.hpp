@@ -11,13 +11,13 @@
 class PlayerController : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_AND_MOVE(PlayerController)
+    Q_DISABLE_COPY_MOVE(PlayerController)
 
     Q_PROPERTY(bool playing READ playing NOTIFY toggled)
     Q_PROPERTY(int accent READ accent WRITE setAccent NOTIFY changedAccent)
 
 public:
-    explicit PlayerController(QObject *parent = nullptr);
+    explicit PlayerController(TempoController *parent = nullptr);
     ~PlayerController() override = default;
 
     bool playing() const;

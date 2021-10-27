@@ -7,7 +7,7 @@
 
 class IConfigurable : public QObject
 {
-    Q_DISABLE_COPY_AND_MOVE(IConfigurable);
+    Q_DISABLE_COPY_MOVE(IConfigurable);
 public:
 
     explicit IConfigurable(QObject *parent = nullptr);

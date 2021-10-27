@@ -31,7 +31,7 @@ target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
     PUBLIC
-        core)
+        Core)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC

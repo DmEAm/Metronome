@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(core LANGUAGES CXX)
+project(Core LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
     ${HEADER_FILES})
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
+add_library(Metronome::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core

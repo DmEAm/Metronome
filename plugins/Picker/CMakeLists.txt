@@ -30,7 +30,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_BINARY_DIR})
+        ${CMAKE_CURRENT_BINARY_DIR}
+        $<TARGET_PROPERTY:Core,SOURCE_DIR>)
 
 generate_export_header(${PROJECT_NAME} BASE_NAME PICKER_PLUGIN)
 

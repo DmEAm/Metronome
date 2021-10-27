@@ -6,13 +6,13 @@
 #include <QTimer>
 #include <QQmlEngine>
 
-#include "core/iconfigurable.hpp"
+#include <iconfigurable.hpp>
 
 class TempoSettingsController : public IConfigurable
 {
     Q_OBJECT
     Q_INTERFACES(IConfigurable)
-    Q_DISABLE_COPY_AND_MOVE(TempoSettingsController)
+    Q_DISABLE_COPY_MOVE(TempoSettingsController)
 
     Q_PROPERTY(int tempo READ tempo WRITE setTempo NOTIFY tempoChanged)
     Q_PROPERTY(int maxTempo READ maxTempo WRITE setMaxTempo NOTIFY maxTempoChanged)
