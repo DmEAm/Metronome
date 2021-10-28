@@ -4,11 +4,7 @@ UpDownController::UpDownController(QObject *parent)
 : QObject(parent),
   _isMoveUp(false),
   _isMoveDown(false),
-  _timer(new QTimer(this)),
-  _timeLoopMin(80),
-  _timeLoopDefaulth(350),
-  _timeLoopDecrease(40),
-  _timeLoopCurrent(_timeLoopDefaulth)
+  _timer(new QTimer(this))
 {
     _timer->setTimerType(Qt::PreciseTimer);
     connect(_timer, &QTimer::timeout, this, &UpDownController::timeOut);
@@ -18,7 +14,7 @@ void UpDownController::pressUp()
 {
     releaseDown();
     _isMoveUp = true;
-    _timer->start(_timeLoopCurrent);
+    _timer->start(_timeLoop.timeLoopCurrent);
     emit up();
 }
 
@@ -32,7 +28,7 @@ void UpDownController::pressDown()
 {
     releaseUp();
     _isMoveDown = true;
-    _timer->start(_timeLoopCurrent);
+    _timer->start(_timeLoop.timeLoopCurrent);
     emit down();
 }
 
@@ -45,7 +41,7 @@ void UpDownController::releaseDown()
 void UpDownController::release()
 {
     _timer->stop();
-    _timeLoopCurrent = _timeLoopDefaulth;;
+    _timeLoop.timeLoopCurrent = _timeLoop.timeLoopDefaulth;;
 }
 
 void UpDownController::timeOut()
@@ -59,13 +55,13 @@ void UpDownController::timeOut()
 
 void UpDownController::decreaseTimeLoop()
 {
-    if(_timeLoopCurrent > _timeLoopMin)
+    if(_timeLoop.timeLoopCurrent > _timeLoop.timeLoopMin)
     {
-        if (_timeLoopCurrent - _timeLoopDecrease < _timeLoopMin)
-            _timeLoopCurrent = _timeLoopMin;
+        if (_timeLoop.timeLoopCurrent - _timeLoop.timeLoopDecrease < _timeLoop.timeLoopMin)
+            _timeLoop.timeLoopCurrent = _timeLoop.timeLoopMin;
         else
-            _timeLoopCurrent -= _timeLoopDecrease;
-        _timer->start(_timeLoopCurrent);
+            _timeLoop.timeLoopCurrent -= _timeLoop.timeLoopDecrease;
+        _timer->start(_timeLoop.timeLoopCurrent);
     }
 }
 

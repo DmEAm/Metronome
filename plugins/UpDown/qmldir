@@ -1,5 +1,0 @@
-module UpDown
-plugin UpDownPlugin
-designersupported
-UpDown 1.0 qrc:/updown/UpDown.qml
-typeinfo plugin.qmltypes

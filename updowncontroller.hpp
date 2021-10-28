@@ -7,6 +7,13 @@
 #include <QContiguousCache>
 #include <QQuickItem>
 
+struct TimeLoop{
+    size_t timeLoopMin = 80;
+    size_t timeLoopDefaulth = 350;
+    size_t timeLoopDecrease = 40;
+    size_t timeLoopCurrent = timeLoopDefaulth;
+};
+
 class UpDownController : public QObject
 {
     Q_OBJECT
@@ -28,10 +35,7 @@ private:
     bool _isMoveDown;
     QTimer *_timer;
 
-    size_t _timeLoopMin;
-    size_t _timeLoopDefaulth;
-    size_t _timeLoopDecrease;
-    size_t _timeLoopCurrent;
+    TimeLoop _timeLoop;
 
     void release();
     void timeOut();
