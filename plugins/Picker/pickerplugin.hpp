@@ -4,6 +4,8 @@
 #include <QQmlExtensionPlugin>
 #include <QtQml>
 
+#include "tempocontroller.hpp"
+#include "temposettingscontroller.hpp"
 #include "pickercontroller.hpp"
 #include "pickermodel.hpp"
 #include "tempo.hpp"

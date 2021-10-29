@@ -2,7 +2,6 @@
 #define TEMPO_SETTINGS_HPP
 
 #include <QtQml>
-#include <QSoundEffect>
 #include <QTimer>
 #include <QQmlEngine>
 

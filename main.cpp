@@ -5,10 +5,6 @@
 #include <QDebug>
 #include <QQuickItem>
 
-#include <Player/player.hpp>
-#include <Tapper/tapper.hpp>
-#include <tempocontroller.hpp>
-
 #include "contextobject.hpp"
 #include "temposettingscontroller.hpp"
 #include "plugins/Picker/tempocontroller.hpp"
@@ -32,8 +28,6 @@ int main(int argc, char *argv[])
         engine.addImportPath(info.absoluteFilePath());
     }
 
-    qmlRegisterType<TempoController>("TempoPicker", 1, 0, "TempoController");
-    qmlRegisterType<TempoSettingsController>("TempoPicker", 1, 0, "TempoSettingsController");
     qmlRegisterType<UpDownController>("UpDown", 1, 0, "UpDownController");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
