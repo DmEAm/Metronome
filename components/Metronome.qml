@@ -9,7 +9,6 @@ import Player 1.0
 import Tapper 1.0
 import Picker 1.0
 import UpDown 1.0
-import TempoPicker 1.0
 
 Component {
 
