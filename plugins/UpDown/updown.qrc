@@ -4,7 +4,7 @@
         <file>UpDownForm.ui.qml</file>
     </qresource>
     <qresource prefix="/icon">
-        <file>arrow-down-sign-to-navigate.svg</file>
-        <file>up-arrow.svg</file>
+        <file>down.svg</file>
+        <file>up.svg</file>
     </qresource>
 </RCC>

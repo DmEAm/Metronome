@@ -5,8 +5,8 @@ import UpDown 1.0
 
 UpDownForm {
     property alias controller: controller
-    property string iconDown: "qrc:/icon/arrow-down-sign-to-navigate.svg"
-    property string iconUp: "qrc:/icon/up-arrow.svg"
+    property string iconDown: "qrc:/icon/down.svg"
+    property string iconUp: "qrc:/icon/up.svg"
 
     UpDownController {
         id: controller

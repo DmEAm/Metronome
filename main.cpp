@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     QQmlComponent component(&engine);
     ContextObject object;
     engine.addImportPath("plugins");
+    engine.addImportPath("components");
 
     qmlRegisterType<TempoController>("TempoPicker", 1, 0, "TempoController");
     qmlRegisterType<TempoSettingsController>("TempoPicker", 1, 0, "TempoSettingsController");
