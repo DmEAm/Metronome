@@ -50,9 +50,33 @@ file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
+file(COPY components DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+set(COMPONENTS_RESOURCE ${CMAKE_CURRENT_BINARY_DIR}/components/components.qrc)
+
+file(GLOB COMPONENTS_SOURCES components/*.qml)
+set(COMPONENTS_RESOURCE_CONTENT "")
+set(COMPONENTS_QML_DIR_CONTENT "")
+
+foreach (component ${COMPONENTS_SOURCES})
+    get_filename_component(name_we ${component} NAME_WE)
+    get_filename_component(name ${component} NAME)
+    string(APPEND COMPONENTS_RESOURCE_CONTENT <file>${name}</file>)
+    string(APPEND COMPONENTS_QML_DIR_CONTENT "${name_we} qrc:/components/${name}\n")
+endforeach ()
+
+file(WRITE ${COMPONENTS_RESOURCE}
+"<RCC>
+    <qresource prefix=\"/components\">
+        ${COMPONENTS_RESOURCE_CONTENT}
+    </qresource>
+</RCC>")
+
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/components/qmldir ${COMPONENTS_QML_DIR_CONTENT})
+
 set(PROJECT_SOURCES
         ${SOURCE_FILES}
         ${RESOURCE_FILES}
+        ${COMPONENTS_RESOURCE}
         ${HEADER_FILES})
 
 if (ANDROID)

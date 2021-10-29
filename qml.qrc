@@ -1,15 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Settings.qml</file>
-        <file>Metronome.qml</file>
-        <file>DurationPicker.qml</file>
-        <file>TempoPicker.qml</file>
-        <file>TempoSettings.qml</file>
-        <file>TempoSettingsForm.ui.qml</file>
-        <file>AccentPicker.qml</file>
-        <file>UpDownForm.ui.qml</file>
-        <file>UpDown.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file alias="fourth.png">icons/fourth.png</file>
