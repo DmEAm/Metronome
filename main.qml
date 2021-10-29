@@ -2,7 +2,9 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.0
 
-ApplicationWindow{
+import "components"
+
+ApplicationWindow {
 
     title: qsTr("Metronome")
     visible: true
@@ -16,11 +18,11 @@ ApplicationWindow{
 
     StackView {
         id: stack
-        initialItem: mainView
+        initialItem: metronome
         anchors.fill: parent
 
         Metronome {
-            id: mainView
+            id: metronome
         }
 
         Settings {

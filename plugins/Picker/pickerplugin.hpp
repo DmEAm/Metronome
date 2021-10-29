@@ -5,8 +5,8 @@
 #include <QtQml>
 
 #include "pickercontroller.hpp"
-#include "tempo.hpp"
 #include "pickermodel.hpp"
+#include "tempo.hpp"
 
 class PickerPlugin : public QQmlExtensionPlugin
 {
