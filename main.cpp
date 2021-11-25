@@ -3,6 +3,7 @@
 
 #include "tempocontroller.hpp"
 #include "temposettingscontroller.hpp"
+#include "updowncontroller.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<TempoController>("TempoPicker", 1, 0, "TempoController");
     qmlRegisterType<TempoSettingsController>("TempoPicker", 1, 0, "TempoSettingsController");
+    qmlRegisterType<UpDownController>("UpDown", 1, 0, "UpDownController");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
