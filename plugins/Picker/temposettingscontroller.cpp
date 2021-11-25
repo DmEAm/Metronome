@@ -8,6 +8,8 @@ TempoSettingsController::TempoSettingsController(QObject *parent)
   _deltaTempo(5)
 {
 
+    init();
+
 }
 
 void TempoSettingsController::init()

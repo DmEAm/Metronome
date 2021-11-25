@@ -5,6 +5,7 @@ PlayerSettingsController::PlayerSettingsController(QObject *parent)
 : IConfigurable(parent)
 {
 
+    init();
 }
 
 void PlayerSettingsController::init()

@@ -101,6 +101,7 @@ target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Multimedia
+        ${OPENSSL_LIBRARY}
         PUBLIC
         TapperPlugin
         UpDownPlugin

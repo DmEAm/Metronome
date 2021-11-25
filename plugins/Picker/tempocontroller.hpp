@@ -31,7 +31,7 @@ public:
 
     int interval()
     {
-        return Tempo::MsecsInMinute / _tempo->current();
+        return Tempo::MsecsInMinute;
     }
 
 private:

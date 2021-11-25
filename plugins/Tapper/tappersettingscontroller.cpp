@@ -23,10 +23,10 @@ void TapperSettingsController::setInertia(int inertia)
         return;
     }
 
-//    QString stringInertia = QString::number(inertia);
-//    if (value(INERTIA) != stringInertia)
-//    {
-//        valueRef(INERTIA) = stringInertia;
-//        emit inertiaChanged();
-//    }
+    QString stringInertia = QString::number(inertia);
+    if (value(INERTIA) != stringInertia)
+    {
+        valueRef(INERTIA) = stringInertia;
+        emit inertiaChanged();
+    }
 }
