@@ -102,7 +102,6 @@ target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Quick
         Qt${QT_VERSION_MAJOR}::Multimedia
         PUBLIC
-        TapperPlugin
-        UpDownPlugin
-        PickerPlugin
-        PlayerPlugin)
+        Metronome::TapperPlugin
+        Metronome::PickerPlugin
+        Metronome::PlayerPlugin)

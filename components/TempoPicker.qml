@@ -6,7 +6,6 @@ import Picker 1.0
 import TempoPicker 1.0
 
 Item {
-    property var controller: tempoController
     property alias tumbler: picker.tumbler
     property alias element: picker.element
     property alias delegateComponent: delegateComponent
@@ -21,7 +20,7 @@ Item {
     DelegateModel {
         id: delegateComponent
         delegate: Label {
-            text: controller.formatText(Tumbler.tumbler.count, modelData)
+            text: tempoController.formatText(Tumbler.tumbler.count, modelData)
             opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -32,13 +31,13 @@ Item {
     Picker {
         id: picker
         anchors.fill: parent
-        tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
+        tumbler.onCurrentIndexChanged: tempoController.index = tumbler.currentIndex
     }
 
     Component.onCompleted: {
-        delegateComponent.model = controller.tempo.range;
+        delegateComponent.model = tempoController.tempo.range;
         //Load again settings after config model range
-        controller.loadTempo();
-        tumbler.currentIndex = controller.index;
+        tempoController.loadTempo();
+        tumbler.currentIndex = tempoController.index;
     }
 }
