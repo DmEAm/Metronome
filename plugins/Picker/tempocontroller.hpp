@@ -29,6 +29,7 @@ public:
     Q_INVOKABLE void loadTempo();
     Q_INVOKABLE void saveTempo();
     void setIndex(QVariant index) override;
+    Q_REQUIRED_RESULT QVariant index() const override;
 
     int interval()
     {

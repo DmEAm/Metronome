@@ -38,5 +38,10 @@ void TempoController::saveTempo()
 void TempoController::setIndex(QVariant index)
 {
     _tempo->setIndex(index.value<int>());
-    PickerController::setIndex(_tempo->index());
+    emit indexChanged();
+}
+
+QVariant TempoController::index() const
+{
+    return _tempo->index();
 }
