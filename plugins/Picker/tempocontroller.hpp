@@ -9,7 +9,7 @@
 #include "pickercontroller.hpp"
 #include "tempo.hpp"
 
-class TempoController : public PickerController
+class PICKER_PLUGIN_EXPORT TempoController : public PickerController
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TempoController)
