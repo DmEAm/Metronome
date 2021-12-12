@@ -14,7 +14,7 @@ class PICKER_PLUGIN_EXPORT TempoController : public PickerController
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TempoController)
 
-    Q_PROPERTY(Tempo *tempo READ tempo CONSTANT FINAL)
+    Q_PROPERTY(Tempo *tempo READ tempo NOTIFY tempoChanged CONSTANT FINAL)
     Q_PROPERTY(int interval READ interval)
 
 public:
@@ -28,11 +28,15 @@ public:
     Q_INVOKABLE void loadSettings();
     Q_INVOKABLE void loadTempo();
     Q_INVOKABLE void saveTempo();
+    void setIndex(QVariant index) override;
 
     int interval()
     {
         return Tempo::MsecsInMinute / _tempo->current();
     }
+
+signals:
+    void tempoChanged();
 
 private:
     Tempo *_tempo;

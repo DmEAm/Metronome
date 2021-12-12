@@ -2,17 +2,18 @@
 
 PlayerController::PlayerController(TempoController *parent)
     : QObject(parent)
-    , _tempoController(parent)
     , _playing(false)
     , _accent(0)
     , _timer(new QTimer(this))
     , _mixer(new Mixer(this))
+    , _tempoController(parent)
 {
     _timer->setTimerType(Qt::PreciseTimer);
     connect(_timer, &QTimer::timeout, _mixer, &Mixer::click);
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
-    connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedAccent, this, &PlayerController::changeAccent);
+    connect(_tempoController, &TempoController::tempoChanged, this, &PlayerController::changeState);
+    connect(_tempoController, &TempoController::indexChanged, this, &PlayerController::changeState);
     loadSettings();
 }
 

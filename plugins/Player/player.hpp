@@ -33,9 +33,7 @@ public:
 
 signals:
     void toggled();
-    void changedTempo();
     void changedAccent();
-    void changedRange();
 
 private:
     void changeState();
