@@ -5,7 +5,11 @@ TempoController::TempoController(QObject *parent)
     : PickerController(parent)
     , _tempo(new Tempo(this))
 {
-    connect(_tempo, &Tempo::currentChanged, this, [=](){emit tempoChanged();});
+}
+
+TempoController::~TempoController()
+{
+    saveTempo();
 }
 
 QVariant TempoController::formatText(const QVariant &count, const QVariant &modelData)
@@ -38,7 +42,6 @@ void TempoController::saveTempo()
 void TempoController::setIndex(QVariant index)
 {
     _tempo->setIndex(index.value<int>());
-    emit indexChanged();
 }
 
 QVariant TempoController::index() const
