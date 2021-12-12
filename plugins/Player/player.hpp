@@ -4,11 +4,12 @@
 #include <QSoundEffect>
 #include <QTimer>
 #include <QtQml>
+#include <player_plugin_export.h>
 
 #include "mixer.hpp"
 #include "tempocontroller.hpp"
 
-class PlayerController : public QObject
+class PLAYER_PLUGIN_EXPORT PlayerController : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PlayerController)

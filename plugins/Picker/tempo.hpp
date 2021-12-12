@@ -2,8 +2,9 @@
 #define METRONOME_TEMPO_HPP
 
 #include <QObject>
+#include <picker_plugin_export.h>
 
-class Tempo : public QObject
+class PICKER_PLUGIN_EXPORT Tempo : public QObject
 {
     Q_OBJECT
 
