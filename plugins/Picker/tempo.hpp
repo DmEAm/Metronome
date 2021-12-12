@@ -11,12 +11,14 @@ class PICKER_PLUGIN_EXPORT Tempo : public QObject
     int _current;
 
     Q_PROPERTY(int current READ current WRITE setCurrent NOTIFY currentChanged)
+    Q_PROPERTY(int index READ index WRITE setIndex NOTIFY indexChanged)
     Q_PROPERTY(int range READ range NOTIFY rangeChanged)
     Q_PROPERTY(int max MEMBER Max CONSTANT)
     Q_PROPERTY(int min MEMBER Min CONSTANT)
 
 signals:
     void currentChanged();
+    void indexChanged();
     void rangeChanged();
 
 public:
@@ -36,6 +38,8 @@ public:
 
     int current() const;
     void setCurrent(int tempo);
+    int index() const;
+    void setIndex(int index);
 };
 
 #endif //METRONOME_TEMPO_HPP
