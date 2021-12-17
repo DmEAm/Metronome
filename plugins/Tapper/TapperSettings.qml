@@ -4,12 +4,15 @@ import QtQuick.Controls 2.0
 import Tapper 1.0
 
 TapperSettingsForm {
-    property alias controller: controller
-    TapperSettingsController{
-        id: controller;
-    }
+    property var controller: tapperSettingsController
+    property bool isLoad: true
 
-    sInertia.onValueChanged: {controller.setInertia(sInertia.value);}
+
+    sInertia.onValueChanged: {
+        if(isLoad)
+            return;
+        controller.setInertia(sInertia.value);
+    }
 
     Connections{
         target: controller
@@ -21,11 +24,9 @@ TapperSettingsForm {
     Component.onCompleted: {
         sInertia.from = controller.strongMinInertia;
         sInertia.to = controller.strongMaxInertia;
-
-        controller.init();
-
-        //Inertia
         sInertia.value = controller.inertia;
         lInertia.text = controller.inertia;
+
+        isLoad = false;
     }
 }

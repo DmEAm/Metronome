@@ -6,8 +6,11 @@
 
 #include "iconfigurable.hpp"
 #include "inertia.hpp"
+#include "tapper.hpp"
 
-class TapperSettingsController : public IConfigurable
+#include <tapper_plugin_export.h>
+
+class TAPPER_PLUGIN_EXPORT TapperSettingsController : public IConfigurable
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TapperSettingsController)
@@ -18,7 +21,7 @@ class TapperSettingsController : public IConfigurable
     Q_PROPERTY(int strongMinInertia READ strongMinInertia)
 
 public:
-    explicit TapperSettingsController(QObject *parent = nullptr);
+    explicit TapperSettingsController(TapperController *parent = nullptr);
     ~TapperSettingsController() override = default;
 
     enum KeysId
@@ -32,10 +35,13 @@ public:
     Q_INVOKABLE void setInertia(int inertia);
 
     Q_DECL_RELAXED_CONSTEXPR int strongMaxInertia() const { return Inertia::Max; }
-    Q_DECL_RELAXED_CONSTEXPR int strongMinInertia() const { return Inertia::Max; }
+    Q_DECL_RELAXED_CONSTEXPR int strongMinInertia() const { return Inertia::Min; }
 
 signals:
-    void inertiaChanged();
+    void inertiaChanged(int inertia);
+
+private:
+    TapperController * _tapper;
 };
 
 #endif // TAPPER_SETTINGS_HPP

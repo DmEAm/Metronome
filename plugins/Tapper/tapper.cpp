@@ -35,7 +35,8 @@ void TapperController::tap()
 
     _tempoCache.normalizeIndexes();
     _timeCache.normalizeIndexes();
-    emit tempoChanged();
+    qDebug() << "Tap";
+    emit tempoChanged(tempo());
 }
 
 void TapperController::loadSettings()

@@ -8,9 +8,11 @@
 #include <QString>
 #include <QTime>
 
+#include <tapper_plugin_export.h>
+
 #include <chrono>
 
-class TapperController : public QObject
+class TAPPER_PLUGIN_EXPORT TapperController : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TapperController)
@@ -32,7 +34,7 @@ public:
     void setInertia(int inertia);
 
 signals:
-    void tempoChanged();
+    void tempoChanged(int tempo);
 
 private:
     QContiguousCache<QTime> _timeCache;
