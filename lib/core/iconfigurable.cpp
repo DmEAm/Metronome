@@ -1,24 +1,24 @@
 #include "iconfigurable.hpp"
 
-ICongigurable::ICongigurable(QObject *parent)
-: QObject(parent),
-  isConfigure(false)
+IConfigurable::IConfigurable(QObject *parent)
+    : QObject(parent),
+      isConfigure(false)
 {
 
 }
 
-ICongigurable::~ICongigurable()
+IConfigurable::~IConfigurable()
 {
     save();
 }
 
-void ICongigurable::save()
+void IConfigurable::save()
 {
     foreach(auto key, _settings.keys())
         QSettings().setValue( key, _settings[key] );
 }
 
-void ICongigurable::configure(QStringList settings, QStringList basic)
+void IConfigurable::configure(QStringList settings, QStringList basic)
 {
     _settings.clear();
     _keys = settings;

@@ -1,14 +1,23 @@
 #include "mixer.hpp"
-#include <QDebug>
 
 Mixer::Mixer(QObject *parent)
-: QObject(parent)
-, _stdEffect(new QSoundEffect(this))
-, _accEffect(new QSoundEffect(this))
-, _currentEffect(0)
+    : QObject(parent)
+    , _stdEffect(new QSoundEffect(this))
+    , _accEffect(new QSoundEffect(this))
+    , _currentEffect(0)
 {
-    initStandardEffect();
-    initAccentEffect();
+    {
+        _stdEffect->setSource(QUrl("qrc:/audio/stick_1(wav)"));
+        _stdEffect->setVolume(StandardVolume);
+        _stdEffect->setLoopCount(0);
+    }
+
+    {
+        _accEffect->setSource(QUrl("qrc:/audio/accient_1(wav)"));
+        _accEffect->setVolume(StandardVolume);
+        _accEffect->setLoopCount(0);
+    }
+
     setStandardMode();
 }
 
@@ -21,14 +30,14 @@ void Mixer::setStandardMode()
 
 void Mixer::setAccentMode(int accent)
 {
-    if(accent == 0)
+    if (accent == 0)
     {
         setStandardMode();
         return;
     }
     _effects.clear();
     _effects.append(_accEffect);
-    for(int i = 1; i < accent; i++)
+    for (int i = 1; i < accent; i++)
         _effects.append(_stdEffect);
     resetPosition();
 }
@@ -67,20 +76,10 @@ void Mixer::setAccentSound(QString accentSound)
     _accEffect->setSource(QUrl(accentSound));
 }
 
-void Mixer::initStandardEffect()
-{
-    _stdEffect->setLoopCount(0);
-}
-
-void Mixer::initAccentEffect()
-{
-    _accEffect->setLoopCount(0);
-}
-
 void Mixer::upPosition()
 {
     _currentEffect += 1;
-    if(_currentEffect >= _effects.size())
+    if (_currentEffect >= _effects.size())
         _currentEffect = 0;
 }
 
@@ -97,7 +96,7 @@ void Mixer::click()
 
 void Mixer::stop()
 {
-    if(_effects[_currentEffect]->isPlaying())
+    if (_effects[_currentEffect]->isPlaying())
         _effects[_currentEffect]->stop();
     resetPosition();
 }

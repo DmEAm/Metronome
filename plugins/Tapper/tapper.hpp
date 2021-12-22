@@ -1,18 +1,26 @@
 #ifndef TAPPER_HPP
 #define TAPPER_HPP
 
-#include <QObject>
-#include <QString>
-#include <QSettings>
-#include <QTime>
 #include <QContiguousCache>
+#include <QObject>
 #include <QQuickItem>
+#include <QSettings>
+#include <QString>
+#include <QTime>
 
-class TapperController : public QObject
+#include <tapper_plugin_export.h>
+
+#include <chrono>
+
+class TAPPER_PLUGIN_EXPORT TapperController : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TapperController)
+
     Q_PROPERTY(int tempo READ tempo NOTIFY tempoChanged)
     Q_PROPERTY(int inertia READ inertia WRITE setInertia)
+
+    const int Inertia = 10;
 
 public:
     explicit TapperController(QObject *parent = nullptr);
@@ -26,7 +34,7 @@ public:
     void setInertia(int inertia);
 
 signals:
-    void tempoChanged();
+    void tempoChanged(int tempo);
 
 private:
     QContiguousCache<QTime> _timeCache;

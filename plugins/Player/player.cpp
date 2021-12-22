@@ -1,18 +1,19 @@
 #include "player.hpp"
 
-PlayerController::PlayerController(QObject *parent)
-: QObject(parent)
-, _playing(false)
-, _tempo(120)
-, _accent(0)
-, _timer(new QTimer(this))
-, _mixer(new Mixer(this))
+PlayerController::PlayerController(TempoController *parent)
+    : QObject(parent)
+    , _playing(false)
+    , _accent(0)
+    , _timer(new QTimer(this))
+    , _mixer(new Mixer(this))
+    , _tempoController(parent)
 {
     _timer->setTimerType(Qt::PreciseTimer);
     connect(_timer, &QTimer::timeout, _mixer, &Mixer::click);
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
-    connect(this, &PlayerController::changedTempo, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedAccent, this, &PlayerController::changeAccent);
+    connect(_tempoController->tempo(), &Tempo::currentChanged, this, &PlayerController::changeState);
+    connect(_tempoController->tempo(), &Tempo::indexChanged, this, &PlayerController::changeState);
     loadSettings();
 }
 
@@ -51,10 +52,10 @@ void PlayerController::setAccentSound(QString accentSound)
 
 void PlayerController::changeState()
 {
-    if(_playing)
+    if (_playing)
     {
         _mixer->click();
-        _timer->start(interval());
+        _timer->start(_tempoController->interval());
     }
     else
     {
@@ -69,34 +70,15 @@ void PlayerController::changeAccent()
     changeState();
 }
 
-int PlayerController::tempo() const
-{
-    return _tempo;
-}
-
 int PlayerController::accent() const
 {
     return _accent;
 }
 
-void PlayerController::setTempo(int tempo)
-{
-    if(tempo == _tempo)
-        return;
-    _tempo = tempo;
-    emit changedTempo();
-}
-
 void PlayerController::setAccent(int accent)
 {
-    if(_accent == accent)
+    if (_accent == accent)
         return;
     _accent = accent;
     emit changedAccent();
 }
-
-int PlayerController::interval()
-{
-    return 1000 * 60 / _tempo;
-}
-

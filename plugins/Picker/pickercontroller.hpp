@@ -14,16 +14,15 @@ class PICKER_PLUGIN_EXPORT PickerController : public QObject
 public:
     explicit PickerController(QObject *parent = nullptr);
 
-    Q_REQUIRED_RESULT QVariant index() const;
+    virtual Q_REQUIRED_RESULT QVariant index() const;
     virtual void setIndex(QVariant index);
     virtual Q_INVOKABLE QVariant formatText(const QVariant &count, const QVariant &modelData);
 
-protected:
+private:
     QVariant _index;
 
 signals:
     void indexChanged();
-
 };
 
 #endif // PICKER_CONTROLLER_H

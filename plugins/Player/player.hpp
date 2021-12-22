@@ -1,29 +1,28 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
-#include <QtQml>
 #include <QSoundEffect>
 #include <QTimer>
+#include <QtQml>
+#include <player_plugin_export.h>
 
 #include "mixer.hpp"
+#include "tempocontroller.hpp"
 
-class PlayerController : public QObject
+class PLAYER_PLUGIN_EXPORT PlayerController : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PlayerController)
+
     Q_PROPERTY(bool playing READ playing NOTIFY toggled)
-    Q_PROPERTY(int tempo READ tempo WRITE setTempo NOTIFY changedTempo)
     Q_PROPERTY(int accent READ accent WRITE setAccent NOTIFY changedAccent)
-    Q_PROPERTY(int interval READ interval)
 
 public:
-    explicit PlayerController(QObject *parent = nullptr);
+    explicit PlayerController(TempoController *parent = nullptr);
     ~PlayerController() override = default;
 
     bool playing() const;
-    int tempo() const;
     int accent() const;
-    int interval();
-    void setTempo(int tempo);
     void setAccent(int accent);
 
     Q_INVOKABLE void toggle();
@@ -34,19 +33,18 @@ public:
 
 signals:
     void toggled();
-    void changedTempo();
     void changedAccent();
-    void changedRange();
+
+private:
+    void changeState();
+    void changeAccent();
 
 private:
     bool _playing;
-    int _tempo;
     int _accent;
     QTimer *_timer;
     Mixer *_mixer;
-
-    void changeState();
-    void changeAccent();
+    TempoController *_tempoController;
 };
 
 #endif // MAIN_HPP

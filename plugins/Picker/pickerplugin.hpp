@@ -2,10 +2,13 @@
 #define PICKER_PLUGIN_HPP
 
 #include <QQmlExtensionPlugin>
-#include <QmlTypeAndRevisionsRegistration>
+#include <QtQml>
 
-#include "pickermodel.hpp"
+#include "tempocontroller.hpp"
+#include "temposettingscontroller.hpp"
 #include "pickercontroller.hpp"
+#include "pickermodel.hpp"
+#include "tempo.hpp"
 
 class PickerPlugin : public QQmlExtensionPlugin
 {

@@ -4,10 +4,16 @@
 #include <QObject>
 #include <QSettings>
 #include <QSoundEffect>
+#include <QVector>
+
+#include <global.hpp>
 
 class Mixer : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(Mixer)
+
+    constexpr static qreal StandardVolume = .25;
 
 public:
     explicit Mixer(QObject *parent = nullptr);
@@ -28,13 +34,11 @@ public slots:
     void stop();
 
 private:
-    QVector<QSoundEffect*> _effects;
+    QVector<QSoundEffect *> _effects;
     QSoundEffect *_stdEffect;
     QSoundEffect *_accEffect;
     int _currentEffect;
 
-    void initStandardEffect();
-    void initAccentEffect();
     void upPosition();
     void resetPosition();
 };

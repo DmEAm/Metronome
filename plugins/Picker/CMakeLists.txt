@@ -13,34 +13,36 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
-include_directories(${CMAKE_PROJECT_BINARY_DIR})
+file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
+file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
 
-file(GLOB SOURCE_FILES
-    ${PROJECT_SOURCE_DIR}/*.cpp)
-file(GLOB HEADER_FILES
-    ${PROJECT_SOURCE_DIR}/*.hpp)
-file(GLOB RESOURCE_FILES
-    ${PROJECT_SOURCE_DIR}/*.qrc)
-
-qt5_add_resources(PLUGIN_RESOURCES ${RESOURCE_FILES})
 set(PROJECT_SOURCES
-    ${SOURCE_FILES}
-    ${PLUGIN_RESOURCES}
-    ${HEADER_FILES})
+        ${SOURCE_FILES}
+        ${RESOURCE_FILES}
+        ${HEADER_FILES})
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
+add_library(Metronome::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt${QT_VERSION_MAJOR}::Core
-    Qt${QT_VERSION_MAJOR}::Quick)
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Quick
+        PUBLIC
+        Metronome::Core)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_BINARY_DIR}
+        $<TARGET_PROPERTY:Core,SOURCE_DIR>)
 
 generate_export_header(${PROJECT_NAME} BASE_NAME PICKER_PLUGIN)
 
 add_custom_command(
-    TARGET ${PROJECT_NAME}
-    POST_BUILD
-    COMMAND
-    ${CMAKE_COMMAND} -E copy
-    ${CMAKE_CURRENT_LIST_DIR}/qmldir
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>/qmldir
+        TARGET ${PROJECT_NAME}
+        POST_BUILD
+        COMMAND
+        ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_LIST_DIR}/qmldir
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>/qmldir
 )

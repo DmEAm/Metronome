@@ -2,7 +2,7 @@
 #include <QDebug>
 
 PlayerSettingsController::PlayerSettingsController(QObject *parent)
-: ICongigurable(parent)
+: IConfigurable(parent)
 {
 
 }

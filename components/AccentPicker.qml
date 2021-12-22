@@ -1,9 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.0
-import QtQml.Models 2.15
+import QtQml.Models 2.12
 
 import Picker 1.0
-import TempoPicker 1.0
 
 Item {
     property alias controller: controller
@@ -11,10 +10,10 @@ Item {
     property alias element: picker.element
     property alias delegateComponent: delegateComponent
 
-    width: 180
-    height: element.height
+    width: 100
+    height: 100
 
-    TempoController {
+    PickerController {
         id: controller
     }
 
@@ -37,19 +36,5 @@ Item {
         id: picker
         anchors.fill: parent
         tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
-    }
-
-    Connections{
-        target: controller
-        function onRangeChanged(){
-            delegateComponent.model = controller.range;
-        }
-    }
-
-    Component.onCompleted: {
-        delegateComponent.model = controller.range;
-        //Load again settings after config model range
-        controller.loadTempo();
-        tumbler.currentIndex = controller.index;
     }
 }

@@ -1,21 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.0
-import QtQml.Models 2.15
+import QtQml.Models 2.12
 
 import Picker 1.0
+import TempoPicker 1.0
 
 Item {
-    property alias controller: controller
     property alias tumbler: picker.tumbler
     property alias element: picker.element
     property alias delegateComponent: delegateComponent
 
-    width: 100
-    height: 100
-
-    PickerController {
-        id: controller
-    }
+    width: 180
+    height: element.height
 
     FontMetrics {
         id: fontMetrics
@@ -24,7 +20,7 @@ Item {
     DelegateModel {
         id: delegateComponent
         delegate: Label {
-            text: controller.formatText(Tumbler.tumbler.count, modelData)
+            text: tempoController.formatText(Tumbler.tumbler.count, modelData)
             opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -35,6 +31,13 @@ Item {
     Picker {
         id: picker
         anchors.fill: parent
-        tumbler.onCurrentIndexChanged: controller.index = tumbler.currentIndex
+        tumbler.onCurrentIndexChanged: tempoController.index = tumbler.currentIndex
+    }
+
+    Component.onCompleted: {
+        delegateComponent.model = tempoController.tempo.range;
+        //Load again settings after config model range
+        tempoController.loadTempo();
+        tumbler.currentIndex = tempoController.index;
     }
 }
