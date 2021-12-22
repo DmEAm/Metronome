@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.14)
 
 project(TapperPlugin LANGUAGES CXX)
 
+include(GenerateExportHeader)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -14,10 +16,6 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/*.cpp)
 file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.hpp)
 file(GLOB RESOURCE_FILES ${PROJECT_SOURCE_DIR}/*.qrc)
-
-get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR}} DIRECTORY)
-set(CORE_INCLUDE_DIR "${PARENT_DIR}/core")
-include_directories("${CORE_INCLUDE_DIR}")
 
 set(PROJECT_SOURCES
         ${SOURCE_FILES}
@@ -32,12 +30,15 @@ target_link_libraries(${PROJECT_NAME}
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Quick
     PUBLIC
-        Core)
+        Metronome::Core)
+
+generate_export_header(${PROJECT_NAME} BASE_NAME TAPPER_PLUGIN)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         ${PROJECT_SOURCE_DIR}
-        ${CORE_INCLUDE_DIR})
+        ${PROJECT_BINARY_DIR}
+        $<TARGET_PROPERTY:Core,SOURCE_DIR>)
 
 add_custom_command(
         TARGET ${PROJECT_NAME}

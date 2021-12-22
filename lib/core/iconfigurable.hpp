@@ -20,6 +20,8 @@ public:
     Q_INVOKABLE QString& valueRef(int idKey) { return _settings[key(idKey)]; }
     Q_INVOKABLE QString value(int idKey) const { return _settings[key(idKey)]; }
 
+    bool isConfigure;
+
 private:
     QHash<QString, QString> _settings;
     QList<QString> _keys;

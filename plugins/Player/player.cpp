@@ -12,8 +12,8 @@ PlayerController::PlayerController(TempoController *parent)
     connect(_timer, &QTimer::timeout, _mixer, &Mixer::click);
     connect(this, &PlayerController::toggled, this, &PlayerController::changeState);
     connect(this, &PlayerController::changedAccent, this, &PlayerController::changeAccent);
-    connect(_tempoController, &TempoController::tempoChanged, this, &PlayerController::changeState);
-    connect(_tempoController, &TempoController::indexChanged, this, &PlayerController::changeState);
+    connect(_tempoController->tempo(), &Tempo::currentChanged, this, &PlayerController::changeState);
+    connect(_tempoController->tempo(), &Tempo::indexChanged, this, &PlayerController::changeState);
     loadSettings();
 }
 

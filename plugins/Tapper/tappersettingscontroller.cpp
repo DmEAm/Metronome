@@ -1,8 +1,12 @@
 #include "tappersettingscontroller.hpp"
 
-TapperSettingsController::TapperSettingsController(QObject *parent)
-    : IConfigurable(parent)
-{}
+TapperSettingsController::TapperSettingsController(TapperController *parent)
+    : IConfigurable(parent),
+      _tapper(parent)
+{
+    init();
+    connect(this, &TapperSettingsController::inertiaChanged, _tapper, &TapperController::setInertia);
+}
 
 void TapperSettingsController::init()
 {
@@ -23,10 +27,10 @@ void TapperSettingsController::setInertia(int inertia)
         return;
     }
 
-//    QString stringInertia = QString::number(inertia);
-//    if (value(INERTIA) != stringInertia)
-//    {
-//        valueRef(INERTIA) = stringInertia;
-//        emit inertiaChanged();
-//    }
+    QString stringInertia = QString::number(inertia);
+    if (value(INERTIA) != stringInertia)
+    {
+        valueRef(INERTIA) = stringInertia;
+        emit inertiaChanged(this->inertia());
+    }
 }

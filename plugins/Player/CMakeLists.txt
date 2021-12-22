@@ -36,6 +36,7 @@ target_link_libraries(${PROJECT_NAME}
         Metronome::PickerPlugin)
 
 generate_export_header(${PROJECT_NAME} BASE_NAME PLAYER_PLUGIN)
+
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         ${PROJECT_SOURCE_DIR}

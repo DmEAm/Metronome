@@ -1,7 +1,8 @@
 #include "iconfigurable.hpp"
 
 IConfigurable::IConfigurable(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      isConfigure(false)
 {
 
 }
@@ -23,4 +24,5 @@ void IConfigurable::configure(QStringList settings, QStringList basic)
     _keys = settings;
     for(int i = 0; i < settings.size(); i++)
         _settings[settings[i]] = QSettings().value( settings[i], basic[i] ).toString();
+    isConfigure = true;
 }
